@@ -1,5 +1,7 @@
 # Accev
 
+A crowd-sourced iOS application for mapping out accessibiliy features among local businesses, buildings, and landmarks.
+
 Supports: iOS 10.x and above
 
 ## Branches:
