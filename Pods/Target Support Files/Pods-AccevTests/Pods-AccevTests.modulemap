@@ -1,0 +1,6 @@
+framework module Pods_AccevTests {
+  umbrella header "Pods-AccevTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
