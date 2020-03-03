@@ -11,7 +11,6 @@
 		2A1DD4E11F389E2100712195 /* NotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1DD4E01F389E2100712195 /* NotificationsHandler.swift */; };
 		2A1E77371F384BFC006C84D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E77361F384BFC006C84D4 /* AppDelegate.swift */; };
 		2A1E773E1F384BFD006C84D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E773D1F384BFD006C84D4 /* Assets.xcassets */; };
-		2A1E77411F384BFD006C84D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E773F1F384BFD006C84D4 /* LaunchScreen.storyboard */; };
 		2A9222821F38797600A648E6 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9222811F38797600A648E6 /* ConfigurationManager.swift */; };
 		2ABEE6D41F38856A00531205 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2ABEE6D31F38828A00531205 /* Configuration.plist */; };
 		2ABEE6D61F3886D700531205 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABEE6D51F3886D700531205 /* RootRouter.swift */; };
@@ -21,6 +20,22 @@
 		C90395241FC622D2006F1DC0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90395231FC622D2006F1DC0 /* main.swift */; };
 		C90395261FC62399006F1DC0 /* TestsAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90395251FC62399006F1DC0 /* TestsAppDelegate.swift */; };
 		C90395271FC62425006F1DC0 /* TestsAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90395251FC62399006F1DC0 /* TestsAppDelegate.swift */; };
+		F33D0562240DEB1F00F9D8E8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33D0561240DEB1F00F9D8E8 /* Colors.swift */; };
+		F33D0564240DECDE00F9D8E8 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33D0563240DECDE00F9D8E8 /* UIColor+hex.swift */; };
+		F3DFEF05240F15110080DDC6 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFB240F15100080DDC6 /* Lato-Light.ttf */; };
+		F3DFEF06240F15110080DDC6 /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFC240F15110080DDC6 /* Lato-BoldItalic.ttf */; };
+		F3DFEF07240F15110080DDC6 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFD240F15110080DDC6 /* Lato-Black.ttf */; };
+		F3DFEF08240F15110080DDC6 /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFE240F15110080DDC6 /* Lato-LightItalic.ttf */; };
+		F3DFEF09240F15110080DDC6 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFF240F15110080DDC6 /* Lato-Italic.ttf */; };
+		F3DFEF0A240F15110080DDC6 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEF00240F15110080DDC6 /* Lato-Regular.ttf */; };
+		F3DFEF0B240F15110080DDC6 /* Lato-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEF01240F15110080DDC6 /* Lato-Thin.ttf */; };
+		F3DFEF0C240F15110080DDC6 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEF02240F15110080DDC6 /* Lato-Bold.ttf */; };
+		F3DFEF0D240F15110080DDC6 /* Lato-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEF03240F15110080DDC6 /* Lato-ThinItalic.ttf */; };
+		F3DFEF0E240F15110080DDC6 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEF04240F15110080DDC6 /* Lato-BlackItalic.ttf */; };
+		F3DFEF12240F15940080DDC6 /* BackgroundGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DFEF11240F15940080DDC6 /* BackgroundGradient.swift */; };
+		F3DFEF14240F165D0080DDC6 /* FontResource+orDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DFEF13240F165D0080DDC6 /* FontResource+orDefault.swift */; };
+		F3DFEF16240F19F70080DDC6 /* TransitionLinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DFEF15240F19F70080DDC6 /* TransitionLinkButton.swift */; };
+		F3DFEF18240F1A750080DDC6 /* LoginRegisterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DFEF17240F1A750080DDC6 /* LoginRegisterButton.swift */; };
 		FCB2C7CB1F57127800481080 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCB2C7CA1F57127800481080 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +57,6 @@
 		2A1E77331F384BFC006C84D4 /* Accev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Accev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A1E77361F384BFC006C84D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A1E773D1F384BFD006C84D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2A1E77401F384BFD006C84D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A1E77421F384BFD006C84D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A1E77471F384BFD006C84D4 /* AccevTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccevTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A1E774D1F384BFD006C84D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,6 +74,22 @@
 		C90395251FC62399006F1DC0 /* TestsAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsAppDelegate.swift; sourceTree = "<group>"; };
 		CF55446145D2A8E014032F3D /* Pods-Accev.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Accev.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Accev/Pods-Accev.staging.xcconfig"; sourceTree = "<group>"; };
 		E6C1AD8A847D3F80CFF1D722 /* Pods-AccevTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccevTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-AccevTests/Pods-AccevTests.staging.xcconfig"; sourceTree = "<group>"; };
+		F33D0561240DEB1F00F9D8E8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		F33D0563240DECDE00F9D8E8 /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
+		F3DFEEFB240F15100080DDC6 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
+		F3DFEEFC240F15110080DDC6 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
+		F3DFEEFD240F15110080DDC6 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
+		F3DFEEFE240F15110080DDC6 /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-LightItalic.ttf"; sourceTree = "<group>"; };
+		F3DFEEFF240F15110080DDC6 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
+		F3DFEF00240F15110080DDC6 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		F3DFEF01240F15110080DDC6 /* Lato-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Thin.ttf"; sourceTree = "<group>"; };
+		F3DFEF02240F15110080DDC6 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		F3DFEF03240F15110080DDC6 /* Lato-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-ThinItalic.ttf"; sourceTree = "<group>"; };
+		F3DFEF04240F15110080DDC6 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
+		F3DFEF11240F15940080DDC6 /* BackgroundGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGradient.swift; sourceTree = "<group>"; };
+		F3DFEF13240F165D0080DDC6 /* FontResource+orDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FontResource+orDefault.swift"; sourceTree = "<group>"; };
+		F3DFEF15240F19F70080DDC6 /* TransitionLinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionLinkButton.swift; sourceTree = "<group>"; };
+		F3DFEF17240F1A750080DDC6 /* LoginRegisterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterButton.swift; sourceTree = "<group>"; };
 		FCB2C7CA1F57127800481080 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,14 +113,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2A1DD4E21F38A09700712195 /* Launch */ = {
-			isa = PBXGroup;
-			children = (
-				2A1E773F1F384BFD006C84D4 /* LaunchScreen.storyboard */,
-			);
-			path = Launch;
-			sourceTree = "<group>";
-		};
 		2A1E772A1F384BFC006C84D4 = {
 			isa = PBXGroup;
 			children = (
@@ -146,7 +168,8 @@
 		2AB31D9F1F38741400B7D1F3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				2A1DD4E21F38A09700712195 /* Launch */,
+				F3DFEF10240F157B0080DDC6 /* Shared */,
+				F3DFEF0F240F15710080DDC6 /* Login */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -154,6 +177,16 @@
 		2AB31DA01F38742400B7D1F3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				F3DFEEFD240F15110080DDC6 /* Lato-Black.ttf */,
+				F3DFEF04240F15110080DDC6 /* Lato-BlackItalic.ttf */,
+				F3DFEF02240F15110080DDC6 /* Lato-Bold.ttf */,
+				F3DFEEFC240F15110080DDC6 /* Lato-BoldItalic.ttf */,
+				F3DFEEFF240F15110080DDC6 /* Lato-Italic.ttf */,
+				F3DFEEFB240F15100080DDC6 /* Lato-Light.ttf */,
+				F3DFEEFE240F15110080DDC6 /* Lato-LightItalic.ttf */,
+				F3DFEF00240F15110080DDC6 /* Lato-Regular.ttf */,
+				F3DFEF01240F15110080DDC6 /* Lato-Thin.ttf */,
+				F3DFEF03240F15110080DDC6 /* Lato-ThinItalic.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -187,6 +220,8 @@
 		2AB31DA41F38745300B7D1F3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F33D0563240DECDE00F9D8E8 /* UIColor+hex.swift */,
+				F3DFEF13240F165D0080DDC6 /* FontResource+orDefault.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -194,6 +229,7 @@
 		2AFB31021F3853C6009C4586 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F33D0560240DEB1200F9D8E8 /* Colors */,
 				553FC239214046D0001D9362 /* Generated */,
 				2AB31DA11F38742A00B7D1F3 /* Translations */,
 				2AB31DA01F38742400B7D1F3 /* Fonts */,
@@ -257,6 +293,31 @@
 				852CBD1164562073AC7B2A8E /* Pods_AccevTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F33D0560240DEB1200F9D8E8 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				F33D0561240DEB1F00F9D8E8 /* Colors.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		F3DFEF0F240F15710080DDC6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F3DFEF15240F19F70080DDC6 /* TransitionLinkButton.swift */,
+				F3DFEF17240F1A750080DDC6 /* LoginRegisterButton.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F3DFEF10240F157B0080DDC6 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				F3DFEF11240F15940080DDC6 /* BackgroundGradient.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,10 +407,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3DFEF0C240F15110080DDC6 /* Lato-Bold.ttf in Resources */,
+				F3DFEF0D240F15110080DDC6 /* Lato-ThinItalic.ttf in Resources */,
 				2ABEE6D41F38856A00531205 /* Configuration.plist in Resources */,
 				FCB2C7CB1F57127800481080 /* Localizable.strings in Resources */,
-				2A1E77411F384BFD006C84D4 /* LaunchScreen.storyboard in Resources */,
 				2A1E773E1F384BFD006C84D4 /* Assets.xcassets in Resources */,
+				F3DFEF0E240F15110080DDC6 /* Lato-BlackItalic.ttf in Resources */,
+				F3DFEF05240F15110080DDC6 /* Lato-Light.ttf in Resources */,
+				F3DFEF0A240F15110080DDC6 /* Lato-Regular.ttf in Resources */,
+				F3DFEF07240F15110080DDC6 /* Lato-Black.ttf in Resources */,
+				F3DFEF06240F15110080DDC6 /* Lato-BoldItalic.ttf in Resources */,
+				F3DFEF0B240F15110080DDC6 /* Lato-Thin.ttf in Resources */,
+				F3DFEF09240F15110080DDC6 /* Lato-Italic.ttf in Resources */,
+				F3DFEF08240F15110080DDC6 /* Lato-LightItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,7 +465,7 @@
 			);
 			name = R.swift;
 			outputPaths = (
-				"$SRCROOT/Accev/Resources/Generated/R.generated.swift",
+				$SRCROOT/Accev/Resources/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -467,13 +537,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A9222821F38797600A648E6 /* ConfigurationManager.swift in Sources */,
+				F33D0562240DEB1F00F9D8E8 /* Colors.swift in Sources */,
+				F3DFEF18240F1A750080DDC6 /* LoginRegisterButton.swift in Sources */,
 				2ABEE6D61F3886D700531205 /* RootRouter.swift in Sources */,
 				C90395241FC622D2006F1DC0 /* main.swift in Sources */,
 				2A1E77371F384BFC006C84D4 /* AppDelegate.swift in Sources */,
 				553FC23C214047CB001D9362 /* R.generated.swift in Sources */,
 				C90395271FC62425006F1DC0 /* TestsAppDelegate.swift in Sources */,
+				F33D0564240DECDE00F9D8E8 /* UIColor+hex.swift in Sources */,
+				F3DFEF16240F19F70080DDC6 /* TransitionLinkButton.swift in Sources */,
 				2A1DD4E11F389E2100712195 /* NotificationsHandler.swift in Sources */,
 				2A1DD4DF1F389C2200712195 /* DeeplinkHandler.swift in Sources */,
+				F3DFEF12240F15940080DDC6 /* BackgroundGradient.swift in Sources */,
+				F3DFEF14240F165D0080DDC6 /* FontResource+orDefault.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,17 +570,6 @@
 			targetProxy = 2A1E77481F384BFD006C84D4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		2A1E773F1F384BFD006C84D4 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A1E77401F384BFD006C84D4 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2A1E774E1F384BFD006C84D4 /* Debug */ = {
