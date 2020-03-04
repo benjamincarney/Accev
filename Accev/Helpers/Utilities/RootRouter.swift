@@ -8,6 +8,44 @@
 import UIKit
 
 class RootRouter {
+    enum Screen {
+        case forgotPassword
+        case login
+        case register
+    }
+    private lazy var loginVC: UIViewController = {
+        let controller = LoginViewController()
+        controller.router = self
+        return controller
+    }()
+//    private lazy var registerVC: UIViewController = {
+//        let controller = RegisterViewController()
+//        controller.router = self
+//        return controller
+//    }()
+//    private lazy var setUpProfileVC: UIViewController = {
+//        let controller = SetupProfileViewController()
+//        controller.router = self
+//        return controller
+//    }()
+//    private lazy var forgotPasswordVC: UIViewController = {
+//        let controller = ForgotPasswordViewController()
+//        controller.router = self
+//        return controller
+//    }()
+    func transitionTo(screen: Screen, animatedWithOptions: UIView.AnimationOptions?) {
+        var controller: UIViewController
+        switch screen {
+        case .login:
+            controller = loginVC
+        case .register:
+            controller = loginVC
+        case .forgotPassword:
+            controller = loginVC
+        }
+        setRootViewController(controller: controller,
+                              animatedWithOptions: animatedWithOptions)
+    }
 
     /** Replaces root view controller. You can specify the replacment animation type.
      If no animation type is specified, there is no animation */
@@ -25,9 +63,14 @@ class RootRouter {
     }
 
     func loadMainAppStructure() {
-        // Customize your app structure here
-        let controller = UIViewController()
-        controller.view.backgroundColor = Colors.startBackgroundGradient
+        // let isLoggedIn = Auth.auth().currentUser != nil
+        var controller: UIViewController
+
+//        if isLoggedIn {
+//            controller = map
+//        } else {
+            controller = loginVC
+        //}
         setRootViewController(controller: controller, animatedWithOptions: nil)
     }
 }

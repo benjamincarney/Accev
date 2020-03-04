@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class BackgroundGradient: CAGradientLayer {
-    // MARK: - Private Functions
+    // Private Functions
     private func addColors() {
         colors = [
             Colors.startBackgroundGradient.cgColor,
@@ -18,7 +18,7 @@ class BackgroundGradient: CAGradientLayer {
         ]
     }
 
-    // MARK: - Public Functions
+    // Public Functions
     func addToView(_ view: UIView) {
         if let tableView = view as? UITableView {
             let bgView = UIView()
@@ -35,7 +35,7 @@ class BackgroundGradient: CAGradientLayer {
         self.frame = view.bounds
     }
 
-    // MARK: - Initializers
+    // Initializers
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         addColors()

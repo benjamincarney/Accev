@@ -19,11 +19,11 @@ class ConfigurationManager {
         case production = "Production"
     }
 
-    // MARK: Shared instance
+    // Shared instance
 
     static let shared = ConfigurationManager()
 
-    // MARK: Properties
+    // Properties
 
     private let configurationKey = "Configuration"
     private let configurationDictionaryName = "Configuration"
@@ -32,7 +32,7 @@ class ConfigurationManager {
     let activeConfiguration: Configuration
     private let activeConfigurationDictionary: NSDictionary
 
-    // MARK: Lifecycle
+    // Lifecycle
 
     init () {
         let bundle = Bundle(for: ConfigurationManager.self)
@@ -49,7 +49,7 @@ class ConfigurationManager {
         self.activeConfigurationDictionary = activeEnvironmentDictionary
     }
 
-    // MARK: Methods
+    // Methods
 
     private func getActiveVariableValue<V>(forKey key: String) -> V {
         guard let value = activeConfigurationDictionary[key] as?  V else {

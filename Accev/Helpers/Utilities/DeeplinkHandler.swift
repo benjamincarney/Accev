@@ -13,7 +13,7 @@ class DeeplinkHandler {
         case resetPassword = "/api/password/reset" // example deeplink path
     }
 
-    // MARK: Methods
+    // Methods
 
     func handleDeeplink(with url: URL) {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
@@ -27,7 +27,7 @@ class DeeplinkHandler {
         }
     }
 
-    // MARK: Private methods
+    // Private methods
 
     private func getPath(from components: URLComponents) -> Path? {
         return Path(rawValue: components.path)

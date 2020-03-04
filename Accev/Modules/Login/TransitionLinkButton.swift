@@ -9,7 +9,7 @@
 import UIKit
 
 class TransitionLinkButton: UIButton {
-    let textSize: CGFloat = 25.0
+    let textSize: CGFloat = 20.0
 
     convenience init(_ title: String) {
         self.init(frame: .zero)
