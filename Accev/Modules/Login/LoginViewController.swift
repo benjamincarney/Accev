@@ -102,17 +102,18 @@ class LoginViewController: LoginRegisterViewController {
     // Event Listeners
     @objc
     func registerLinkTapped() {
-        // routeTo(screen: .setupProfile)
+        routeTo(screen: .setupProfile)
     }
 
     @objc
     func forgotPasswordLinkTapped() {
+        print("yeet")
         routeTo(screen: .forgotPassword)
     }
-    
     @objc
     func continueAsGuestButtonTapped() {
-        // routeTo(screen: .primaryScreen)
+        print("targjaoga")
+        routeTo(screen: .primaryMap)
     }
 
     // Initializers
@@ -126,10 +127,8 @@ class LoginViewController: LoginRegisterViewController {
             screenTitle: "Accev", titleSize: 90) { (_ email: String, _ password: String) -> Void in
                 // Ignored
         }
-//        self.onButtonTap = { (_ email: String, _ password: String) in
-//            Auth.auth().signIn(withEmail: email, password: password) { _ /* user */, _ /* error */ in
-//                self.routeTo(screen: .camera)
-//            }
-//        }
+        self.onButtonTap = { (_ email: String, _ password: String) in
+                self.routeTo(screen: .primaryMap)
+        }
     }
 }

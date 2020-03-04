@@ -22,6 +22,13 @@
 		C90395271FC62425006F1DC0 /* TestsAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90395251FC62399006F1DC0 /* TestsAppDelegate.swift */; };
 		F33D0562240DEB1F00F9D8E8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33D0561240DEB1F00F9D8E8 /* Colors.swift */; };
 		F33D0564240DECDE00F9D8E8 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33D0563240DECDE00F9D8E8 /* UIColor+hex.swift */; };
+		F3521F54240FF9CA00275FC4 /* RoutedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F53240FF9CA00275FC4 /* RoutedNavigationController.swift */; };
+		F3521F56240FFA1A00275FC4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F55240FFA1A00275FC4 /* RegisterViewController.swift */; };
+		F3521F58240FFB1300275FC4 /* SetupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F57240FFB1300275FC4 /* SetupProfileViewController.swift */; };
+		F3521F5A240FFB3E00275FC4 /* ScrollingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F59240FFB3E00275FC4 /* ScrollingViewController.swift */; };
+		F3521F5C240FFB9C00275FC4 /* UserEnterTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F5B240FFB9C00275FC4 /* UserEnterTextField.swift */; };
+		F3521F5E2410006D00275FC4 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F5D2410006D00275FC4 /* ForgotPasswordViewController.swift */; };
+		F3521F602410010B00275FC4 /* PrimaryMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F5F2410010B00275FC4 /* PrimaryMap.swift */; };
 		F3DFEF05240F15110080DDC6 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFB240F15100080DDC6 /* Lato-Light.ttf */; };
 		F3DFEF06240F15110080DDC6 /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFC240F15110080DDC6 /* Lato-BoldItalic.ttf */; };
 		F3DFEF07240F15110080DDC6 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFD240F15110080DDC6 /* Lato-Black.ttf */; };
@@ -82,6 +89,13 @@
 		E6C1AD8A847D3F80CFF1D722 /* Pods-AccevTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccevTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-AccevTests/Pods-AccevTests.staging.xcconfig"; sourceTree = "<group>"; };
 		F33D0561240DEB1F00F9D8E8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F33D0563240DECDE00F9D8E8 /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
+		F3521F53240FF9CA00275FC4 /* RoutedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutedNavigationController.swift; sourceTree = "<group>"; };
+		F3521F55240FFA1A00275FC4 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		F3521F57240FFB1300275FC4 /* SetupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupProfileViewController.swift; sourceTree = "<group>"; };
+		F3521F59240FFB3E00275FC4 /* ScrollingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingViewController.swift; sourceTree = "<group>"; };
+		F3521F5B240FFB9C00275FC4 /* UserEnterTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEnterTextField.swift; sourceTree = "<group>"; };
+		F3521F5D2410006D00275FC4 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		F3521F5F2410010B00275FC4 /* PrimaryMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryMap.swift; sourceTree = "<group>"; };
 		F3DFEEFB240F15100080DDC6 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		F3DFEEFC240F15110080DDC6 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
 		F3DFEEFD240F15110080DDC6 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
@@ -180,7 +194,7 @@
 		2AB31D9F1F38741400B7D1F3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				F3DFEF27240F45100080DDC6 /* Menu */,
+				F3DFEF27240F45100080DDC6 /* PrimaryMap */,
 				F3DFEF10240F157B0080DDC6 /* Shared */,
 				F3DFEF0F240F15710080DDC6 /* Login */,
 			);
@@ -326,6 +340,9 @@
 				F3DFEF1B240F1D280080DDC6 /* LoginTextField.swift */,
 				F3DFEF1F240F1E380080DDC6 /* LoginRegisterViewController.swift */,
 				F3DFEF21240F220B0080DDC6 /* LoginViewController.swift */,
+				F3521F55240FFA1A00275FC4 /* RegisterViewController.swift */,
+				F3521F57240FFB1300275FC4 /* SetupProfileViewController.swift */,
+				F3521F5D2410006D00275FC4 /* ForgotPasswordViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -335,15 +352,19 @@
 			children = (
 				F3DFEF11240F15940080DDC6 /* BackgroundGradient.swift */,
 				F3DFEF19240F1C2E0080DDC6 /* RoutedViewController.swift */,
+				F3521F53240FF9CA00275FC4 /* RoutedNavigationController.swift */,
+				F3521F59240FFB3E00275FC4 /* ScrollingViewController.swift */,
+				F3521F5B240FFB9C00275FC4 /* UserEnterTextField.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		F3DFEF27240F45100080DDC6 /* Menu */ = {
+		F3DFEF27240F45100080DDC6 /* PrimaryMap */ = {
 			isa = PBXGroup;
 			children = (
+				F3521F5F2410010B00275FC4 /* PrimaryMap.swift */,
 			);
-			path = Menu;
+			path = PrimaryMap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -563,24 +584,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3DFEF22240F220B0080DDC6 /* LoginViewController.swift in Sources */,
+				F3521F56240FFA1A00275FC4 /* RegisterViewController.swift in Sources */,
 				2A9222821F38797600A648E6 /* ConfigurationManager.swift in Sources */,
 				F3DFEF1C240F1D280080DDC6 /* LoginTextField.swift in Sources */,
+				F3521F5A240FFB3E00275FC4 /* ScrollingViewController.swift in Sources */,
 				F33D0562240DEB1F00F9D8E8 /* Colors.swift in Sources */,
 				F3DFEF18240F1A750080DDC6 /* LoginRegisterButton.swift in Sources */,
 				2ABEE6D61F3886D700531205 /* RootRouter.swift in Sources */,
 				C90395241FC622D2006F1DC0 /* main.swift in Sources */,
 				2A1E77371F384BFC006C84D4 /* AppDelegate.swift in Sources */,
+				F3521F5E2410006D00275FC4 /* ForgotPasswordViewController.swift in Sources */,
 				553FC23C214047CB001D9362 /* R.generated.swift in Sources */,
 				C90395271FC62425006F1DC0 /* TestsAppDelegate.swift in Sources */,
 				F33D0564240DECDE00F9D8E8 /* UIColor+hex.swift in Sources */,
 				F3DFEF24240F2C410080DDC6 /* UIView+constraints.swift in Sources */,
 				F3DFEF1A240F1C2E0080DDC6 /* RoutedViewController.swift in Sources */,
+				F3521F5C240FFB9C00275FC4 /* UserEnterTextField.swift in Sources */,
+				F3521F58240FFB1300275FC4 /* SetupProfileViewController.swift in Sources */,
 				F3DFEF16240F19F70080DDC6 /* TransitionLinkButton.swift in Sources */,
 				2A1DD4E11F389E2100712195 /* NotificationsHandler.swift in Sources */,
 				2A1DD4DF1F389C2200712195 /* DeeplinkHandler.swift in Sources */,
 				F3DFEF12240F15940080DDC6 /* BackgroundGradient.swift in Sources */,
 				F3DFEF20240F1E380080DDC6 /* LoginRegisterViewController.swift in Sources */,
 				F3DFEF14240F165D0080DDC6 /* FontResource+orDefault.swift in Sources */,
+				F3521F54240FF9CA00275FC4 /* RoutedNavigationController.swift in Sources */,
+				F3521F602410010B00275FC4 /* PrimaryMap.swift in Sources */,
 				F3DFEF26240F2C5E0080DDC6 /* UILabel+attributes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

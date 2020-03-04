@@ -17,7 +17,7 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
     var onButtonTap: (_ email: String, _ password: String) -> Void
     let screenTitle: String
 
-    // MARK: - UI Elements
+    // UI Elements
     lazy var contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -152,20 +152,9 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
     // Event Handlers
     @objc
     func loginRegisterButtonTapped() {
-        let email = emailField.text ?? ""
-        let password = passwordField.text ?? ""
-//        Auth.auth().signIn(withEmail: email, password: password) { _ /* user */, error in
-//           if error == nil {
-//                print("Signed In Successfully!")
-//                self.onButtonTap(email, password)
-//                return
-//            }
-//            let alertTitle = "Error"
-//            let alertText = "Login failed"
-//            let alertVC = UIAlertController(title: alertTitle, message: alertText, preferredStyle: .alert)
-//            alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//            self.present(alertVC, animated: true, completion: nil)
-//        }
+    // TODO: Confirm that account exists on backend before allowing user to proceed
+    // For now, just enter the app
+        routeTo(screen: .primaryMap)
     }
 
     @objc

@@ -12,36 +12,48 @@ class RootRouter {
         case forgotPassword
         case login
         case register
+        case setupProfile
+        case primaryMap
     }
     private lazy var loginVC: UIViewController = {
         let controller = LoginViewController()
         controller.router = self
         return controller
     }()
-//    private lazy var registerVC: UIViewController = {
-//        let controller = RegisterViewController()
-//        controller.router = self
-//        return controller
-//    }()
-//    private lazy var setUpProfileVC: UIViewController = {
-//        let controller = SetupProfileViewController()
-//        controller.router = self
-//        return controller
-//    }()
-//    private lazy var forgotPasswordVC: UIViewController = {
-//        let controller = ForgotPasswordViewController()
-//        controller.router = self
-//        return controller
-//    }()
+    private lazy var registerVC: UIViewController = {
+        let controller = RegisterViewController()
+        controller.router = self
+        return controller
+    }()
+    private lazy var setUpProfileVC: UIViewController = {
+        let controller = SetupProfileViewController()
+        controller.router = self
+        return controller
+    }()
+    private lazy var forgotPasswordVC: UIViewController = {
+        let controller = ForgotPasswordViewController()
+        controller.router = self
+        return controller
+    }()
+    private lazy var primaryMapVC: UIViewController = {
+        let controller = PrimaryMapViewController()
+        controller.router = self
+        return controller
+    }()
+
     func transitionTo(screen: Screen, animatedWithOptions: UIView.AnimationOptions?) {
         var controller: UIViewController
         switch screen {
         case .login:
             controller = loginVC
-        case .register:
-            controller = loginVC
+        case .setupProfile:
+            controller = setUpProfileVC
         case .forgotPassword:
-            controller = loginVC
+            controller = forgotPasswordVC
+        case .register:
+            controller = registerVC
+        case .primaryMap:
+            controller = primaryMapVC
         }
         setRootViewController(controller: controller,
                               animatedWithOptions: animatedWithOptions)
@@ -67,7 +79,7 @@ class RootRouter {
         var controller: UIViewController
 
 //        if isLoggedIn {
-//            controller = map
+//            controller = primaryMapVC
 //        } else {
             controller = loginVC
         //}
