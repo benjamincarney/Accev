@@ -11,6 +11,8 @@ target 'Accev' do
 
   pod 'R.swift', '5.0.0'
   pod 'SwiftLint', '0.31.0'
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
 
   target 'AccevTests' do
     inherit! :search_paths

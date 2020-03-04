@@ -381,6 +381,7 @@
 				2A1E77301F384BFC006C84D4 /* Frameworks */,
 				2A1E77311F384BFC006C84D4 /* Resources */,
 				CC579D253A03B3EDE7C1B668 /* [CP] Embed Pods Frameworks */,
+				6E1D2DF41CF2C944699C0D0F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -512,11 +513,31 @@
 			);
 			name = R.swift;
 			outputPaths = (
-				$SRCROOT/Accev/Resources/Generated/R.generated.swift,
+				"$SRCROOT/Accev/Resources/Generated/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/Accev/Resources/Generated/R.generated.swift\"\n";
+		};
+		6E1D2DF41CF2C944699C0D0F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Accev/Pods-Accev-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Accev/Pods-Accev-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		98EFD11B068F4C3358293D51 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -545,21 +566,17 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Accev/Pods-Accev-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Accev/Pods-Accev-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Accev/Pods-Accev-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Accev/Pods-Accev-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FC9CA61F1F83C1B700B8EB94 /* SwiftLint */ = {

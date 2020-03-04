@@ -1,24 +1,37 @@
 PODS:
+  - GoogleMaps (3.7.0):
+    - GoogleMaps/Maps (= 3.7.0)
+  - GoogleMaps/Base (3.7.0)
+  - GoogleMaps/Maps (3.7.0):
+    - GoogleMaps/Base
+  - GooglePlaces (3.7.0):
+    - GoogleMaps/Base (= 3.7.0)
   - R.swift (5.0.0):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
   - SwiftLint (0.31.0)
 
 DEPENDENCIES:
+  - GoogleMaps
+  - GooglePlaces
   - R.swift (= 5.0.0)
   - SwiftLint (= 0.31.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
+    - GoogleMaps
+    - GooglePlaces
     - R.swift
     - R.swift.Library
     - SwiftLint
 
 SPEC CHECKSUMS:
+  GoogleMaps: 55da829c68aa931f3ae982b9e341cc2f3d89c587
+  GooglePlaces: a62077320f9d64239245af63aa1aa136393ebeb6
   R.swift: f88c7d7d48a2be4dffa132dde1b3d389620310eb
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
 
-PODFILE CHECKSUM: 2bf08cd99af4718089215ce68bf8d37099b12f42
+PODFILE CHECKSUM: ff2c0844b80d409b79ae473872bf0ae257448b24
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.9.0
