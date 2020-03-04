@@ -29,6 +29,8 @@
 		F3521F5C240FFB9C00275FC4 /* UserEnterTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F5B240FFB9C00275FC4 /* UserEnterTextField.swift */; };
 		F3521F5E2410006D00275FC4 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F5D2410006D00275FC4 /* ForgotPasswordViewController.swift */; };
 		F3521F602410010B00275FC4 /* PrimaryMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F5F2410010B00275FC4 /* PrimaryMap.swift */; };
+		F3D9956524106DC2000DC74B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D9956424106DC2000DC74B /* GoogleService-Info.plist */; };
+		F3D9956B241077C9000DC74B /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = F3D9956A241077C9000DC74B /* AppIcon.appiconset */; };
 		F3DFEF05240F15110080DDC6 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFB240F15100080DDC6 /* Lato-Light.ttf */; };
 		F3DFEF06240F15110080DDC6 /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFC240F15110080DDC6 /* Lato-BoldItalic.ttf */; };
 		F3DFEF07240F15110080DDC6 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFD240F15110080DDC6 /* Lato-Black.ttf */; };
@@ -96,6 +98,8 @@
 		F3521F5B240FFB9C00275FC4 /* UserEnterTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEnterTextField.swift; sourceTree = "<group>"; };
 		F3521F5D2410006D00275FC4 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		F3521F5F2410010B00275FC4 /* PrimaryMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryMap.swift; sourceTree = "<group>"; };
+		F3D9956424106DC2000DC74B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F3D9956A241077C9000DC74B /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
 		F3DFEEFB240F15100080DDC6 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		F3DFEEFC240F15110080DDC6 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
 		F3DFEEFD240F15110080DDC6 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 			children = (
 				C90395231FC622D2006F1DC0 /* main.swift */,
 				2A1E77361F384BFC006C84D4 /* AppDelegate.swift */,
+				F3D9956424106DC2000DC74B /* GoogleService-Info.plist */,
 				2AFB31021F3853C6009C4586 /* Resources */,
 				2AFB31071F38542E009C4586 /* SupportingFiles */,
 				2AB31D9E1F38740A00B7D1F3 /* Models */,
@@ -271,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				2A1E773D1F384BFD006C84D4 /* Assets.xcassets */,
+				F3D9956A241077C9000DC74B /* AppIcon.appiconset */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -468,6 +474,8 @@
 				F3DFEF0B240F15110080DDC6 /* Lato-Thin.ttf in Resources */,
 				F3DFEF09240F15110080DDC6 /* Lato-Italic.ttf in Resources */,
 				F3DFEF08240F15110080DDC6 /* Lato-LightItalic.ttf in Resources */,
+				F3D9956B241077C9000DC74B /* AppIcon.appiconset in Resources */,
+				F3D9956524106DC2000DC74B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,11 +576,17 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Accev/Pods-Accev-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

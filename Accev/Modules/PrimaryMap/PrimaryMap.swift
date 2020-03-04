@@ -11,7 +11,6 @@ import UIKit
 
 class PrimaryMapViewController: RoutedViewController {
 
-
     func addSubviews() {
         //contentView.addSubview(appTitle)
     }
@@ -45,7 +44,6 @@ class PrimaryMapViewController: RoutedViewController {
       marker.snippet = "Australia"
       marker.map = mapView
     }
-
 
     // Initializers
     required init?(coder aDecoder: NSCoder) {

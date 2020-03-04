@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public struct Colors {
-    static let startBackgroundGradient = UIColor(hex: 0x008ECC)
+    static let startBackgroundGradient = UIColor(hex: 0x5dc2f5)
     static let endBackgroundGradient = UIColor(hex: 0x1060B5, alpha: 0.0)
     static let behindGradient = UIColor(hex: 0x1060B5)
     static let text = UIColor(hex: 0xFFFFFF)

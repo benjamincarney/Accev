@@ -5,9 +5,10 @@
 //  Copyright © Accev. All rights reserved.
 //
 
-import UIKit
+import Firebase
 import GoogleMaps
 import GooglePlaces
+import UIKit
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -20,10 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        
+
+        // Google maps and places config
         GMSServices.provideAPIKey("AIzaSyAVgb6Laiht-CvWEkJUuFgoH4tdeJw-D18")
         GMSPlacesClient.provideAPIKey("AIzaSyAVgb6Laiht-CvWEkJUuFgoH4tdeJw-D18")
+
+        // Firebase config
         
+        FirebaseApp.configure()
+
         // Notifications
         notificationsHandler.configure()
 

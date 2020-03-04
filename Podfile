@@ -13,6 +13,7 @@ target 'Accev' do
   pod 'SwiftLint', '0.31.0'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'Firebase/Auth'
 
   target 'AccevTests' do
     inherit! :search_paths
