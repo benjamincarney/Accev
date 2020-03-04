@@ -24,7 +24,6 @@ class ConfigurationManager {
     static let shared = ConfigurationManager()
 
     // Properties
-
     private let configurationKey = "Configuration"
     private let configurationDictionaryName = "Configuration"
     private let backendUrlKey = "backendUrl"
@@ -33,7 +32,6 @@ class ConfigurationManager {
     private let activeConfigurationDictionary: NSDictionary
 
     // Lifecycle
-
     init () {
         let bundle = Bundle(for: ConfigurationManager.self)
         guard let rawConfiguration = bundle.object(forInfoDictionaryKey: configurationKey) as? String,
@@ -50,7 +48,6 @@ class ConfigurationManager {
     }
 
     // Methods
-
     private func getActiveVariableValue<V>(forKey key: String) -> V {
         guard let value = activeConfigurationDictionary[key] as?  V else {
             fatalError("No value satysfying requirements")

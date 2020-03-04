@@ -5,7 +5,6 @@
 //  Created by Benjamin Carney on 3/3/20.
 //  Copyright © 2020 Accev. All rights reserved.
 //
-
 // import Firebase
 // import FirebaseAuth
 import UIKit
@@ -15,8 +14,7 @@ class LoginViewController: LoginRegisterViewController {
     let linkSpacing: CGFloat = 10.0
     let logoSpacing: CGFloat = 20.0
     let maxLogoSizeMultiplier: CGFloat = 0.5
-    let socialMediaButtonHeight: CGFloat = 80.0
-    let socialMediaSpace: CGFloat = 20.0
+    let space: CGFloat = 20.0
     let sizeOfText: CGFloat = 15.0
 
     // UI Elements
@@ -33,12 +31,19 @@ class LoginViewController: LoginRegisterViewController {
         link.addTarget(self, action: #selector(registerLinkTapped), for: .touchUpInside)
         return link
     }()
+    lazy var continueAsGuest: UIButton = {
+        let link = TransitionLinkButton("Continue as Guest")
+        link.translatesAutoresizingMaskIntoConstraints = false
+        link.addTarget(self, action: #selector(continueAsGuestButtonTapped), for: .touchUpInside)
+        return link
+    }()
 
     // Overrides
     override func addSubviews() {
         super.addSubviews()
         contentView.addSubview(forgotPasswordLink)
         contentView.addSubview(registerLink)
+        contentView.addSubview(continueAsGuest)
     }
 
     override func setUpConstraints() {
@@ -51,16 +56,22 @@ class LoginViewController: LoginRegisterViewController {
         loginRegisterButton.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
         loginRegisterButton.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
         forgotPasswordLink.topAnchor.constraint(equalTo: loginRegisterButton.bottomAnchor,
-                                                  constant: socialMediaSpace).isActive = true
+                                                  constant: space).isActive = true
         forgotPasswordLink.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
         forgotPasswordLink.widthAnchor.constraint(equalTo: margins.widthAnchor,
                                                   constant: -(self.view.bounds.width / 3.0) - 10).isActive = true
 
         registerLink.topAnchor.constraint(equalTo: loginRegisterButton.bottomAnchor,
-                                                    constant: socialMediaSpace).isActive = true
+                                                    constant: space).isActive = true
         registerLink.widthAnchor.constraint(equalTo: margins.widthAnchor,
                                                       constant: -(self.view.bounds.width / 2) - 10).isActive = true
         registerLink.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
+
+        continueAsGuest.topAnchor.constraint(equalTo: registerLink.bottomAnchor,
+                                                    constant: space).isActive = true
+        continueAsGuest.widthAnchor.constraint(equalTo: margins.widthAnchor,
+                                                      constant: -(self.view.bounds.width / 3) - 10).isActive = true
+        continueAsGuest.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
 
     }
 
@@ -98,6 +109,11 @@ class LoginViewController: LoginRegisterViewController {
     func forgotPasswordLinkTapped() {
         routeTo(screen: .forgotPassword)
     }
+    
+    @objc
+    func continueAsGuestButtonTapped() {
+        // routeTo(screen: .primaryScreen)
+    }
 
     // Initializers
     required init?(coder aDecoder: NSCoder) {
@@ -107,7 +123,7 @@ class LoginViewController: LoginRegisterViewController {
     init() {
         super.init(
             buttonText: "Log In",
-            screenTitle: "Accev", titleSize: 120) { (_ email: String, _ password: String) -> Void in
+            screenTitle: "Accev", titleSize: 90) { (_ email: String, _ password: String) -> Void in
                 // Ignored
         }
 //        self.onButtonTap = { (_ email: String, _ password: String) in

@@ -17,7 +17,7 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
     var onButtonTap: (_ email: String, _ password: String) -> Void
     let screenTitle: String
 
-    // UI Elements
+    // MARK: - UI Elements
     lazy var contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +36,7 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
         label.text = screenTitle
         label.textAlignment = .center
         label.textColor = Colors.text
-        label.font = R.font.latoBold(size: titleSize)
+        label.font = R.font.latoRegular(size: titleSize)
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -69,6 +69,7 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
 
     let backgroundGradient = BackgroundGradient()
 
+    // Custom Functions
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -136,6 +137,7 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
         getBottomSubview().bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
     }
 
+    // Overrides
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         setUpConstraints()
@@ -147,6 +149,7 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
         addSubviews()
     }
 
+    // Event Handlers
     @objc
     func loginRegisterButtonTapped() {
         let email = emailField.text ?? ""
@@ -175,7 +178,7 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
         self.buttonText = "Button"
         self.onButtonTap = { _, _ in }
         self.screenTitle = "Title"
-        self.titleSize = 100
+        self.titleSize = 90
         super.init(coder: aDecoder)
     }
     init(buttonText: String,
@@ -185,7 +188,7 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
         self.buttonText = buttonText
         self.onButtonTap = onButtonTap
         self.screenTitle = screenTitle
-        self.titleSize = 100
+        self.titleSize = titleSize
         super.init(nibName: nil, bundle: nil)
     }
 }
