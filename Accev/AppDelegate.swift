@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import GoogleMaps
+import GooglePlaces
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,7 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-
+        
+        GMSServices.provideAPIKey("AIzaSyAVgb6Laiht-CvWEkJUuFgoH4tdeJw-D18")
+        GMSPlacesClient.provideAPIKey("AIzaSyAVgb6Laiht-CvWEkJUuFgoH4tdeJw-D18")
+        
         // Notifications
         notificationsHandler.configure()
 
