@@ -8,11 +8,13 @@
 
 import Firebase
 import FirebaseAuth
+import GoogleSignIn
 import UIKit
 
-class LoginViewController: LoginRegisterViewController {
+class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
     // Text and Number Class Constants
     let linkSpacing: CGFloat = 10.0
+    let specialLinkSpacing: CGFloat = 30.0
     let logoSpacing: CGFloat = 20.0
     let maxLogoSizeMultiplier: CGFloat = 0.5
     let socialMediaButtonHeight: CGFloat = 80.0
@@ -127,11 +129,11 @@ class LoginViewController: LoginRegisterViewController {
     // Custom Functions
 
     // Handle errors
-//    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-//        if let error = error {
-//            print("Error signing in \(error)")
-//        }
-//    }
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("Error signing in \(error)")
+        }
+    }
 
     func loginFailed() {
         let alertTitle = "Error"
@@ -195,8 +197,8 @@ class LoginViewController: LoginRegisterViewController {
     func googleLoginTapped() {
         print("Attempted Google login")
         //GIDSignIn.sharedInstance().delegate = self
-//        GIDSignIn.sharedInstance()?.presentingViewController = self
-//        GIDSignIn.sharedInstance()?.signIn()
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance()?.signIn()
         // GIDSignIn.sharedInstance()?.restorePreviousSignIn()
     }
 
