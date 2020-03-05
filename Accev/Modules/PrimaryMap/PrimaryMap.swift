@@ -31,6 +31,16 @@ class PrimaryMapViewController: RoutedViewController {
         return button
     }()
     
+    lazy var addPinButton: UIButton = {
+        let image = R.image.plus()
+        let button = UIButton(type: UIButton.ButtonType.custom) as UIButton
+        button.frame = CGRect(x: view.bounds.maxX - 50, y: 50, width: 35, height: 35)
+        button.autoresizingMask = [.flexibleLeftMargin, .flexibleBottomMargin]
+        button.setImage(image, for: .normal)
+        // button.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
+        return button
+    }()
+    
     @objc
     func buttonTapped(sender: UIButton) {
         let leftMenuNavigationController = SideMenuNavigationController(rootViewController: RoutedViewController())
@@ -47,6 +57,7 @@ class PrimaryMapViewController: RoutedViewController {
         view = mapView
 
         view.addSubview(hamburgerButton)
+        view.addSubview(addPinButton)
 
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
