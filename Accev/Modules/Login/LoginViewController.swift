@@ -107,12 +107,10 @@ class LoginViewController: LoginRegisterViewController {
 
     @objc
     func forgotPasswordLinkTapped() {
-        print("yeet")
         routeTo(screen: .forgotPassword)
     }
     @objc
     func continueAsGuestButtonTapped() {
-        print("targjaoga")
         routeTo(screen: .primaryMap)
     }
 

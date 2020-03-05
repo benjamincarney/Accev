@@ -6,6 +6,8 @@
 //  Copyright © 2020 Accev. All rights reserved.
 //
 
+import Firebase
+import FirebaseAuth
 import UIKit
 
 class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
@@ -76,6 +78,7 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
     }
 
     func shouldEnableSignIn() -> Bool {
+        print(emailField.text != "" && passwordField.text != "")
         return emailField.text != "" && passwordField.text != ""
     }
 
@@ -152,9 +155,21 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
     // Event Handlers
     @objc
     func loginRegisterButtonTapped() {
-    // TODO: Confirm that account exists on backend before allowing user to proceed
-    // For now, just enter the app
-        routeTo(screen: .primaryMap)
+        print("tapppingtapping")
+        let email = emailField.text ?? ""
+        let password = passwordField.text ?? ""
+        Auth.auth().signIn(withEmail: email, password: password) { _ /* user */, error in
+           if error == nil {
+                print("Signed In Successfully!")
+                self.onButtonTap(email, password)
+                return
+            }
+            let alertTitle = "Error"
+            let alertText = "Login failed"
+            let alertVC = UIAlertController(title: alertTitle, message: alertText, preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
+        }
     }
 
     @objc

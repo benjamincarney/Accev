@@ -15,13 +15,13 @@
 		2ABEE6D41F38856A00531205 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2ABEE6D31F38828A00531205 /* Configuration.plist */; };
 		2ABEE6D61F3886D700531205 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABEE6D51F3886D700531205 /* RootRouter.swift */; };
 		553FC23C214047CB001D9362 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553FC23B214047CB001D9362 /* R.generated.swift */; };
-		5C29DE1D03EA04201E8A8E63 /* Pods_Accev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D6977EED9407E908109CA9 /* Pods_Accev.framework */; };
 		B1AC7B178912D16E03E82237 /* Pods_AccevTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 852CBD1164562073AC7B2A8E /* Pods_AccevTests.framework */; };
 		C90395241FC622D2006F1DC0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90395231FC622D2006F1DC0 /* main.swift */; };
 		C90395261FC62399006F1DC0 /* TestsAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90395251FC62399006F1DC0 /* TestsAppDelegate.swift */; };
 		C90395271FC62425006F1DC0 /* TestsAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90395251FC62399006F1DC0 /* TestsAppDelegate.swift */; };
 		F33D0562240DEB1F00F9D8E8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33D0561240DEB1F00F9D8E8 /* Colors.swift */; };
 		F33D0564240DECDE00F9D8E8 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33D0563240DECDE00F9D8E8 /* UIColor+hex.swift */; };
+		F351BC6124107E1400E5798B /* Pods_Accev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D6977EED9407E908109CA9 /* Pods_Accev.framework */; };
 		F3521F54240FF9CA00275FC4 /* RoutedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F53240FF9CA00275FC4 /* RoutedNavigationController.swift */; };
 		F3521F56240FFA1A00275FC4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F55240FFA1A00275FC4 /* RegisterViewController.swift */; };
 		F3521F58240FFB1300275FC4 /* SetupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F57240FFB1300275FC4 /* SetupProfileViewController.swift */; };
@@ -128,7 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C29DE1D03EA04201E8A8E63 /* Pods_Accev.framework in Frameworks */,
+				F351BC6124107E1400E5798B /* Pods_Accev.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,6 +781,7 @@
 			baseConfigurationReference = AB8EFA48C4DA64C3F6F26467 /* Pods-Accev.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5QK9TK9338;
 				INFOPLIST_FILE = Accev/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -797,6 +798,7 @@
 			baseConfigurationReference = 1A1BA3992D45AF1161F674AA /* Pods-Accev.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5QK9TK9338;
 				INFOPLIST_FILE = Accev/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -910,6 +912,7 @@
 			baseConfigurationReference = CF55446145D2A8E014032F3D /* Pods-Accev.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5QK9TK9338;
 				INFOPLIST_FILE = Accev/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

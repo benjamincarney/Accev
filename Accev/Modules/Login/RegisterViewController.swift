@@ -6,8 +6,8 @@
 //  Copyright © 2020 Accev. All rights reserved.
 //
 
-// import Firebase
-// import FirebaseAuth
+ import Firebase
+ import FirebaseAuth
 import UIKit
 
 class RegisterViewController: LoginRegisterViewController {
@@ -37,6 +37,7 @@ class RegisterViewController: LoginRegisterViewController {
     // Event Listeners
     @objc
     func haveAnAccountTapped() {
+        print("have an account")
         routeTo(screen: .login)
     }
 
@@ -54,7 +55,6 @@ class RegisterViewController: LoginRegisterViewController {
         super.addSubviews()
         contentView.addSubview(confirmPasswordField)
         contentView.addSubview(haveAnAccountLink)
-
     }
 
     override func setUpConstraints() {
@@ -79,6 +79,7 @@ class RegisterViewController: LoginRegisterViewController {
     }
 
     override func shouldEnableSignIn() -> Bool {
+
         return super.shouldEnableSignIn() && confirmPasswordField.text != "" &&
                confirmPasswordField.text == passwordField.text
     }
@@ -111,8 +112,18 @@ class RegisterViewController: LoginRegisterViewController {
 
     @objc
     func user_Registration() {
-        // TODO: Create new user in backend here
-        self.routeTo(screen: .primaryMap)
+        if let email = emailField.text, let password = passwordField.text {
+            Auth.auth().createUser(withEmail: email, password: password) { _ /*authResult*/, error in
+                print("registered user")
+                if let firebaseError = error {
+                    print(firebaseError.localizedDescription)
+                    self.failedRegistration()
+                    return
+                }
+                print("Account Created!")
+                self.routeTo(screen: .primaryMap)
+            }
+        }
     }
 
     override func loginRegisterButtonTapped() {
