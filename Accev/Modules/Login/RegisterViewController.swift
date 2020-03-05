@@ -6,11 +6,12 @@
 //  Copyright © 2020 Accev. All rights reserved.
 //
 
- import Firebase
- import FirebaseAuth
- import UIKit
+import Firebase
+import FirebaseAuth
+import GoogleSignIn
+import UIKit
 
- class RegisterViewController: LoginRegisterViewController {
+ class RegisterViewController: LoginRegisterViewController, GIDSignInDelegate {
      // Text and Number Class Constants
      let linkSpacing: CGFloat = 10.0
      let socialMediaButtonHeight: CGFloat = 50.0
@@ -46,7 +47,7 @@
              button.setTitle("register with google", for: .normal)
          }
          button.translatesAutoresizingMaskIntoConstraints = false
-         // button.addTarget(self, action: #selector(googleRegisterTapped), for: .touchUpInside)
+         button.addTarget(self, action: #selector(googleRegisterTapped), for: .touchUpInside)
          return button
      }()
 
@@ -109,12 +110,12 @@
      }
 
      // Custom Functions
-     //Handle errors
-//     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-//         if let error = error {
-//             print("Error signing in \(error)")
-//         }
-//     }
+     // Handle errors
+     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+         if let error = error {
+             print("Error signing in \(error)")
+         }
+     }
 
      func failedRegistration() {
          let alertTitle = "Error"
@@ -184,6 +185,17 @@
          let emailTest = NSPredicate(format: "SELF MATCHES[c] %@", emailRegEx)
          return emailTest.evaluate(with: email)
      }
+    
+    @objc
+    func googleRegisterTapped() {
+        print("Attempted Google registration")
+        // Register with Google
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance().signIn()
+        routeTo(screen: .primaryMap)
+        //GIDSignIn.sharedInstance().signInSilently()
+    }
 
      // Initializers
      required init?(coder aDecoder: NSCoder) {
