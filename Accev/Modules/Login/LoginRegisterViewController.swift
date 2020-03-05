@@ -7,7 +7,6 @@
 //
 
 import Firebase
-import FirebaseAuth
 import UIKit
 
 class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
@@ -78,7 +77,6 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
     }
 
     func shouldEnableSignIn() -> Bool {
-        print(emailField.text != "" && passwordField.text != "")
         return emailField.text != "" && passwordField.text != ""
     }
 
@@ -155,7 +153,6 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
     // Event Handlers
     @objc
     func loginRegisterButtonTapped() {
-        print("tapppingtapping")
         let email = emailField.text ?? ""
         let password = passwordField.text ?? ""
         Auth.auth().signIn(withEmail: email, password: password) { _ /* user */, error in
@@ -182,7 +179,7 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
         self.buttonText = "Button"
         self.onButtonTap = { _, _ in }
         self.screenTitle = "Title"
-        self.titleSize = 90
+        self.titleSize = 100
         super.init(coder: aDecoder)
     }
     init(buttonText: String,

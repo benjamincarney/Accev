@@ -22,6 +22,9 @@
 		F33D0562240DEB1F00F9D8E8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33D0561240DEB1F00F9D8E8 /* Colors.swift */; };
 		F33D0564240DECDE00F9D8E8 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33D0563240DECDE00F9D8E8 /* UIColor+hex.swift */; };
 		F351BC6124107E1400E5798B /* Pods_Accev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D6977EED9407E908109CA9 /* Pods_Accev.framework */; };
+		F351BC6B2410908400E5798B /* SocialMediaLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F351BC6A2410908400E5798B /* SocialMediaLoginButton.swift */; };
+		F351BC6E2410929D00E5798B /* facebookLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = F351BC6D2410917B00E5798B /* facebookLogo.png */; };
+		F351BC6F241092A000E5798B /* googleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = F351BC6C2410917600E5798B /* googleLogo.png */; };
 		F3521F54240FF9CA00275FC4 /* RoutedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F53240FF9CA00275FC4 /* RoutedNavigationController.swift */; };
 		F3521F56240FFA1A00275FC4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F55240FFA1A00275FC4 /* RegisterViewController.swift */; };
 		F3521F58240FFB1300275FC4 /* SetupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F57240FFB1300275FC4 /* SetupProfileViewController.swift */; };
@@ -91,6 +94,9 @@
 		E6C1AD8A847D3F80CFF1D722 /* Pods-AccevTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccevTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-AccevTests/Pods-AccevTests.staging.xcconfig"; sourceTree = "<group>"; };
 		F33D0561240DEB1F00F9D8E8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F33D0563240DECDE00F9D8E8 /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
+		F351BC6A2410908400E5798B /* SocialMediaLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaLoginButton.swift; sourceTree = "<group>"; };
+		F351BC6C2410917600E5798B /* googleLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = googleLogo.png; sourceTree = "<group>"; };
+		F351BC6D2410917B00E5798B /* facebookLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebookLogo.png; sourceTree = "<group>"; };
 		F3521F53240FF9CA00275FC4 /* RoutedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutedNavigationController.swift; sourceTree = "<group>"; };
 		F3521F55240FFA1A00275FC4 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F3521F57240FFB1300275FC4 /* SetupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupProfileViewController.swift; sourceTree = "<group>"; };
@@ -276,6 +282,8 @@
 			isa = PBXGroup;
 			children = (
 				2A1E773D1F384BFD006C84D4 /* Assets.xcassets */,
+				F351BC6C2410917600E5798B /* googleLogo.png */,
+				F351BC6D2410917B00E5798B /* facebookLogo.png */,
 				F3D9956A241077C9000DC74B /* AppIcon.appiconset */,
 			);
 			path = Images;
@@ -349,6 +357,7 @@
 				F3521F55240FFA1A00275FC4 /* RegisterViewController.swift */,
 				F3521F57240FFB1300275FC4 /* SetupProfileViewController.swift */,
 				F3521F5D2410006D00275FC4 /* ForgotPasswordViewController.swift */,
+				F351BC6A2410908400E5798B /* SocialMediaLoginButton.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -468,12 +477,14 @@
 				2A1E773E1F384BFD006C84D4 /* Assets.xcassets in Resources */,
 				F3DFEF0E240F15110080DDC6 /* Lato-BlackItalic.ttf in Resources */,
 				F3DFEF05240F15110080DDC6 /* Lato-Light.ttf in Resources */,
+				F351BC6F241092A000E5798B /* googleLogo.png in Resources */,
 				F3DFEF0A240F15110080DDC6 /* Lato-Regular.ttf in Resources */,
 				F3DFEF07240F15110080DDC6 /* Lato-Black.ttf in Resources */,
 				F3DFEF06240F15110080DDC6 /* Lato-BoldItalic.ttf in Resources */,
 				F3DFEF0B240F15110080DDC6 /* Lato-Thin.ttf in Resources */,
 				F3DFEF09240F15110080DDC6 /* Lato-Italic.ttf in Resources */,
 				F3DFEF08240F15110080DDC6 /* Lato-LightItalic.ttf in Resources */,
+				F351BC6E2410929D00E5798B /* facebookLogo.png in Resources */,
 				F3D9956B241077C9000DC74B /* AppIcon.appiconset in Resources */,
 				F3D9956524106DC2000DC74B /* GoogleService-Info.plist in Resources */,
 			);
@@ -641,6 +652,7 @@
 				F3521F54240FF9CA00275FC4 /* RoutedNavigationController.swift in Sources */,
 				F3521F602410010B00275FC4 /* PrimaryMap.swift in Sources */,
 				F3DFEF26240F2C5E0080DDC6 /* UILabel+attributes.swift in Sources */,
+				F351BC6B2410908400E5798B /* SocialMediaLoginButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

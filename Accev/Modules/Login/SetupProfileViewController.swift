@@ -6,6 +6,7 @@
 //  Copyright © 2020 Accev. All rights reserved.
 //
 
+import FirebaseAuth
 import UIKit
 
 // Global Variables
@@ -96,20 +97,16 @@ class SetupProfileViewController: ScrollingViewController, UITextFieldDelegate {
         appTitle.topAnchor.constraint(equalTo: margins.topAnchor,
                                       constant: spaceAboveTitle).isActive = true
 
-        nameField.topAnchor.constraint(equalTo: appTitle.bottomAnchor, constant: spaceBelowTitle).isActive = true
-        nameField.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
+
+        nameField.topAnchor.constraint(equalTo: appTitle.bottomAnchor, constant: buttonSpacing).isActive = true
         nameField.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
         nameField.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
-//        nameField.widthAnchor.constraint(equalTo: appTitle.widthAnchor, constant: -50).isActive = true
-//        nameField.heightAnchor.constraint(equalTo: appTitle.widthAnchor, constant: -50).isActive = true
-
-        usernameField.topAnchor.constraint(equalTo: nameField.bottomAnchor,
-                                           constant: buttonSpacing).isActive = true
+    
+        usernameField.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: buttonSpacing).isActive = true
         usernameField.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
         usernameField.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
 
-        continueButton.topAnchor.constraint(equalTo: usernameField.bottomAnchor,
-                                            constant: buttonSpacing).isActive = true
+        continueButton.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: buttonSpacing).isActive = true
         continueButton.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
         continueButton.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
 
@@ -148,6 +145,7 @@ class SetupProfileViewController: ScrollingViewController, UITextFieldDelegate {
             print("continue tapped")
             userFullName = nameField.text ?? ""
             userName = usernameField.text ?? ""
+            //userProfileImage = profilePicButton
             routeTo(screen: .register)
         } else {
             print("Not a valid display name")

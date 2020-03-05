@@ -6,6 +6,7 @@
 //  Copyright © 2020 Accev. All rights reserved.
 //
 
+import FirebaseAuth
 import UIKit
 
 class ForgotPasswordViewController: ScrollingViewController, UITextFieldDelegate {
@@ -142,7 +143,31 @@ class ForgotPasswordViewController: ScrollingViewController, UITextFieldDelegate
 
     @objc
     func resetPasswordTapped() {
-        // TODO: Add inner logic for resetting password on backend
+        let email = emailField.text ?? ""
+
+        if isValid(email) {
+            Auth.auth().sendPasswordReset(withEmail: email) { error in
+                var alertText = "An email with instructions for resetting your " +
+                    "password has been sent to " + email + "."
+                var alertTitle = "Success"
+                if let theError = error {
+                    alertTitle = "Error"
+                    print("Error with password reset: \(theError.localizedDescription)")
+                    alertText = "An error occurred while resetting your password."
+                }
+                let alertVC = UIAlertController(title: alertTitle, message: alertText, preferredStyle: .alert)
+                alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alertVC, animated: true, completion: nil)
+            }
+        } else {
+            print("Invalid Email")
+
+            // Show invalid email notification
+            let alertVC = UIAlertController(title: "Error", message: "Invalid Email", preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
+        }
+
     }
 
     // Overrides

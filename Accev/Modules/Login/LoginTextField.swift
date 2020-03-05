@@ -12,7 +12,7 @@ class LoginTextField: UITextField {
     let cornerRadius: CGFloat = 15.0
     let height: CGFloat = 67.0
     let textInsetX: CGFloat = 15.0
-    let textSize: CGFloat = 30.0
+    let textSize: CGFloat = 36.0
 
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: textInsetX, dy: 0)
