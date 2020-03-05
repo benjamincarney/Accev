@@ -68,7 +68,6 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
         return button
     }()
 
-
     let backgroundGradient = BackgroundGradient()
 
     // Custom Functions

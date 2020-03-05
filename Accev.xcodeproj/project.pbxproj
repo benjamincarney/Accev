@@ -36,7 +36,6 @@
 		F3D9956B241077C9000DC74B /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = F3D9956A241077C9000DC74B /* AppIcon.appiconset */; };
 		F3DD5EDD2411549400A8F8D1 /* BackendCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD5EDC2411549400A8F8D1 /* BackendCaller.swift */; };
 		F3DD5EE0241166A600A8F8D1 /* hamburger.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DD5EDE2411663500A8F8D1 /* hamburger.png */; };
-		F3DD5EE42411723500A8F8D1 /* SideMenuStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD5EE32411723500A8F8D1 /* SideMenuStyle.swift */; };
 		F3DD5EE6241176D500A8F8D1 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DD5EE5241176D500A8F8D1 /* plus.png */; };
 		F3DFEF05240F15110080DDC6 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFB240F15100080DDC6 /* Lato-Light.ttf */; };
 		F3DFEF06240F15110080DDC6 /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFC240F15110080DDC6 /* Lato-BoldItalic.ttf */; };
@@ -112,7 +111,6 @@
 		F3D9956A241077C9000DC74B /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
 		F3DD5EDC2411549400A8F8D1 /* BackendCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendCaller.swift; sourceTree = "<group>"; };
 		F3DD5EDE2411663500A8F8D1 /* hamburger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamburger.png; sourceTree = "<group>"; };
-		F3DD5EE32411723500A8F8D1 /* SideMenuStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuStyle.swift; sourceTree = "<group>"; };
 		F3DD5EE5241176D500A8F8D1 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
 		F3DFEEFB240F15100080DDC6 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		F3DFEEFC240F15110080DDC6 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -389,7 +387,6 @@
 			isa = PBXGroup;
 			children = (
 				F3521F5F2410010B00275FC4 /* PrimaryMap.swift */,
-				F3DD5EE32411723500A8F8D1 /* SideMenuStyle.swift */,
 			);
 			path = PrimaryMap;
 			sourceTree = "<group>";
@@ -676,7 +673,6 @@
 				F3521F602410010B00275FC4 /* PrimaryMap.swift in Sources */,
 				F3DFEF26240F2C5E0080DDC6 /* UILabel+attributes.swift in Sources */,
 				F351BC6B2410908400E5798B /* SocialMediaLoginButton.swift in Sources */,
-				F3DD5EE42411723500A8F8D1 /* SideMenuStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

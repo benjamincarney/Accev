@@ -30,7 +30,7 @@ class PrimaryMapViewController: RoutedViewController {
         button.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
         return button
     }()
-    
+
     lazy var addPinButton: UIButton = {
         let image = R.image.plus()
         let button = UIButton(type: UIButton.ButtonType.custom) as UIButton
@@ -40,7 +40,7 @@ class PrimaryMapViewController: RoutedViewController {
         // button.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
         return button
     }()
-    
+
     @objc
     func buttonTapped(sender: UIButton) {
         let leftMenuNavigationController = SideMenuNavigationController(rootViewController: RoutedViewController())
