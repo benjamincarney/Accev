@@ -35,6 +35,8 @@
 		F3D9956524106DC2000DC74B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D9956424106DC2000DC74B /* GoogleService-Info.plist */; };
 		F3D9956B241077C9000DC74B /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = F3D9956A241077C9000DC74B /* AppIcon.appiconset */; };
 		F3DD5EDD2411549400A8F8D1 /* BackendCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD5EDC2411549400A8F8D1 /* BackendCaller.swift */; };
+		F3DD5EE0241166A600A8F8D1 /* hamburger.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DD5EDE2411663500A8F8D1 /* hamburger.png */; };
+		F3DD5EE42411723500A8F8D1 /* SideMenuStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD5EE32411723500A8F8D1 /* SideMenuStyle.swift */; };
 		F3DFEF05240F15110080DDC6 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFB240F15100080DDC6 /* Lato-Light.ttf */; };
 		F3DFEF06240F15110080DDC6 /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFC240F15110080DDC6 /* Lato-BoldItalic.ttf */; };
 		F3DFEF07240F15110080DDC6 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFD240F15110080DDC6 /* Lato-Black.ttf */; };
@@ -108,6 +110,8 @@
 		F3D9956424106DC2000DC74B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F3D9956A241077C9000DC74B /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
 		F3DD5EDC2411549400A8F8D1 /* BackendCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendCaller.swift; sourceTree = "<group>"; };
+		F3DD5EDE2411663500A8F8D1 /* hamburger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamburger.png; sourceTree = "<group>"; };
+		F3DD5EE32411723500A8F8D1 /* SideMenuStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuStyle.swift; sourceTree = "<group>"; };
 		F3DFEEFB240F15100080DDC6 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		F3DFEEFC240F15110080DDC6 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
 		F3DFEEFD240F15110080DDC6 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
@@ -287,6 +291,7 @@
 				2A1E773D1F384BFD006C84D4 /* Assets.xcassets */,
 				F351BC6C2410917600E5798B /* googleLogo.png */,
 				F351BC6D2410917B00E5798B /* facebookLogo.png */,
+				F3DD5EDE2411663500A8F8D1 /* hamburger.png */,
 				F3D9956A241077C9000DC74B /* AppIcon.appiconset */,
 			);
 			path = Images;
@@ -381,6 +386,7 @@
 			isa = PBXGroup;
 			children = (
 				F3521F5F2410010B00275FC4 /* PrimaryMap.swift */,
+				F3DD5EE32411723500A8F8D1 /* SideMenuStyle.swift */,
 			);
 			path = PrimaryMap;
 			sourceTree = "<group>";
@@ -480,6 +486,7 @@
 				2A1E773E1F384BFD006C84D4 /* Assets.xcassets in Resources */,
 				F3DFEF0E240F15110080DDC6 /* Lato-BlackItalic.ttf in Resources */,
 				F3DFEF05240F15110080DDC6 /* Lato-Light.ttf in Resources */,
+				F3DD5EE0241166A600A8F8D1 /* hamburger.png in Resources */,
 				F351BC6F241092A000E5798B /* googleLogo.png in Resources */,
 				F3DFEF0A240F15110080DDC6 /* Lato-Regular.ttf in Resources */,
 				F3DFEF07240F15110080DDC6 /* Lato-Black.ttf in Resources */,
@@ -597,6 +604,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -606,6 +614,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -663,6 +672,7 @@
 				F3521F602410010B00275FC4 /* PrimaryMap.swift in Sources */,
 				F3DFEF26240F2C5E0080DDC6 /* UILabel+attributes.swift in Sources */,
 				F351BC6B2410908400E5798B /* SocialMediaLoginButton.swift in Sources */,
+				F3DD5EE42411723500A8F8D1 /* SideMenuStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

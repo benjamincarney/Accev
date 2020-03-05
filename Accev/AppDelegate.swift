@@ -65,16 +65,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             self.router.transitionTo(screen: .primaryMap, animatedWithOptions: nil)
         }
     }
-    
+
     @available(iOS 9.0, *)
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
       return GIDSignIn.sharedInstance().handle(url)
     }
-    
+
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         return GIDSignIn.sharedInstance().handle(url)
     }
-
 
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,

@@ -97,16 +97,16 @@ class SetupProfileViewController: ScrollingViewController, UITextFieldDelegate {
         appTitle.topAnchor.constraint(equalTo: margins.topAnchor,
                                       constant: spaceAboveTitle).isActive = true
 
-
         nameField.topAnchor.constraint(equalTo: appTitle.bottomAnchor, constant: buttonSpacing).isActive = true
         nameField.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
         nameField.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
-    
+
         usernameField.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: buttonSpacing).isActive = true
         usernameField.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
         usernameField.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
 
-        continueButton.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: buttonSpacing).isActive = true
+        continueButton.topAnchor.constraint(equalTo: usernameField.bottomAnchor,
+                                        constant: buttonSpacing).isActive = true
         continueButton.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
         continueButton.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
 

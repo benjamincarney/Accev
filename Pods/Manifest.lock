@@ -73,6 +73,7 @@ PODS:
   - R.swift (5.0.0):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
+  - SideMenu (6.4.7)
   - SwiftLint (0.31.0)
 
 DEPENDENCIES:
@@ -81,6 +82,7 @@ DEPENDENCIES:
   - GooglePlaces
   - GoogleSignIn
   - R.swift (= 5.0.0)
+  - SideMenu
   - SwiftLint (= 0.31.0)
 
 SPEC REPOS:
@@ -103,6 +105,7 @@ SPEC REPOS:
     - nanopb
     - R.swift
     - R.swift.Library
+    - SideMenu
     - SwiftLint
 
 SPEC CHECKSUMS:
@@ -124,8 +127,9 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   R.swift: f88c7d7d48a2be4dffa132dde1b3d389620310eb
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
+  SideMenu: 928a015669c3afc201e1fe3a87f1b0bc8993a664
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
 
-PODFILE CHECKSUM: 40b5a1d1c054db3e69dc01729e5a7eea5779b359
+PODFILE CHECKSUM: c009b753f11d39891bbf471eb9c1a605b84b6686
 
 COCOAPODS: 1.9.0

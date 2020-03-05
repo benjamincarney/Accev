@@ -15,6 +15,7 @@ target 'Accev' do
   pod 'GooglePlaces'
   pod 'GoogleSignIn'
   pod 'Firebase/Auth'
+  pod 'SideMenu'
 
   target 'AccevTests' do
     inherit! :search_paths

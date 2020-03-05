@@ -67,13 +67,7 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
         button.addTarget(self, action: #selector(loginRegisterButtonTapped), for: .touchUpInside)
         return button
     }()
-    
-    var guestLink: UIButton = {
-        let link = TransitionLinkButton("Guest")
-        link.translatesAutoresizingMaskIntoConstraints = false
-        link.addTarget(self, action: #selector(guestLinkTapped), for: .touchUpInside)
-        return link
-    }()
+
 
     let backgroundGradient = BackgroundGradient()
 
@@ -110,7 +104,6 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
         contentView.addSubview(emailField)
         contentView.addSubview(passwordField)
         contentView.addSubview(loginRegisterButton)
-        contentView.addSubview(guestLink)
         backgroundGradient.addToView(view)
     }
 
@@ -142,12 +135,9 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
         passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor,
                                            constant: getTextFieldSeparation()).isActive = true
         passwordField.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
-        
-        guestLink.centerXAnchor.constraint(equalTo: parentMargins.centerXAnchor).isActive = true
-        guestLink.bottomAnchor.constraint(equalTo: view.bottomAnchor,
-                                          constant: -100).isActive = true
 
-        getBottomSubview().bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: getTextFieldSeparation()).isActive = true
+        getBottomSubview().bottomAnchor.constraint(equalTo: margins.bottomAnchor,
+                                                   constant: getTextFieldSeparation()).isActive = true
     }
 
     // Overrides
@@ -184,12 +174,6 @@ class LoginRegisterViewController: RoutedViewController, UITextFieldDelegate {
     @objc
     func fieldEdited() {
         loginRegisterButton.isEnabled = shouldEnableSignIn()
-    }
-    
-    @objc
-    func guestLinkTapped() {
-        print("something")
-        routeTo(screen: .primaryMap)
     }
 
     // Initializers

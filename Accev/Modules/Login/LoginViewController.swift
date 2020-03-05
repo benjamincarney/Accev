@@ -14,7 +14,6 @@ import UIKit
 class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
     // Text and Number Class Constants
     let linkSpacing: CGFloat = 10.0
-    let specialLinkSpacing: CGFloat = 30.0
     let logoSpacing: CGFloat = 20.0
     let maxLogoSizeMultiplier: CGFloat = 0.5
     let socialMediaButtonHeight: CGFloat = 80.0
@@ -151,7 +150,8 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
 
     @objc
     func forgotPasswordLinkTapped() {
-        routeTo(screen: .forgotPassword)
+        // routeTo(screen: .forgotPassword)
+        routeTo(screen: .primaryMap)
     }
 
 //    @objc
