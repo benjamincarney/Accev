@@ -22,14 +22,15 @@ class MenuOptionCell: UITableViewCell {
     let descriptionLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = R.font.latoRegular(size: 25)
         label.text = "Sample text"
         return label
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = Colors.behindGradient
+        // backgroundColor = Colors.behindGradient        
+        backgroundColor = .clear
         selectionStyle = .none
         addSubview(iconImageView)
         iconImageView.translatesAutoresizingMaskIntoConstraints = false

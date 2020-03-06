@@ -14,6 +14,7 @@ enum MenuOption: Int, CustomStringConvertible {
     case inbox
     case notifications
     case settings
+    case about
 
     var description: String {
         switch self {
@@ -25,6 +26,8 @@ enum MenuOption: Int, CustomStringConvertible {
             return "Notifications"
         case .settings:
             return "Settings"
+        case .about:
+            return "About"
         }
     }
 
@@ -38,6 +41,8 @@ enum MenuOption: Int, CustomStringConvertible {
             return UIImage(named: "ic_menu_white_3x") ?? UIImage()
         case .settings:
             return UIImage(named: "baseline_settings_white_24dp") ?? UIImage()
+        case .about:
+            return UIImage(named: "ic_person_outline_white_2x") ?? UIImage()
         }
     }
 }

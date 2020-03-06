@@ -11,7 +11,9 @@ import UIKit
 
 class HomeController: RoutedViewController {
 
+    // swiftlint:disable all
     var delegate: HomeControllerDelegate?
+    // swiftlint:enable all
 
     // Overrides
     override func viewWillLayoutSubviews() {
@@ -25,6 +27,7 @@ class HomeController: RoutedViewController {
 
     func configureNavigationBar() {
         navigationController?.navigationBar.barTintColor = Colors.behindGradient
+        navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barStyle = .black
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal),
@@ -42,7 +45,6 @@ class HomeController: RoutedViewController {
 
     @objc
     func addPin() {
-        
     }
 
     override func loadView() {

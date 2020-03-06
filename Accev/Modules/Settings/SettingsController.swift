@@ -23,15 +23,14 @@ class SettingsController: UIViewController {
             print("Username not found..")
         }
     }
-    
+
     @objc
     func handleDismiss() {
         dismiss(animated: true, completion: nil)
     }
-    
-    func configureUI() {
-        view.backgroundColor = .white
 
+    func configureUI() {
+        view.backgroundColor = Colors.behindGradient
         navigationController?.navigationBar.barTintColor = Colors.behindGradient
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true

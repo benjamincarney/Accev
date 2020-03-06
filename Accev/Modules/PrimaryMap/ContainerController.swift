@@ -50,7 +50,7 @@ class ContainerController: RoutedViewController {
             menuController.didMove(toParent: self)
         }
     }
-
+    // swiftlint:disable all
     func animatePanel(shouldExpand: Bool, menuOption: MenuOption?) {
         if shouldExpand {
             // show menu
@@ -72,6 +72,7 @@ class ContainerController: RoutedViewController {
         }
         animateStatusBar()
     }
+    // swiftlint:enable all
     func didSelectMenuOption(menuOption: MenuOption) {
         switch menuOption {
         case .profile:
@@ -82,10 +83,12 @@ class ContainerController: RoutedViewController {
             print("Show Notifications")
         case .settings:
             let controller = SettingsController()
-            controller.username = "Batman"
-            // present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-            routeTo(screen: .login)
-            print("yep")
+            controller.username = "Ben"
+            // either use present or route to, slightly different behaviors
+            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+            // routeTo(screen: .login)
+        case .about:
+            print("Show About page")
         }
     }
     func animateStatusBar() {
