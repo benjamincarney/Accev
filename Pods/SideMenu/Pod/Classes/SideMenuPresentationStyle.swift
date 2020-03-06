@@ -10,7 +10,7 @@ import UIKit
 @objcMembers
 open class SideMenuPresentationStyle: InitializableClass {
     /// Background color behind the views and status bar color
-    open var backgroundColor: UIColor = .black
+    open var backgroundColor: UIColor = .clear
     /// The starting alpha value of the menu before it appears
     open var menuStartAlpha: CGFloat = 1
     /// Whether or not the menu is on top. If false, the presenting view is on top. Shadows are applied to the view on top.

@@ -46,6 +46,7 @@ class PrimaryMapViewController: RoutedViewController {
         let leftMenuNavigationController = SideMenuNavigationController(rootViewController: RoutedViewController())
         SideMenuManager.default.leftMenuNavigationController = leftMenuNavigationController
         leftMenuNavigationController.leftSide = true
+        // leftMenuNavigationController.menuAnimationBackgroundColor = true
         present(leftMenuNavigationController, animated: true, completion: nil)
     }
 
