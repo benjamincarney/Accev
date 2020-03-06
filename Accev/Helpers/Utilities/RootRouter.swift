@@ -36,7 +36,7 @@ class RootRouter {
         return controller
     }()
     private lazy var primaryMapVC: UIViewController = {
-        let controller = PrimaryMapViewController()
+        let controller = ContainerController()
         controller.router = self
         return controller
     }()

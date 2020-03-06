@@ -185,7 +185,7 @@ import UIKit
          let emailTest = NSPredicate(format: "SELF MATCHES[c] %@", emailRegEx)
          return emailTest.evaluate(with: email)
      }
-    
+
     @objc
     func googleRegisterTapped() {
         print("Attempted Google registration")
