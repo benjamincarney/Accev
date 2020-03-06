@@ -59,8 +59,9 @@ class HomeController: RoutedViewController {
         marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
         marker.title = "Your mom's"
         marker.snippet = "house"
-        // swiftlint:disable force_cast
+        // swiftlint:disable all
         let customPin = UIImage(named: "pin-9-32")!.withRenderingMode(.alwaysTemplate)
+        // swiftlint:enable all
         marker.iconView = UIImageView(image: customPin)
         marker.map = mapView
     }
