@@ -7,7 +7,6 @@
 //
 
 import GoogleMaps
-import SideMenu
 import UIKit
 
 class ContainerController: RoutedViewController {
