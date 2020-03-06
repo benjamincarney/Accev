@@ -30,10 +30,10 @@
 		F3521F5C240FFB9C00275FC4 /* UserEnterTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F5B240FFB9C00275FC4 /* UserEnterTextField.swift */; };
 		F3521F5E2410006D00275FC4 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F5D2410006D00275FC4 /* ForgotPasswordViewController.swift */; };
 		F3521F602410010B00275FC4 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F5F2410010B00275FC4 /* ContainerController.swift */; };
+		F365354D2412E1170059D818 /* LocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F365354C2412E1170059D818 /* LocationPin.swift */; };
 		F3B06DBA2411DA7900239817 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DB92411DA7900239817 /* MenuController.swift */; };
 		F3B06DBC2411DA9100239817 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DBB2411DA9100239817 /* HomeController.swift */; };
 		F3B06DC12411DEEC00239817 /* facebookLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = F3B06DBD2411DEEB00239817 /* facebookLogo.png */; };
-		F3B06DC32411DEEC00239817 /* hamburger.png in Resources */ = {isa = PBXBuildFile; fileRef = F3B06DBF2411DEEC00239817 /* hamburger.png */; };
 		F3B06DC42411DEEC00239817 /* googleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = F3B06DC02411DEEC00239817 /* googleLogo.png */; };
 		F3B06DDA2411E6B800239817 /* HomeControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DD92411E6B800239817 /* HomeControllerDelegate.swift */; };
 		F3B06DDC2411EB8F00239817 /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DDB2411EB8F00239817 /* MenuOptionCell.swift */; };
@@ -110,10 +110,10 @@
 		F3521F5B240FFB9C00275FC4 /* UserEnterTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEnterTextField.swift; sourceTree = "<group>"; };
 		F3521F5D2410006D00275FC4 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		F3521F5F2410010B00275FC4 /* ContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
+		F365354C2412E1170059D818 /* LocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPin.swift; sourceTree = "<group>"; };
 		F3B06DB92411DA7900239817 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		F3B06DBB2411DA9100239817 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		F3B06DBD2411DEEB00239817 /* facebookLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = facebookLogo.png; path = Assets.xcassets/facebookLogo.png; sourceTree = "<group>"; };
-		F3B06DBF2411DEEC00239817 /* hamburger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hamburger.png; path = Assets.xcassets/hamburger.png; sourceTree = "<group>"; };
 		F3B06DC02411DEEC00239817 /* googleLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = googleLogo.png; path = Assets.xcassets/googleLogo.png; sourceTree = "<group>"; };
 		F3B06DD92411E6B800239817 /* HomeControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerDelegate.swift; sourceTree = "<group>"; };
 		F3B06DDB2411EB8F00239817 /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
@@ -215,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				F3B06DDD2411EFB100239817 /* MenuOption.swift */,
+				F365354C2412E1170059D818 /* LocationPin.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -305,7 +306,6 @@
 				2A1E773D1F384BFD006C84D4 /* Assets.xcassets */,
 				F3B06DBD2411DEEB00239817 /* facebookLogo.png */,
 				F3B06DC02411DEEC00239817 /* googleLogo.png */,
-				F3B06DBF2411DEEC00239817 /* hamburger.png */,
 				F3D9956A241077C9000DC74B /* AppIcon.appiconset */,
 			);
 			path = Images;
@@ -517,7 +517,6 @@
 				2A1E773E1F384BFD006C84D4 /* Assets.xcassets in Resources */,
 				F3DFEF0E240F15110080DDC6 /* Lato-BlackItalic.ttf in Resources */,
 				F3B06DC42411DEEC00239817 /* googleLogo.png in Resources */,
-				F3B06DC32411DEEC00239817 /* hamburger.png in Resources */,
 				F3DFEF05240F15110080DDC6 /* Lato-Light.ttf in Resources */,
 				F3DFEF0A240F15110080DDC6 /* Lato-Regular.ttf in Resources */,
 				F3DFEF07240F15110080DDC6 /* Lato-Black.ttf in Resources */,
@@ -573,7 +572,7 @@
 			);
 			name = R.swift;
 			outputPaths = (
-				"$SRCROOT/Accev/Resources/Generated/R.generated.swift",
+				$SRCROOT/Accev/Resources/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -672,6 +671,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F365354D2412E1170059D818 /* LocationPin.swift in Sources */,
 				F3DFEF22240F220B0080DDC6 /* LoginViewController.swift in Sources */,
 				F3B06DDC2411EB8F00239817 /* MenuOptionCell.swift in Sources */,
 				F3521F56240FFA1A00275FC4 /* RegisterViewController.swift in Sources */,

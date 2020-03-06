@@ -9,3 +9,8 @@
 // ie creating pin, rating a pin, deleting a pin, etc
 
 import Foundation
+
+
+func addPinToDatabase() {
+    
+}

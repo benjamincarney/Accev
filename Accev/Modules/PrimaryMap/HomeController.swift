@@ -9,11 +9,13 @@
 import GoogleMaps
 import UIKit
 
-class HomeController: RoutedViewController {
+class HomeController: RoutedViewController, GMSMapViewDelegate {
 
     // swiftlint:disable all
     var delegate: HomeControllerDelegate?
     // swiftlint:enable all
+    var longPressRecognizer = UILongPressGestureRecognizer()
+    var addPinState = false
 
     // Overrides
     override func viewWillLayoutSubviews() {
@@ -33,9 +35,10 @@ class HomeController: RoutedViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal),
                                                            style: .plain, target: self,
                                                            action: #selector(handleMenuToggle))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "pin-9-32").withRenderingMode(.alwaysOriginal),
-        style: .plain, target: self,
-        action: #selector(addPin))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image:
+            UIImage(named: "addPin72")?.withRenderingMode(.alwaysOriginal),
+                                                            style: .plain, target: self,
+                                                            action: #selector(addPin))
     }
 
     @objc
@@ -45,6 +48,24 @@ class HomeController: RoutedViewController {
 
     @objc
     func addPin() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_clear_white_36pt_3x").withRenderingMode(.alwaysOriginal),
+        style: .plain, target: self,
+        action: #selector(cancelAddPin))
+        navigationItem.title = "Tap to add a pin!"
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                              NSAttributedString.Key.font: R.font.latoRegular(size: 20)
+        ]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes as [NSAttributedString.Key: Any]
+        addPinState = true
+    }
+
+    @objc
+    func cancelAddPin() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal),
+        style: .plain, target: self,
+        action: #selector(handleMenuToggle))
+        navigationItem.title = ""
+        addPinState = false
     }
 
     override func loadView() {
@@ -52,7 +73,8 @@ class HomeController: RoutedViewController {
         // coordinate -33.86,151.20 at zoom level 6.
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        view = mapView
+        mapView.delegate = self
+        self.view = mapView
 
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
@@ -60,10 +82,27 @@ class HomeController: RoutedViewController {
         marker.title = "Your mom's"
         marker.snippet = "house"
         // swiftlint:disable all
-        let customPin = UIImage(named: "pin-9-32")!.withRenderingMode(.alwaysTemplate)
+        let customPin = UIImage(named: "bluePin")
         // swiftlint:enable all
         marker.iconView = UIImageView(image: customPin)
         marker.map = mapView
+    }
+
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
+        if addPinState {
+            let marker = GMSMarker()
+            marker.position = coordinate
+            marker.title = "Your mom's"
+            marker.snippet = "house again lol"
+            // using grayPin here to indicate that it hasn't been vetted yet
+            let customPin = UIImage(named: "grayPin")
+            marker.iconView = UIImageView(image: customPin)
+            marker.map = mapView
+            // TODO: Decide how we want behavior to play out past this point
+            addPinState = false
+            cancelAddPin()
+        }
     }
 
     // Initializers
