@@ -57,8 +57,10 @@ class HomeController: RoutedViewController {
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-        marker.title = "Sydney"
-        marker.snippet = "Australia"
+        marker.title = "Your mom's"
+        marker.snippet = "house"
+        let customPin = UIImage(named: "pin-9-32")!.withRenderingMode(.alwaysTemplate)
+        marker.iconView = UIImageView(image: customPin)
         marker.map = mapView
     }
 
