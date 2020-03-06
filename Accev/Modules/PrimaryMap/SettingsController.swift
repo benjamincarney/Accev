@@ -32,7 +32,7 @@ class SettingsController: UIViewController {
     func configureUI() {
         view.backgroundColor = .white
 
-        navigationController?.navigationBar.barTintColor = Colors.endBackgroundGradient
+        navigationController?.navigationBar.barTintColor = Colors.behindGradient
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         } else {

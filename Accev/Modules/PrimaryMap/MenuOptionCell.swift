@@ -29,7 +29,7 @@ class MenuOptionCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = Colors.endBackgroundGradient
+        backgroundColor = Colors.behindGradient
         selectionStyle = .none
         addSubview(iconImageView)
         iconImageView.translatesAutoresizingMaskIntoConstraints = false

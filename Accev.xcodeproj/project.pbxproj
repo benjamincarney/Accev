@@ -40,6 +40,7 @@
 		F3B06DDC2411EB8F00239817 /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DDB2411EB8F00239817 /* MenuOptionCell.swift */; };
 		F3B06DDE2411EFB100239817 /* MenuOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DDD2411EFB100239817 /* MenuOption.swift */; };
 		F3B06DE02411F14500239817 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DDF2411F14500239817 /* SettingsController.swift */; };
+		F3B06DE22412021700239817 /* white-plus-icon-png-4-original.png in Resources */ = {isa = PBXBuildFile; fileRef = F3B06DE12412021700239817 /* white-plus-icon-png-4-original.png */; };
 		F3D9956524106DC2000DC74B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D9956424106DC2000DC74B /* GoogleService-Info.plist */; };
 		F3D9956B241077C9000DC74B /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = F3D9956A241077C9000DC74B /* AppIcon.appiconset */; };
 		F3DD5EDD2411549400A8F8D1 /* BackendCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD5EDC2411549400A8F8D1 /* BackendCaller.swift */; };
@@ -121,6 +122,7 @@
 		F3B06DDB2411EB8F00239817 /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
 		F3B06DDD2411EFB100239817 /* MenuOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOption.swift; sourceTree = "<group>"; };
 		F3B06DDF2411F14500239817 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		F3B06DE12412021700239817 /* white-plus-icon-png-4-original.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white-plus-icon-png-4-original.png"; sourceTree = "<group>"; };
 		F3D9956424106DC2000DC74B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F3D9956A241077C9000DC74B /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
 		F3DD5EDC2411549400A8F8D1 /* BackendCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendCaller.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 			children = (
 				2A1E773D1F384BFD006C84D4 /* Assets.xcassets */,
 				F3B06DBD2411DEEB00239817 /* facebookLogo.png */,
+				F3B06DE12412021700239817 /* white-plus-icon-png-4-original.png */,
 				F3B06DC02411DEEC00239817 /* googleLogo.png */,
 				F3B06DBF2411DEEC00239817 /* hamburger.png */,
 				F3B06DBE2411DEEC00239817 /* plus.png */,
@@ -499,6 +502,7 @@
 			files = (
 				F3DFEF0C240F15110080DDC6 /* Lato-Bold.ttf in Resources */,
 				F3B06DC22411DEEC00239817 /* plus.png in Resources */,
+				F3B06DE22412021700239817 /* white-plus-icon-png-4-original.png in Resources */,
 				F3DFEF0D240F15110080DDC6 /* Lato-ThinItalic.ttf in Resources */,
 				2ABEE6D41F38856A00531205 /* Configuration.plist in Resources */,
 				FCB2C7CB1F57127800481080 /* Localizable.strings in Resources */,

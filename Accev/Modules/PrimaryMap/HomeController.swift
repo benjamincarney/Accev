@@ -24,13 +24,13 @@ class HomeController: RoutedViewController {
     }
 
     func configureNavigationBar() {
-        navigationController?.navigationBar.barTintColor = Colors.endBackgroundGradient
+        navigationController?.navigationBar.barTintColor = Colors.behindGradient
         navigationController?.navigationBar.barStyle = .black
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal),
                                                            style: .plain, target: self,
                                                            action: #selector(handleMenuToggle))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysOriginal),
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "pin-9-32").withRenderingMode(.alwaysOriginal),
         style: .plain, target: self,
         action: #selector(addPin))
     }

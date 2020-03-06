@@ -19,7 +19,6 @@ class ContainerController: RoutedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureHomeController()
-
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -57,7 +56,7 @@ class ContainerController: RoutedViewController {
             // show menu
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8,
                            initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-                self.centerController.view.frame.origin.x = self.centerController.view.frame.width - 80
+                self.centerController.view.frame.origin.x = self.centerController.view.frame.width - 100
             }, completion: nil)
         } else {
             // hide menu
@@ -84,7 +83,7 @@ class ContainerController: RoutedViewController {
         case .settings:
             let controller = SettingsController()
             controller.username = "Batman"
-            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+            // present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
             routeTo(screen: .login)
             print("yep")
         }
