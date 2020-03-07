@@ -30,7 +30,7 @@ class PinDetailsController: UIViewController {
     }
 
     func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = Colors.detailGradient
         navigationController?.navigationBar.barTintColor = Colors.behindGradient
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
@@ -42,7 +42,6 @@ class PinDetailsController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_clear_white_36pt_3x").withRenderingMode(.alwaysOriginal),
                                                            style: .plain, target: self,
                                                            action: #selector(handleDismiss))
-
         navigationItem.title = "Tap to add a pin!"
         let textAttributes = [NSAttributedString.Key.foregroundColor: Colors.behindGradient,
                               NSAttributedString.Key.font: R.font.latoRegular(size: 20)
