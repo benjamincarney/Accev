@@ -18,6 +18,5 @@ struct LocationPin {
     var longitude: Double
     var upvotes: Int
     var downvotes: Int
-    var associatedTags: Dictionary<String, Bool>
-    // var opacity: 0-1.0
+    var isWheelChairAccessible: Bool
 }

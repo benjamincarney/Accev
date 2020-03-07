@@ -15,6 +15,7 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
     var delegate: HomeControllerDelegate?
     // swiftlint:enable all
     var addPinState = false
+    let backendCaller = BackendCaller()
 
     // Overrides
     override func viewWillLayoutSubviews() {
@@ -37,7 +38,7 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image:
             UIImage(named: "addPin72")?.withRenderingMode(.alwaysOriginal),
                                                             style: .plain, target: self,
-                                                            action: #selector(addPin))
+                                                            action: #selector(addPinButtonPressed))
     }
 
     @objc
@@ -46,7 +47,7 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
     }
 
     @objc
-    func addPin() {
+    func addPinButtonPressed() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_clear_white_36pt_3x").withRenderingMode(.alwaysOriginal),
         style: .plain, target: self,
         action: #selector(cancelAddPin))
@@ -66,56 +67,40 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
         navigationItem.title = ""
         addPinState = false
     }
-    
+
     @objc
-    func presentDetails() {
+    func presentDetails(_ identifier: String) {
         let controller = PinDetailsController()
         controller.pinName = "Krusty Krab"
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
-
+    // swiftlint:disable all
     override func loadView() {
         // This sets the view, we'll eventually want to set this based on user's location
-        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
+        let camera = GMSCameraPosition.camera(withLatitude: 42.279594, longitude: -83.732124, zoom: 10.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.delegate = self
         self.view = mapView
-
-        // Creates a marker in the center of the map.
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-        let customPin = UIImage(named: "bluePin")
-        marker.iconView = UIImageView(image: customPin)
-        marker.map = mapView
-        // populateMap()
+        populateMapUI(mapView)
     }
-
+    // swiftlint:enable all
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
         if addPinState {
-            let marker = GMSMarker()
-            marker.position = coordinate
-            marker.title = "Your mom's"
-            marker.snippet = "house again lol"
-            // using bluePin for now, but eventually we'll have to figure out color system for pins
-            // also available: grayPin
-            let customPin = UIImage(named: "bluePin")
-            marker.iconView = UIImageView(image: customPin)
-            marker.opacity = 0.7
-            marker.map = mapView
+            let identifier = backendCaller.addPinBackend(mapView, coordinate)
+            addPinUI(mapView, coordinate, identifier)
             // TODO: Decide how we want proceeding behavior to play out
             addPinState = false
             cancelAddPin()
-            // addPinToDatabase() SEE: Models/LocationPin.swift
         }
     }
 
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         // TODO: Use GMSMarker identifier as a lookup for which pin detail to actually present
-        presentDetails()
+        presentDetails(marker.title ?? "")
     }
 
-    // TODO: Improve the appearance of this window
+    // TODO: Improve the appearance of this custom info window
     // In reality we'll probably end up having to use certain properties from
     // the incoming GMS Marker as a means of looking up which marker we're dealing with
     // in some dictionary we have, then populating the fields below accordingly
@@ -141,27 +126,33 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
         view.isUserInteractionEnabled = true
         return view
     }
-
-    func populateMap() {
-        // see Helpers/Utilities/BackendCaller for this function
-        let markers = pullPinsBackend()
-        for marker in markers{
-          // add pins to view SEE loadView() above
-        }
+    // swiftlint:disable all
+    func populateMapUI(_ mapView : GMSMapView) {
+        backendCaller.pullPinsBackend(completion: {pins in
+            for (key, data) in pins{
+                let marker = GMSMarker()
+                marker.title = key
+                marker.position = CLLocationCoordinate2D(latitude: data["latitude"] as! CLLocationDegrees,
+                                                         longitude: data["longitude"] as! CLLocationDegrees)
+                let customPin = UIImage(named: "bluePin")
+                marker.iconView = UIImageView(image: customPin)
+                marker.map = mapView
+            }
+        })
+    }
+    // swiftlint:enable all
+    func addPinUI(_ mapView: GMSMapView, _ coordinate: CLLocationCoordinate2D, _ identifier: String) {
+        let marker = GMSMarker()
+        marker.position = coordinate
+        marker.title = identifier
+        let customPin = UIImage(named: "bluePin")
+        marker.iconView = UIImageView(image: customPin)
+        marker.opacity = 0.7
+        marker.map = mapView
     }
 
-    // Initializers
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
     lazy var detailsButton: UIButton = {
-         // Details button
-        let infoButton = UIButton(frame: CGRect(x: 70, y: 60, width: 60,
-                                                                       height: 15))
+        let infoButton = UIButton(frame: CGRect(x: 70, y: 60, width: 60, height: 15))
          let buttonAttributes: [NSAttributedString.Key: Any] = [
              NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15),
              NSAttributedString.Key.foregroundColor: Colors.behindGradient
@@ -174,4 +165,12 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
 
         return infoButton
     }()
+
+    // Initializers
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
 }

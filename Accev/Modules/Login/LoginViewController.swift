@@ -154,44 +154,9 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
         routeTo(screen: .primaryMap)
     }
 
-//    @objc
-//    func facebookLoginTapped() {
-//        print("Attempted Facebook registration")
-//        let loginManager = LoginManager()
-//
-//        // Log out
-//        if let currentAccessToken = AccessToken.current, currentAccessToken.appID != Settings.appID {
-//            loginManager.logOut()
-//        }
-//
-//        // Log in
-//        loginManager.logIn(permissions: [ .publicProfile ], viewController: self) { loginResult in
-//            switch loginResult {
-//            case .failed(let error):
-//                print(error)
-//                self.loginFailed()
-//            case .cancelled:
-//                print("User cancelled login.")
-//            case .success(_ /* grantedPermissions */, _ /* declinedPermissions */, _ /* accessToken */):
-//                print("Logged in!")
-//                guard let accessToken = AccessToken.current else {
-//                    print("Failed to get access token")
-//                    return
-//                }
-//                let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
-//                Auth.auth().signIn(with: credential) { _ /* authResult */, error in
-//                    if let error = error {
-//                        print("Login error: \(error.localizedDescription)")
-//                        self.loginFailed()
-//                        return
-//                    }
-//                    // User is signed in
-//                    print("Logged in!")
-//                    self.routeTo(screen: .camera)
-//                }
-//            }
-//        }
-//    }
+    @objc
+    func facebookLoginTapped() {
+    }
 
     @objc
     func googleLoginTapped() {

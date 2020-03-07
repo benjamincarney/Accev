@@ -15,6 +15,8 @@ target 'Accev' do
   pod 'GooglePlaces'
   pod 'GoogleSignIn'
   pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
 
   target 'AccevTests' do
     inherit! :search_paths
