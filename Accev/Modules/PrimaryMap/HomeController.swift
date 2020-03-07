@@ -63,15 +63,12 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal),
         style: .plain, target: self,
         action: #selector(handleMenuToggle))
-//        setRightBarButton(_ item: UIBarButtonItem?,
-//        animated: true)
         navigationItem.title = ""
         addPinState = false
     }
 
     override func loadView() {
-        // Create a GMSCameraPosition that tells the map to display the
-        // coordinate -33.86,151.20 at zoom level 6.
+        // This sets the view, we'll eventually want to set this based on user's location
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.delegate = self
@@ -83,6 +80,7 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
         let customPin = UIImage(named: "bluePin")
         marker.iconView = UIImageView(image: customPin)
         marker.map = mapView
+        // populateMap()
     }
 
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
@@ -101,18 +99,18 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
             // TODO: Decide how we want proceeding behavior to play out
             addPinState = false
             cancelAddPin()
-            // addPinToDatabase()
+            // addPinToDatabase() SEE: Models/LocationPin.swift
         }
     }
-//    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-//        print("tapped marker")
-//        return true
-//    }
+
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         print("Tapped on info window")
     }
 
     // TODO: Improve the appearance of this window
+    // In reality we'll probably end up having to use certain properties from
+    // the incoming GMS Marker as a means of looking up which marker we're dealing with
+    // in some dictionary we have, then populating the fields below accordingly
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 80))
         view.backgroundColor = UIColor.white
@@ -148,6 +146,15 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
         view.addSubview(infoButton)
 
         return view
+    }
+    
+    func populateMap(){
+        // see Helpers/Utilities/BackendCaller for this function
+        let markers = pullPinsBackend()
+        for marker in markers{
+            
+        }
+            
     }
 
     // Initializers

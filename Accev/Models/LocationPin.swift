@@ -19,4 +19,5 @@ struct LocationPin {
     var longitude: Double
     var upvotes: Int
     var downvotes: Int
+    var associatedTags: Dictionary<String, Bool>
 }

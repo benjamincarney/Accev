@@ -10,8 +10,27 @@
 
 import Foundation
 
-func addPinToDatabase() {
+
+// TODO: Add new pin to database with associated information
+func addPinBackend() {
 }
 
-func pullPinsFromDatabase() {
+// TODO:
+func editPinBackend() {
+    
+}
+
+// TODO: When user upvotes/downvotes a pin, increment either property on backend
+func ratePinBackend() {
+    
+}
+
+// TODO: Return a dictionary of dictionaries? Outer Key represents some unique identifier
+// Inner keys represent associated properties, for example:
+// {
+//  id432343: {locationName: Krusty Krab, upvotes: 423, downvotes: 21, wheelchairRamp: true}
+//  id134854: {locationName: Chum Bucket, upvotes: 0, downvotes: 53, wheelchairRamp: false}
+// }
+func pullPinsBackend() -> Dictionary<String, Dictionary<String, Any>> {
+    return [:]
 }
