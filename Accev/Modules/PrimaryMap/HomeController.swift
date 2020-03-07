@@ -80,11 +80,7 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-        marker.title = "Your mom's"
-        marker.snippet = "house"
-        // swiftlint:disable all
         let customPin = UIImage(named: "bluePin")
-        // swiftlint:enable all
         marker.iconView = UIImageView(image: customPin)
         marker.map = mapView
     }
@@ -118,13 +114,13 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
 
     // TODO: Improve the appearance of this window
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 70))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 80))
         view.backgroundColor = UIColor.white
         view.layer.cornerRadius = 6
 
         // Title
-        let lbl1 = UILabel(frame: CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: 15))
-        lbl1.text = "Hi there!"
+        let lbl1 = UILabel(frame: CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: 20))
+        lbl1.text = "Krusty Krab"
         lbl1.font = R.font.latoRegular(size: 18)
         view.addSubview(lbl1)
 
@@ -132,38 +128,25 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
         let lbl2 = UILabel(frame: CGRect(x: lbl1.frame.origin.x, y: lbl1.frame.origin.y
                                         + lbl1.frame.size.height + 3, width: view.frame.size.width - 16,
                                                                       height: 15))
-        lbl2.text = "I am a custom info window."
+        lbl2.text = "Home of the Krabby Patty"
         lbl2.font = UIFont.systemFont(ofSize: 14, weight: .light)
         view.addSubview(lbl2)
-        
+
         // Details button
         let infoButton = UIButton(frame: CGRect(x: lbl2.frame.origin.x, y: lbl2.frame.origin.y
-                                        + lbl2.frame.size.height + 3, width: view.frame.size.width - 16,
+                                        + lbl2.frame.size.height + 10, width: view.frame.size.width - 16,
                                                                       height: 15))
-        infoButton.setTitle("Details", for: .normal)
-        infoButton.setTitleColor(Colors.behindGradient, for: .normal)
-        infoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+
+        let buttonAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15),
+            NSAttributedString.Key.foregroundColor: Colors.behindGradient
+            // NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+        let attributeButtonString = NSMutableAttributedString(string: "Details",
+                                                        attributes: buttonAttributes)
+        infoButton.setAttributedTitle(attributeButtonString, for: .normal)
         view.addSubview(infoButton)
-        
-//        let infoButton = UIButton {
-//        let textSize: CGFloat = 20.0
-//            self.init(frame: .zero)
-//            setTitleColor(Colors.text, for: .normal)
-//            translatesAutoresizingMaskIntoConstraints = false
-//            titleLabel?.font = R.font.latoRegular(size: textSize)
-//            let buttonText = NSMutableAttributedString(string: title)
-//            buttonText.addAttribute(
-//                .underlineStyle,
-//                value: NSUnderlineStyle.single.rawValue,
-//                range: NSRange(location: 0, length: buttonText.string.count)
-//            )
-//            buttonText.addAttribute(
-//                .foregroundColor,
-//                value: Colors.text,
-//                range: NSRange(location: 0, length: buttonText.string.count)
-//            )
-//            setAttributedTitle(buttonText, for: .normal)
-//        }
+
         return view
     }
 

@@ -6,8 +6,8 @@
 //  Copyright © 2020 Accev. All rights reserved.
 //
 
-import UIKit
 import GoogleMaps
+import UIKit
 
 class CustomInfoWindow: UIView {
     let textSize: CGFloat = 20.0
