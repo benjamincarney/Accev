@@ -11,7 +11,6 @@ import Foundation
 // probably some sort of struct that captures all of the
 // important information on pin, ie longitude, latitude, name,
 // uniqID, creator, rating etc
-
 struct LocationPin {
     var name: String
     var uniqID: String
@@ -20,4 +19,5 @@ struct LocationPin {
     var upvotes: Int
     var downvotes: Int
     var associatedTags: Dictionary<String, Bool>
+    // var opacity: 0-1.0
 }

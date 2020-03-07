@@ -66,6 +66,13 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
         navigationItem.title = ""
         addPinState = false
     }
+    
+    @objc
+    func presentDetails() {
+        let controller = PinDetailsController()
+        controller.pinName = "Krusty Krab"
+        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+    }
 
     override func loadView() {
         // This sets the view, we'll eventually want to set this based on user's location
@@ -104,7 +111,7 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
     }
 
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
-        print("Tapped on info window")
+       presentDetails()
     }
 
     // TODO: Improve the appearance of this window
@@ -129,32 +136,36 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
         lbl2.text = "Home of the Krabby Patty"
         lbl2.font = UIFont.systemFont(ofSize: 14, weight: .light)
         view.addSubview(lbl2)
-
-        // Details button
-        let infoButton = UIButton(frame: CGRect(x: lbl2.frame.origin.x, y: lbl2.frame.origin.y
-                                        + lbl2.frame.size.height + 10, width: view.frame.size.width - 16,
-                                                                      height: 15))
-
-        let buttonAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15),
-            NSAttributedString.Key.foregroundColor: Colors.behindGradient
-            // NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
-        ]
-        let attributeButtonString = NSMutableAttributedString(string: "Details",
-                                                        attributes: buttonAttributes)
-        infoButton.setAttributedTitle(attributeButtonString, for: .normal)
-        view.addSubview(infoButton)
-
+        
+//        lazy var detailsButton: UIButton = {
+//             // Details button
+//             let infoButton = UIButton(frame: CGRect(x: lbl2.frame.origin.x, y: lbl2.frame.origin.y
+//                                             + lbl2.frame.size.height + 10, width: view.frame.size.width - 16,
+//                                                                           height: 15))
+//             let buttonAttributes: [NSAttributedString.Key: Any] = [
+//                 NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15),
+//                 NSAttributedString.Key.foregroundColor: Colors.behindGradient
+//                 // NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
+//             ]
+//             let attributeButtonString = NSMutableAttributedString(string: "Details",
+//                                                             attributes: buttonAttributes)
+//             infoButton.setAttributedTitle(attributeButtonString, for: .normal)
+//             infoButton.addTarget(self, action: #selector(presentDetails), for: .touchUpInside)
+//
+//            return infoButton
+//        }()
+        
+        view.addSubview(detailsButton)
+        view.isUserInteractionEnabled = true
         return view
     }
-    
-    func populateMap(){
+
+    func populateMap() {
         // see Helpers/Utilities/BackendCaller for this function
         let markers = pullPinsBackend()
         for marker in markers{
-            
+          // add pins to view SEE loadView() above
         }
-            
     }
 
     // Initializers
@@ -164,4 +175,21 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
     init() {
         super.init(nibName: nil, bundle: nil)
     }
+    
+    lazy var detailsButton: UIButton = {
+         // Details button
+        let infoButton = UIButton(frame: CGRect(x: 70, y: 60, width: 60,
+                                                                       height: 15))
+         let buttonAttributes: [NSAttributedString.Key: Any] = [
+             NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15),
+             NSAttributedString.Key.foregroundColor: Colors.behindGradient
+             // NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
+         ]
+         let attributeButtonString = NSMutableAttributedString(string: "Details",
+                                                         attributes: buttonAttributes)
+         infoButton.setAttributedTitle(attributeButtonString, for: .normal)
+         infoButton.addTarget(self, action: #selector(presentDetails), for: .touchUpInside)
+
+        return infoButton
+    }()
 }

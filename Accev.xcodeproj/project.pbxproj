@@ -41,6 +41,7 @@
 		F3B06DE02411F14500239817 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DDF2411F14500239817 /* SettingsController.swift */; };
 		F3C3954B24132437001DD680 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3954A24132437001DD680 /* AboutController.swift */; };
 		F3C3954D24132F0F001DD680 /* CustomInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3954C24132F0F001DD680 /* CustomInfoWindow.swift */; };
+		F3C3955024133FC4001DD680 /* PinDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3954F24133FC4001DD680 /* PinDetailsController.swift */; };
 		F3D9956524106DC2000DC74B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D9956424106DC2000DC74B /* GoogleService-Info.plist */; };
 		F3D9956B241077C9000DC74B /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = F3D9956A241077C9000DC74B /* AppIcon.appiconset */; };
 		F3DD5EDD2411549400A8F8D1 /* BackendCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD5EDC2411549400A8F8D1 /* BackendCaller.swift */; };
@@ -123,6 +124,7 @@
 		F3B06DDF2411F14500239817 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		F3C3954A24132437001DD680 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		F3C3954C24132F0F001DD680 /* CustomInfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInfoWindow.swift; sourceTree = "<group>"; };
+		F3C3954F24133FC4001DD680 /* PinDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinDetailsController.swift; sourceTree = "<group>"; };
 		F3D9956424106DC2000DC74B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F3D9956A241077C9000DC74B /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
 		F3DD5EDC2411549400A8F8D1 /* BackendCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendCaller.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 		2AB31D9F1F38741400B7D1F3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F3C3954E24133FB0001DD680 /* PinDetails */,
 				F3C39549241323F2001DD680 /* About */,
 				F327B79A2412A2780090911E /* Settings */,
 				F327B7992412A2660090911E /* Profile */,
@@ -394,6 +397,14 @@
 				F3C3954A24132437001DD680 /* AboutController.swift */,
 			);
 			path = About;
+			sourceTree = "<group>";
+		};
+		F3C3954E24133FB0001DD680 /* PinDetails */ = {
+			isa = PBXGroup;
+			children = (
+				F3C3954F24133FC4001DD680 /* PinDetailsController.swift */,
+			);
+			path = PinDetails;
 			sourceTree = "<group>";
 		};
 		F3DFEF0F240F15710080DDC6 /* Login */ = {
@@ -714,6 +725,7 @@
 				F3DFEF16240F19F70080DDC6 /* TransitionLinkButton.swift in Sources */,
 				2A1DD4E11F389E2100712195 /* NotificationsHandler.swift in Sources */,
 				2A1DD4DF1F389C2200712195 /* DeeplinkHandler.swift in Sources */,
+				F3C3955024133FC4001DD680 /* PinDetailsController.swift in Sources */,
 				F3DFEF12240F15940080DDC6 /* BackgroundGradient.swift in Sources */,
 				F3DFEF20240F1E380080DDC6 /* LoginRegisterViewController.swift in Sources */,
 				F3DFEF14240F165D0080DDC6 /* FontResource+orDefault.swift in Sources */,
