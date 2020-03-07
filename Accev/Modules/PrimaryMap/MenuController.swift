@@ -64,34 +64,3 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
         delegate?.handleMenuToggle(forMenuOption: menuOption)
     }
 }
-
-//
-//class BlurredBackgroundView: UIView {
-//    let imageView: UIImageView
-//    let blurView: UIVisualEffectView
-//
-//    override init(frame: CGRect) {
-//        let blurEffect = UIBlurEffect(style: .regular)
-//        blurView = UIVisualEffectView(effect: blurEffect)
-//        imageView = UIImageView(image: UIImage.gorgeousImage())
-//        super.init(frame: frame)
-//        addSubview(imageView)
-//        addSubview(blurView)
-//    }
-//
-//    convenience required init?(coder aDecoder: NSCoder) {
-//        self.init(frame: CGRect(x: 0,y: 0,width: 0,height: 0))
-//    }
-//
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        imageView.frame = bounds
-//        blurView.frame = bounds
-//    }
-//}
-//
-//extension UIImage {
-//    class func gorgeousImage() -> UIImage {
-//        return UIImage(named: "otherGradient2")!
-//    }
-//}

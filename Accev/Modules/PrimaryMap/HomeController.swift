@@ -14,7 +14,6 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
     // swiftlint:disable all
     var delegate: HomeControllerDelegate?
     // swiftlint:enable all
-    var longPressRecognizer = UILongPressGestureRecognizer()
     var addPinState = false
 
     // Overrides
@@ -64,6 +63,8 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal),
         style: .plain, target: self,
         action: #selector(handleMenuToggle))
+//        setRightBarButton(_ item: UIBarButtonItem?,
+//        animated: true)
         navigationItem.title = ""
         addPinState = false
     }
@@ -95,14 +96,75 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
             marker.position = coordinate
             marker.title = "Your mom's"
             marker.snippet = "house again lol"
-            // using grayPin here to indicate that it hasn't been vetted yet
-            let customPin = UIImage(named: "grayPin")
+            // using bluePin for now, but eventually we'll have to figure out color system for pins
+            // also available: grayPin
+            let customPin = UIImage(named: "bluePin")
             marker.iconView = UIImageView(image: customPin)
+            marker.opacity = 0.7
             marker.map = mapView
-            // TODO: Decide how we want behavior to play out past this point
+            // TODO: Decide how we want proceeding behavior to play out
             addPinState = false
             cancelAddPin()
+            // addPinToDatabase()
         }
+    }
+//    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+//        print("tapped marker")
+//        return true
+//    }
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        print("Tapped on info window")
+    }
+
+    // TODO: Improve the appearance of this window
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 70))
+        view.backgroundColor = UIColor.white
+        view.layer.cornerRadius = 6
+
+        // Title
+        let lbl1 = UILabel(frame: CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: 15))
+        lbl1.text = "Hi there!"
+        lbl1.font = R.font.latoRegular(size: 18)
+        view.addSubview(lbl1)
+
+        // Description
+        let lbl2 = UILabel(frame: CGRect(x: lbl1.frame.origin.x, y: lbl1.frame.origin.y
+                                        + lbl1.frame.size.height + 3, width: view.frame.size.width - 16,
+                                                                      height: 15))
+        lbl2.text = "I am a custom info window."
+        lbl2.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        view.addSubview(lbl2)
+        
+        // Details button
+        let infoButton = UIButton(frame: CGRect(x: lbl2.frame.origin.x, y: lbl2.frame.origin.y
+                                        + lbl2.frame.size.height + 3, width: view.frame.size.width - 16,
+                                                                      height: 15))
+        infoButton.setTitle("Details", for: .normal)
+        infoButton.setTitleColor(Colors.behindGradient, for: .normal)
+        infoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        view.addSubview(infoButton)
+        
+//        let infoButton = UIButton {
+//        let textSize: CGFloat = 20.0
+//            self.init(frame: .zero)
+//            setTitleColor(Colors.text, for: .normal)
+//            translatesAutoresizingMaskIntoConstraints = false
+//            titleLabel?.font = R.font.latoRegular(size: textSize)
+//            let buttonText = NSMutableAttributedString(string: title)
+//            buttonText.addAttribute(
+//                .underlineStyle,
+//                value: NSUnderlineStyle.single.rawValue,
+//                range: NSRange(location: 0, length: buttonText.string.count)
+//            )
+//            buttonText.addAttribute(
+//                .foregroundColor,
+//                value: Colors.text,
+//                range: NSRange(location: 0, length: buttonText.string.count)
+//            )
+//            setAttributedTitle(buttonText, for: .normal)
+//        }
+        return view
     }
 
     // Initializers
@@ -110,7 +172,6 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
         super.init(coder: aDecoder)
     }
     init() {
-
         super.init(nibName: nil, bundle: nil)
     }
 }

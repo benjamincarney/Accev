@@ -17,4 +17,5 @@ public struct Colors {
     static let mostlyOpaqueText = UIColor(hex: 0xFFFFFF, alpha: 0.75)
     static let seeThroughText = UIColor(hex: 0xFFFFFF, alpha: 0.6)
     static let seeThroughContrast = UIColor(hex: 0xFFFFFF, alpha: 0.25)
+    static let primaryBlue = UIColor(hex: 0x1265B2, alpha: 0.0)
 }

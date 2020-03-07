@@ -15,4 +15,8 @@ import Foundation
 struct LocationPin {
     var name: String
     var uniqID: String
+    var latitude: Double
+    var longitude: Double
+    var upvotes: Int
+    var downvotes: Int
 }

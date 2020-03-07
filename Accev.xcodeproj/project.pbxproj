@@ -39,6 +39,8 @@
 		F3B06DDC2411EB8F00239817 /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DDB2411EB8F00239817 /* MenuOptionCell.swift */; };
 		F3B06DDE2411EFB100239817 /* MenuOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DDD2411EFB100239817 /* MenuOption.swift */; };
 		F3B06DE02411F14500239817 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DDF2411F14500239817 /* SettingsController.swift */; };
+		F3C3954B24132437001DD680 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3954A24132437001DD680 /* AboutController.swift */; };
+		F3C3954D24132F0F001DD680 /* CustomInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3954C24132F0F001DD680 /* CustomInfoWindow.swift */; };
 		F3D9956524106DC2000DC74B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D9956424106DC2000DC74B /* GoogleService-Info.plist */; };
 		F3D9956B241077C9000DC74B /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = F3D9956A241077C9000DC74B /* AppIcon.appiconset */; };
 		F3DD5EDD2411549400A8F8D1 /* BackendCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD5EDC2411549400A8F8D1 /* BackendCaller.swift */; };
@@ -119,6 +121,8 @@
 		F3B06DDB2411EB8F00239817 /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
 		F3B06DDD2411EFB100239817 /* MenuOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOption.swift; sourceTree = "<group>"; };
 		F3B06DDF2411F14500239817 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		F3C3954A24132437001DD680 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
+		F3C3954C24132F0F001DD680 /* CustomInfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInfoWindow.swift; sourceTree = "<group>"; };
 		F3D9956424106DC2000DC74B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F3D9956A241077C9000DC74B /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
 		F3DD5EDC2411549400A8F8D1 /* BackendCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendCaller.swift; sourceTree = "<group>"; };
@@ -223,6 +227,7 @@
 		2AB31D9F1F38741400B7D1F3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F3C39549241323F2001DD680 /* About */,
 				F327B79A2412A2780090911E /* Settings */,
 				F327B7992412A2660090911E /* Profile */,
 				F3DFEF27240F45100080DDC6 /* PrimaryMap */,
@@ -383,6 +388,14 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
+		F3C39549241323F2001DD680 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				F3C3954A24132437001DD680 /* AboutController.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		F3DFEF0F240F15710080DDC6 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,6 +431,7 @@
 				F3B06DB92411DA7900239817 /* MenuController.swift */,
 				F3B06DBB2411DA9100239817 /* HomeController.swift */,
 				F3B06DDB2411EB8F00239817 /* MenuOptionCell.swift */,
+				F3C3954C24132F0F001DD680 /* CustomInfoWindow.swift */,
 			);
 			path = PrimaryMap;
 			sourceTree = "<group>";
@@ -677,6 +691,7 @@
 				F3521F56240FFA1A00275FC4 /* RegisterViewController.swift in Sources */,
 				F3B06DDE2411EFB100239817 /* MenuOption.swift in Sources */,
 				2A9222821F38797600A648E6 /* ConfigurationManager.swift in Sources */,
+				F3C3954B24132437001DD680 /* AboutController.swift in Sources */,
 				F3DFEF1C240F1D280080DDC6 /* LoginTextField.swift in Sources */,
 				F3521F5A240FFB3E00275FC4 /* ScrollingViewController.swift in Sources */,
 				F33D0562240DEB1F00F9D8E8 /* Colors.swift in Sources */,
@@ -692,6 +707,7 @@
 				C90395271FC62425006F1DC0 /* TestsAppDelegate.swift in Sources */,
 				F33D0564240DECDE00F9D8E8 /* UIColor+hex.swift in Sources */,
 				F3DFEF24240F2C410080DDC6 /* UIView+constraints.swift in Sources */,
+				F3C3954D24132F0F001DD680 /* CustomInfoWindow.swift in Sources */,
 				F3DFEF1A240F1C2E0080DDC6 /* RoutedViewController.swift in Sources */,
 				F3521F5C240FFB9C00275FC4 /* UserEnterTextField.swift in Sources */,
 				F3521F58240FFB1300275FC4 /* SetupProfileViewController.swift in Sources */,

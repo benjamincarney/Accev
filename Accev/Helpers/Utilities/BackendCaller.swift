@@ -10,7 +10,8 @@
 
 import Foundation
 
-
 func addPinToDatabase() {
-    
+}
+
+func pullPinsFromDatabase() {
 }
