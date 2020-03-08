@@ -30,6 +30,8 @@
 		F3521F5C240FFB9C00275FC4 /* UserEnterTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F5B240FFB9C00275FC4 /* UserEnterTextField.swift */; };
 		F3521F5E2410006D00275FC4 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F5D2410006D00275FC4 /* ForgotPasswordViewController.swift */; };
 		F3521F602410010B00275FC4 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F5F2410010B00275FC4 /* ContainerController.swift */; };
+		F35B317824143A72000022A2 /* PinDetailsEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B317724143A72000022A2 /* PinDetailsEntryController.swift */; };
+		F35B317A24143B21000022A2 /* MapHelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B317924143B21000022A2 /* MapHelperFunctions.swift */; };
 		F365354D2412E1170059D818 /* LocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F365354C2412E1170059D818 /* LocationPin.swift */; };
 		F3B06DBA2411DA7900239817 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DB92411DA7900239817 /* MenuController.swift */; };
 		F3B06DBC2411DA9100239817 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DBB2411DA9100239817 /* HomeController.swift */; };
@@ -113,6 +115,8 @@
 		F3521F5B240FFB9C00275FC4 /* UserEnterTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEnterTextField.swift; sourceTree = "<group>"; };
 		F3521F5D2410006D00275FC4 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		F3521F5F2410010B00275FC4 /* ContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
+		F35B317724143A72000022A2 /* PinDetailsEntryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinDetailsEntryController.swift; sourceTree = "<group>"; };
+		F35B317924143B21000022A2 /* MapHelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHelperFunctions.swift; sourceTree = "<group>"; };
 		F365354C2412E1170059D818 /* LocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPin.swift; sourceTree = "<group>"; };
 		F3B06DB92411DA7900239817 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		F3B06DBB2411DA9100239817 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -403,6 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				F3C3954F24133FC4001DD680 /* PinDetailsController.swift */,
+				F35B317724143A72000022A2 /* PinDetailsEntryController.swift */,
 			);
 			path = PinDetails;
 			sourceTree = "<group>";
@@ -443,6 +448,7 @@
 				F3B06DBB2411DA9100239817 /* HomeController.swift */,
 				F3B06DDB2411EB8F00239817 /* MenuOptionCell.swift */,
 				F3C3954C24132F0F001DD680 /* CustomInfoWindow.swift */,
+				F35B317924143B21000022A2 /* MapHelperFunctions.swift */,
 			);
 			path = PrimaryMap;
 			sourceTree = "<group>";
@@ -597,7 +603,7 @@
 			);
 			name = R.swift;
 			outputPaths = (
-				"$SRCROOT/Accev/Resources/Generated/R.generated.swift",
+				$SRCROOT/Accev/Resources/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -719,6 +725,7 @@
 				F3DFEF18240F1A750080DDC6 /* LoginRegisterButton.swift in Sources */,
 				F3B06DBA2411DA7900239817 /* MenuController.swift in Sources */,
 				2ABEE6D61F3886D700531205 /* RootRouter.swift in Sources */,
+				F35B317824143A72000022A2 /* PinDetailsEntryController.swift in Sources */,
 				F3B06DBC2411DA9100239817 /* HomeController.swift in Sources */,
 				C90395241FC622D2006F1DC0 /* main.swift in Sources */,
 				2A1E77371F384BFC006C84D4 /* AppDelegate.swift in Sources */,
@@ -726,6 +733,7 @@
 				F3521F5E2410006D00275FC4 /* ForgotPasswordViewController.swift in Sources */,
 				553FC23C214047CB001D9362 /* R.generated.swift in Sources */,
 				C90395271FC62425006F1DC0 /* TestsAppDelegate.swift in Sources */,
+				F35B317A24143B21000022A2 /* MapHelperFunctions.swift in Sources */,
 				F33D0564240DECDE00F9D8E8 /* UIColor+hex.swift in Sources */,
 				F3DFEF24240F2C410080DDC6 /* UIView+constraints.swift in Sources */,
 				F3C3954D24132F0F001DD680 /* CustomInfoWindow.swift in Sources */,

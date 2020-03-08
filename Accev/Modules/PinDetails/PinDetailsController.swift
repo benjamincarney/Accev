@@ -10,15 +10,15 @@ import UIKit
 
 class PinDetailsController: UIViewController {
 
-    var pinName: String?
+    var pinID: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureUI()
 
-        if let pinName = pinName {
-            print("Pinname is \(pinName)")
+        if let pinID = pinID {
+            print("Pinname is \(pinID)")
         } else {
             print("Pinname not found..")
         }
@@ -42,7 +42,7 @@ class PinDetailsController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_clear_white_36pt_3x").withRenderingMode(.alwaysOriginal),
                                                            style: .plain, target: self,
                                                            action: #selector(handleDismiss))
-        navigationItem.title = "Tap to add a pin!"
+        navigationItem.title = pinID
         let textAttributes = [NSAttributedString.Key.foregroundColor: Colors.behindGradient,
                               NSAttributedString.Key.font: R.font.latoRegular(size: 20)
         ]

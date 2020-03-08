@@ -15,7 +15,9 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
     var delegate: HomeControllerDelegate?
     // swiftlint:enable all
     var addPinState = false
+    var pins = Dictionary<String, Dictionary<String, Any>>()
     let backendCaller = BackendCaller()
+    let mapHelperFunctions = MapHelper()
 
     // Overrides
     override func viewWillLayoutSubviews() {
@@ -71,88 +73,111 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
     @objc
     func presentDetails(_ identifier: String) {
         let controller = PinDetailsController()
-        controller.pinName = "Krusty Krab"
+        controller.pinID = identifier
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
-    // swiftlint:disable all
+
     override func loadView() {
-        // This sets the view, we'll eventually want to set this based on user's location
         let camera = GMSCameraPosition.camera(withLatitude: 42.279594, longitude: -83.732124, zoom: 10.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.delegate = self
         self.view = mapView
-        populateMapUI(mapView)
+        loadPins(mapView)
     }
-    // swiftlint:enable all
+
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        // swiftlint:disable all
         print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
         if addPinState {
-            let identifier = backendCaller.addPinBackend(mapView, coordinate)
+            // TODO: Direct user to inputing more info before moving on
+            // For now let's assume we have some mock user input dictionary
+            // And we'll add to our pins member dictionary
+            var mockInputInfo = [String : Any]()
+            mockInputInfo["latitude"] = coordinate.latitude
+            mockInputInfo["longitude"] = coordinate.longitude
+            mockInputInfo["upvotes"] = Int.random(in: 0..<1000)
+            mockInputInfo["downvotes"] = Int.random(in: 0..<1000)
+            mockInputInfo["accessibleWheelchair"] = true
+            mockInputInfo["accessibleBraille"] = true
+            mockInputInfo["accessibleHearing"] = true
+            let identifier = backendCaller.addPinBackend(mapView, coordinate, mockInputInfo)
+            self.pins.updateValue(mockInputInfo, forKey: identifier)
+            self.pins[identifier] = mockInputInfo
             addPinUI(mapView, coordinate, identifier)
-            // TODO: Decide how we want proceeding behavior to play out
             addPinState = false
             cancelAddPin()
         }
+        // swiftlint:enable all
     }
 
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
-        // TODO: Use GMSMarker identifier as a lookup for which pin detail to actually present
         presentDetails(marker.title ?? "")
     }
 
     // TODO: Improve the appearance of this custom info window
-    // In reality we'll probably end up having to use certain properties from
-    // the incoming GMS Marker as a means of looking up which marker we're dealing with
-    // in some dictionary we have, then populating the fields below accordingly
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 80))
+        // swiftlint:disable all
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+        let pinDict = self.pins[marker.title!]
         view.backgroundColor = UIColor.white
         view.layer.cornerRadius = 6
+        view.layer.borderWidth = 1
+        let borderColor = UIColor(red: 16.0/255.0, green: 96.0/255.0, blue: 181.0/255.0, alpha: 1.0)
+        view.layer.borderColor = borderColor.cgColor
 
         // Title
-        let lbl1 = UILabel(frame: CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: 20))
-        lbl1.text = "Krusty Krab"
-        lbl1.font = R.font.latoRegular(size: 18)
+        let lbl1 = UILabel(frame: CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: 30))
+        // lbl1.textAlignment = .center
+        lbl1.attributedText = self.addInfoViewIcons(pinData: pinDict!)
+        lbl1.font = R.font.latoRegular(size: 16)
         view.addSubview(lbl1)
 
         // Description
         let lbl2 = UILabel(frame: CGRect(x: lbl1.frame.origin.x, y: lbl1.frame.origin.y
                                         + lbl1.frame.size.height + 3, width: view.frame.size.width - 16,
-                                                                      height: 15))
-        lbl2.text = "Home of the Krabby Patty"
-        lbl2.font = UIFont.systemFont(ofSize: 14, weight: .light)
+                                                                      height: 18))
+        let trustRating = mapHelperFunctions.calculateTrustRating(pinDict?["upvotes"] as! Int,
+                                                                  pinDict?["downvotes"] as! Int)
+        lbl2.text = "\(trustRating)% of users agree"
+        lbl2.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         view.addSubview(lbl2)
         view.addSubview(detailsButton)
         view.isUserInteractionEnabled = true
         return view
+        // swiftlint:enable all
     }
-    // swiftlint:disable all
-    func populateMapUI(_ mapView : GMSMapView) {
+
+    func loadPins(_ mapView: GMSMapView) {
+        // swiftlint:disable all
         backendCaller.pullPinsBackend(completion: {pins in
-            for (key, data) in pins{
+            self.pins = pins
+            for (key, data) in pins {
                 let marker = GMSMarker()
                 marker.title = key
                 marker.position = CLLocationCoordinate2D(latitude: data["latitude"] as! CLLocationDegrees,
                                                          longitude: data["longitude"] as! CLLocationDegrees)
                 let customPin = UIImage(named: "bluePin")
                 marker.iconView = UIImageView(image: customPin)
+                marker.opacity = self.mapHelperFunctions.determineOpacity(data["upvotes"] as! Int,
+                                                                     data["downvotes"] as! Int)
                 marker.map = mapView
             }
         })
+        // swiftlint:enable all
     }
-    // swiftlint:enable all
+
     func addPinUI(_ mapView: GMSMapView, _ coordinate: CLLocationCoordinate2D, _ identifier: String) {
         let marker = GMSMarker()
         marker.position = coordinate
         marker.title = identifier
         let customPin = UIImage(named: "bluePin")
         marker.iconView = UIImageView(image: customPin)
-        marker.opacity = 0.7
+        marker.opacity = 0.2
         marker.map = mapView
     }
 
     lazy var detailsButton: UIButton = {
-        let infoButton = UIButton(frame: CGRect(x: 70, y: 60, width: 60, height: 15))
+        let infoButton = UIButton(frame: CGRect(x: 70, y: 75, width: 60, height: 15))
          let buttonAttributes: [NSAttributedString.Key: Any] = [
              NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15),
              NSAttributedString.Key.foregroundColor: Colors.behindGradient
@@ -165,6 +190,43 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
 
         return infoButton
     }()
+    
+    func addInfoViewIcons(pinData: [String : Any]) -> NSAttributedString {
+        // swiftlint:disable all
+        let completeText = NSMutableAttributedString(string: "")
+        
+        if pinData["accessibleWheelchair"] as! Bool{
+            let imageAttachment =  NSTextAttachment()
+            imageAttachment.image = UIImage(named: "wheelchair64pxBlue.png")
+            let imageOffsetY:CGFloat = -5.0;
+            imageAttachment.bounds = CGRect(x: 0, y: imageOffsetY, width: 24, height: 24)
+            let attachmentString = NSAttributedString(attachment: imageAttachment)
+            completeText.append(attachmentString)
+            completeText.append(NSAttributedString(string: "  "))
+        }
+        if pinData["accessibleBraille"] as! Bool{
+            
+            let imageAttachment =  NSTextAttachment()
+            imageAttachment.image = UIImage(named: "braille64pxBlue.png")
+            let imageOffsetY:CGFloat = -5.0;
+            imageAttachment.bounds = CGRect(x: 0, y: imageOffsetY, width: 24, height: 24)
+            let attachmentString = NSAttributedString(attachment: imageAttachment)
+            completeText.append(attachmentString)
+            completeText.append(NSAttributedString(string: "  "))
+        }
+        if pinData["accessibleHearing"] as! Bool {
+            
+            let imageAttachment =  NSTextAttachment()
+            imageAttachment.image = UIImage(named: "noise64pxBlue.png")
+            let imageOffsetY:CGFloat = -5.0;
+            imageAttachment.bounds = CGRect(x: 0, y: imageOffsetY, width: 24, height: 24)
+            let attachmentString = NSAttributedString(attachment: imageAttachment)
+            completeText.append(attachmentString)
+            
+        }
+        return completeText
+        // swiftlint:enable all
+    }
 
     // Initializers
     required init?(coder aDecoder: NSCoder) {

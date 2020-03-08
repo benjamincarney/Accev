@@ -13,10 +13,14 @@ import Foundation
 // uniqID, creator, rating etc
 struct LocationPin {
     var name: String
-    var uniqID: String
+    var pinID: String
+    var description: String
     var latitude: Double
     var longitude: Double
     var upvotes: Int
     var downvotes: Int
-    var isWheelChairAccessible: Bool
+    var accessibleWheelchair: Bool
+    var accessibleBraille: Bool
+    var accessibleHearing: Bool
+    var submittedBy: String
 }
