@@ -8,6 +8,7 @@
 // A good place to throw any functions that will communicate with the backend
 // ie creating pin, rating a pin, deleting a pin, etc
 // swiftlint:disable all
+
 import Firebase
 import Foundation
 import GoogleMaps

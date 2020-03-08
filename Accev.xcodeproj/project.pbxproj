@@ -44,6 +44,7 @@
 		F3C3954B24132437001DD680 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3954A24132437001DD680 /* AboutController.swift */; };
 		F3C3955024133FC4001DD680 /* PinDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3954F24133FC4001DD680 /* PinDetailsController.swift */; };
 		F3D50A182414861B00ACC314 /* FilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D50A172414861B00ACC314 /* FilterController.swift */; };
+		F3D50A1A24149E6100ACC314 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D50A1924149E6100ACC314 /* CoreLocation.framework */; };
 		F3D9956524106DC2000DC74B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D9956424106DC2000DC74B /* GoogleService-Info.plist */; };
 		F3D9956B241077C9000DC74B /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = F3D9956A241077C9000DC74B /* AppIcon.appiconset */; };
 		F3DD5EDD2411549400A8F8D1 /* BackendCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD5EDC2411549400A8F8D1 /* BackendCaller.swift */; };
@@ -129,6 +130,7 @@
 		F3C3954A24132437001DD680 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		F3C3954F24133FC4001DD680 /* PinDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinDetailsController.swift; sourceTree = "<group>"; };
 		F3D50A172414861B00ACC314 /* FilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterController.swift; sourceTree = "<group>"; };
+		F3D50A1924149E6100ACC314 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F3D9956424106DC2000DC74B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F3D9956A241077C9000DC74B /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
 		F3DD5EDC2411549400A8F8D1 /* BackendCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendCaller.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3D50A1A24149E6100ACC314 /* CoreLocation.framework in Frameworks */,
 				F351BC6124107E1400E5798B /* Pods_Accev.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,6 +370,7 @@
 		B69B83176D3FC2117B878AE6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F3D50A1924149E6100ACC314 /* CoreLocation.framework */,
 				31D6977EED9407E908109CA9 /* Pods_Accev.framework */,
 				852CBD1164562073AC7B2A8E /* Pods_AccevTests.framework */,
 			);

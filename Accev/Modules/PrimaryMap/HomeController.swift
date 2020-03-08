@@ -6,13 +6,15 @@
 //  Copyright © 2020 Accev. All rights reserved.
 //
 
+import CoreLocation
 import GoogleMaps
 import UIKit
 
-class HomeController: RoutedViewController, GMSMapViewDelegate {
+class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
     // swiftlint:disable all
     var delegate: HomeControllerDelegate?
+    var locationManager: CLLocationManager!
     // swiftlint:enable all
     var addPinState = false
     var pins = Dictionary<String, Dictionary<String, Any>>()
@@ -27,6 +29,10 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.startUpdatingLocation()
     }
 
     func configureNavigationBar() {
@@ -91,7 +97,27 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
 //        filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -20).isActive = true
 //        filterButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -20).isActive = true
         mapView.addSubview(filterButton)
+        // mapView.addSubview(searchBar)
         loadPins(mapView)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways {
+            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
+                if CLLocationManager.isRangingAvailable() {
+                    guard let currentLocation = manager.location else {
+                        return
+                    }
+                    let camera = GMSCameraPosition.camera(withLatitude: currentLocation.coordinate.latitude,
+                                                          longitude: currentLocation.coordinate.longitude, zoom: 15.0)
+                    let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+                    mapView.delegate = self
+                    self.view = mapView
+                    mapView.addSubview(filterButton)
+                    loadPins(mapView)
+                }
+            }
+        }
     }
 
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
@@ -206,7 +232,6 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
     }()
 
     lazy var filterButton: UIButton = {
-        print("yeah it'ssomewhwere")
         let image = UIImage(named: "filter.png")
         // FIX: This is horrible, fix constraints so that it binds to buttom right off screen no matter what
         let filterButton = UIButton(frame: CGRect(x: 335, y: 735, width: 48, height: 48))
@@ -215,6 +240,15 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
         // filterButton.translatesAutoresizingMaskIntoConstraints = false
         filterButton.addTarget(self, action: #selector(presentFilter), for: .touchUpInside)
         return filterButton
+    }()
+    
+    lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar(frame: CGRect(x: 10, y: 730, width: UIScreen.main.bounds.width - 100, height: 60))
+        // searchBar.searchTextField.backgroundColor = Colors.behindGradient
+        searchBar.layer.cornerRadius = 10
+        // textField.layer.masksToBounds = true
+        // searchBar.tintColor = Colors.behindGradient
+        return searchBar
     }()
 
     func addInfoViewIcons(pinData: [String: Any]) -> NSAttributedString {
