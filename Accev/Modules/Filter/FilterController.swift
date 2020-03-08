@@ -31,21 +31,17 @@ class FilterController: UIViewController {
     }
 
     func configureUI() {
-        view.backgroundColor = Colors.detailGradient
-        navigationController?.navigationBar.barTintColor = Colors.behindGradient
+        view.backgroundColor = .white
+        UILabel.appearance(whenContainedInInstancesOf: [UIView.self]).textColor = Colors.behindGradient
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         } else {
             // Fallback on earlier versions
         }
+        navigationItem.title = "Filter"
         navigationController?.navigationBar.barStyle = .black
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_clear_white_36pt_3x").withRenderingMode(.alwaysOriginal),
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "x24blue").withRenderingMode(.alwaysOriginal),
                                                            style: .plain, target: self,
                                                            action: #selector(handleDismiss))
-        navigationItem.title = "Filter Pins"
-        let textAttributes = [NSAttributedString.Key.foregroundColor: Colors.behindGradient,
-                              NSAttributedString.Key.font: R.font.latoRegular(size: 20)
-        ]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes as [NSAttributedString.Key: Any]
     }
 }

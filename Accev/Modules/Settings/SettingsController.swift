@@ -30,8 +30,8 @@ class SettingsController: UIViewController {
     }
 
     func configureUI() {
-        view.backgroundColor = Colors.behindGradient
-        navigationController?.navigationBar.barTintColor = Colors.behindGradient
+        view.backgroundColor = .white
+        UILabel.appearance(whenContainedInInstancesOf: [UIView.self]).textColor = Colors.behindGradient
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         } else {
@@ -39,7 +39,7 @@ class SettingsController: UIViewController {
         }
         navigationItem.title = "Settings"
         navigationController?.navigationBar.barStyle = .black
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_clear_white_36pt_3x").withRenderingMode(.alwaysOriginal),
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "x24blue").withRenderingMode(.alwaysOriginal),
                                                            style: .plain, target: self,
                                                            action: #selector(handleDismiss))
     }

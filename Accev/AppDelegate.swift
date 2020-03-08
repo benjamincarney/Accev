@@ -38,7 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().clientID =
             "801371533628-iodo8voj6svel41966dto7isib0oq3uv.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
-
         // App structure
         router.loadMainAppStructure()
 

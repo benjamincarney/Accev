@@ -205,6 +205,7 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         view.addSubview(lbl2)
         view.addSubview(detailsButton)
         view.isUserInteractionEnabled = true
+        UILabel.appearance(whenContainedInInstancesOf: [UIView.self]).textColor = .black
         return view
         // swiftlint:enable all
     }
