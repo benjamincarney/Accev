@@ -63,8 +63,8 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                               NSAttributedString.Key.font: R.font.latoRegular(size: 20)
         ]
-        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
-            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways {
             guard let currentLocation = locationManager.location else {
                 return
             }
@@ -255,7 +255,7 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         filterButton.addTarget(self, action: #selector(presentFilter), for: .touchUpInside)
         return filterButton
     }()
-    
+
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar(frame: CGRect(x: 10, y: 730, width: UIScreen.main.bounds.width - 100, height: 60))
         // searchBar.searchTextField.backgroundColor = Colors.behindGradient
