@@ -1,14 +1,15 @@
 //
-//  PinDetailsController.swift
+//  FilterController.swift
 //  Accev
 //
-//  Created by Benjamin Carney on 3/6/20.
+//  Created by Benjamin Carney on 3/7/20.
 //  Copyright © 2020 Accev. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-class PinDetailsController: UIViewController {
+class FilterController: UIViewController {
 
     var pinID: String?
 
@@ -41,7 +42,7 @@ class PinDetailsController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_clear_white_36pt_3x").withRenderingMode(.alwaysOriginal),
                                                            style: .plain, target: self,
                                                            action: #selector(handleDismiss))
-        navigationItem.title = "Pin Details"
+        navigationItem.title = "Filter Pins"
         let textAttributes = [NSAttributedString.Key.foregroundColor: Colors.behindGradient,
                               NSAttributedString.Key.font: R.font.latoRegular(size: 20)
         ]

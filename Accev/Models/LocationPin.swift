@@ -8,9 +8,7 @@
 
 import Foundation
 
-// probably some sort of struct that captures all of the
-// important information on pin, ie longitude, latitude, name,
-// uniqID, creator, rating etc
+// Essentially a way to keep track of which fields we're storing for each pin
 struct LocationPin {
     var name: String
     var pinID: String

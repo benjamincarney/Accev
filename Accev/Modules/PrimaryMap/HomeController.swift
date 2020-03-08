@@ -76,12 +76,21 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
         controller.pinID = identifier
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
+    
+    @objc
+    func presentFilter() {
+        let controller = FilterController()
+        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+    }
 
     override func loadView() {
         let camera = GMSCameraPosition.camera(withLatitude: 42.279594, longitude: -83.732124, zoom: 10.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.delegate = self
         self.view = mapView
+//        filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -20).isActive = true
+//        filterButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -20).isActive = true
+        mapView.addSubview(filterButton)
         loadPins(mapView)
     }
 
@@ -118,6 +127,11 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         // swiftlint:disable all
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+        // shadow
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 1
+        view.layer.shadowOffset = CGSize(width: 210, height: 110)
+        view.layer.shadowRadius = 8
         let pinDict = self.pins[marker.title!]
         view.backgroundColor = UIColor.white
         view.layer.cornerRadius = 6
@@ -127,7 +141,6 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
 
         // Title
         let lbl1 = UILabel(frame: CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: 30))
-        // lbl1.textAlignment = .center
         lbl1.attributedText = self.addInfoViewIcons(pinData: pinDict!)
         lbl1.font = R.font.latoRegular(size: 16)
         view.addSubview(lbl1)
@@ -177,6 +190,7 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
     }
 
     lazy var detailsButton: UIButton = {
+        print()
         let infoButton = UIButton(frame: CGRect(x: 70, y: 75, width: 60, height: 15))
          let buttonAttributes: [NSAttributedString.Key: Any] = [
              NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15),
@@ -188,10 +202,22 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
          infoButton.setAttributedTitle(attributeButtonString, for: .normal)
          infoButton.addTarget(self, action: #selector(presentDetails), for: .touchUpInside)
 
-        return infoButton
+         return infoButton
     }()
-    
-    func addInfoViewIcons(pinData: [String : Any]) -> NSAttributedString {
+
+    lazy var filterButton: UIButton = {
+        print("yeah it'ssomewhwere")
+        let image = UIImage(named: "filter.png")
+        // FIX: This is horrible, fix constraints so that it binds to buttom right off screen no matter what
+        let filterButton = UIButton(frame: CGRect(x: 335, y: 735, width: 48, height: 48))
+        filterButton.setBackgroundImage(image, for: .normal)
+        filterButton.setImage(image, for: .normal)
+        // filterButton.translatesAutoresizingMaskIntoConstraints = false
+        filterButton.addTarget(self, action: #selector(presentFilter), for: .touchUpInside)
+        return filterButton
+    }()
+
+    func addInfoViewIcons(pinData: [String: Any]) -> NSAttributedString {
         // swiftlint:disable all
         let completeText = NSMutableAttributedString(string: "")
         
@@ -224,7 +250,9 @@ class HomeController: RoutedViewController, GMSMapViewDelegate {
             completeText.append(attachmentString)
             
         }
-        return completeText
+        return completeText == NSMutableAttributedString(string: "") ?
+                                NSMutableAttributedString(string:"No tags to display",
+                                attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15)]) : completeText
         // swiftlint:enable all
     }
 
