@@ -56,19 +56,11 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
 
     @objc
     func addPinButtonPressed() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_clear_white_36pt_3x").withRenderingMode(.alwaysOriginal),
-        style: .plain, target: self,
-        action: #selector(cancelAddPin))
-        navigationItem.title = "Tap to add a pin!"
-        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
-                              NSAttributedString.Key.font: R.font.latoRegular(size: 20)
-        ]
         if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
             CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways {
             guard let currentLocation = locationManager.location else {
                 return
             }
-            print("entered")
             let camera = GMSCameraPosition.camera(withLatitude: currentLocation.coordinate.latitude,
                                                   longitude: currentLocation.coordinate.longitude, zoom: 17.0)
             let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
@@ -77,6 +69,13 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
             mapView.addSubview(filterButton)
             loadPins(mapView)
         }
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_clear_white_36pt_3x").withRenderingMode(.alwaysOriginal),
+        style: .plain, target: self,
+        action: #selector(cancelAddPin))
+        navigationItem.title = "Tap to add a pin!"
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                              NSAttributedString.Key.font: R.font.latoRegular(size: 22)
+        ]
         navigationController?.navigationBar.titleTextAttributes = textAttributes as [NSAttributedString.Key: Any]
         addPinState = true
     }
@@ -149,9 +148,19 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
             mockInputInfo["accessibleWheelchair"] = true
             mockInputInfo["accessibleBraille"] = true
             mockInputInfo["accessibleHearing"] = true
+            // TODO: have PinDetailsEntryController return relevant info through
+            // a completion handler or something to be sent into addPinBackend.
+            // Have some sort of submit button at the buttom to trigger
+            // Could even through addPinBackend call inside PinDetailsEntryController
+            // and return it with the other info, might make more sense
+            // none of the events below should occur if the user exits out of details entry
+            let controller = PinDetailsEntryController()
+            controller.pinID = ""
+            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+            // first grab the documentID from the pin that you created, this will be important
             let identifier = backendCaller.addPinBackend(mapView, coordinate, mockInputInfo)
+            // add pin to our member dictionary, also important
             self.pins.updateValue(mockInputInfo, forKey: identifier)
-            self.pins[identifier] = mockInputInfo
             addPinUI(mapView, coordinate, identifier)
             addPinState = false
             cancelAddPin()
