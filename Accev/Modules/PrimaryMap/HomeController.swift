@@ -69,7 +69,7 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
             mapView.addSubview(filterButton)
             loadPins(mapView)
         }
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_clear_white_36pt_3x").withRenderingMode(.alwaysOriginal),
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "x24white").withRenderingMode(.alwaysOriginal),
         style: .plain, target: self,
         action: #selector(cancelAddPin))
         navigationItem.title = "Tap to add a pin!"
@@ -130,6 +130,18 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
                     loadPins(mapView)
                 }
             }
+        }
+        else {
+            let camera = GMSCameraPosition.camera(withLatitude: 42.279594, longitude: -83.732124, zoom: 10.0)
+                    let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+                    mapView.delegate = self
+                    self.view = mapView
+            //        filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -20).isActive = true
+            //        filterButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -20).isActive = true
+                    mapView.addSubview(filterButton)
+                    // addSubview(searchBar)
+                    loadPins(mapView)
+            
         }
     }
 
@@ -245,7 +257,6 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
          let buttonAttributes: [NSAttributedString.Key: Any] = [
              NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15),
              NSAttributedString.Key.foregroundColor: Colors.behindGradient
-             // NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
          ]
          let attributeButtonString = NSMutableAttributedString(string: "Details",
                                                          attributes: buttonAttributes)

@@ -38,16 +38,23 @@ class BackendCaller {
         return ref!.documentID
     }
 
-    // TODO:
+    // Any other edits that might need to be made?
     func editPinBackend() {
+    }
+    
+    // Use this when a user casts an upvote in the pin details view
+    func upvotePin() {
+    }
+    
+    // Use this when a user casts a downvote in the pin details view
+    func downvotePin() {
     }
 
     // TODO: When user upvotes/downvotes a pin, increment either property on backend
     func ratePinBackend() {
     }
 
-    // TODO: Return a dictionary of dictionaries? Outer Key represents some unique identifier
-    // Inner keys represent associated properties, for example:
+    // This is what our dictionary for pins looks like
     // {
     //  id432343: {locationName: Krusty Krab, upvotes: 423, downvotes: 21, wheelchairRamp: true}
     //  id134854: {locationName: Chum Bucket, upvotes: 0, downvotes: 53, wheelchairRamp: false}
@@ -59,7 +66,6 @@ class BackendCaller {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    // print("\(document.documentID) => \(document.data())")
                     returnObject[document.documentID] = document.data()
                 }
             }
