@@ -63,6 +63,20 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                               NSAttributedString.Key.font: R.font.latoRegular(size: 20)
         ]
+        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+            guard let currentLocation = locationManager.location else {
+                return
+            }
+            print("entered")
+            let camera = GMSCameraPosition.camera(withLatitude: currentLocation.coordinate.latitude,
+                                                  longitude: currentLocation.coordinate.longitude, zoom: 17.0)
+            let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+            mapView.delegate = self
+            self.view = mapView
+            mapView.addSubview(filterButton)
+            loadPins(mapView)
+        }
         navigationController?.navigationBar.titleTextAttributes = textAttributes as [NSAttributedString.Key: Any]
         addPinState = true
     }
@@ -82,7 +96,7 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         controller.pinID = identifier
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
-    
+
     @objc
     func presentFilter() {
         let controller = FilterController()
@@ -97,10 +111,10 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
 //        filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -20).isActive = true
 //        filterButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -20).isActive = true
         mapView.addSubview(filterButton)
-        // mapView.addSubview(searchBar)
+        // addSubview(searchBar)
         loadPins(mapView)
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
