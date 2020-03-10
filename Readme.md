@@ -3,6 +3,7 @@
 A crowd-sourced iOS application for mapping out accessibility features among local businesses, buildings, and landmarks.
 
 For EECS 497: Human-Centered Software Design
+
 Contributers: Connor Svrcek, Janet Vu, Casper Hsu, and Benjamin Carney
 
 Supports: iOS 10.x and above
