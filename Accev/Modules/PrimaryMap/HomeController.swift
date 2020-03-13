@@ -39,7 +39,11 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         navigationController?.navigationBar.barTintColor = Colors.behindGradient
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barStyle = .black
+        addNavButtons()
+    }
 
+    /// Place menu and add pin nav buttons
+    func addNavButtons() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal),
                                                            style: .plain, target: self,
                                                            action: #selector(handleMenuToggle))
@@ -72,6 +76,7 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "x24white").withRenderingMode(.alwaysOriginal),
         style: .plain, target: self,
         action: #selector(cancelAddPin))
+        navigationItem.rightBarButtonItem = nil
         navigationItem.title = "Tap to add a pin!"
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                               NSAttributedString.Key.font: R.font.latoRegular(size: 22)
@@ -82,9 +87,7 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
 
     @objc
     func cancelAddPin() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal),
-        style: .plain, target: self,
-        action: #selector(handleMenuToggle))
+        addNavButtons()
         navigationItem.title = ""
         addPinState = false
     }
@@ -141,7 +144,6 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
                     mapView.addSubview(filterButton)
                     // addSubview(searchBar)
                     loadPins(mapView)
-            
         }
     }
 
