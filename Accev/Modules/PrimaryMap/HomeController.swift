@@ -10,8 +10,14 @@ import CoreLocation
 import GoogleMaps
 import UIKit
 
+struct GlobalFilterVariables {
+    static var accessibleWheelchairFilter = false
+    static var accessibleHearingFilter = false
+    static var accessibleBrailleFilter = false
+}
+
 class HomeController: RoutedViewController, GMSMapViewDelegate,
-CLLocationManagerDelegate{
+CLLocationManagerDelegate {
 
     // swiftlint:disable all
     var delegate: HomeControllerDelegate?
@@ -34,12 +40,12 @@ CLLocationManagerDelegate{
         locationManager?.delegate = self
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.startUpdatingLocation()
-        let viewControllerB = FilterController()
-        viewControllerB.delegate = self
     }
-    
-    func ween(newName: String) {
-           print(newName)
+
+    @objc
+    func presentFilter() {
+        let controller = FilterController()
+        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
 
     func configureNavigationBar() {
@@ -103,19 +109,11 @@ CLLocationManagerDelegate{
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
 
-    @objc
-    func presentFilter() {
-        let controller = FilterController()
-        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-    }
-
     override func loadView() {
         let camera = GMSCameraPosition.camera(withLatitude: 42.279594, longitude: -83.732124, zoom: 10.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.delegate = self
         self.view = mapView
-//        filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -20).isActive = true
-//        filterButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -20).isActive = true
         mapView.addSubview(filterButton)
         // addSubview(searchBar)
         loadPins(mapView)
@@ -137,14 +135,11 @@ CLLocationManagerDelegate{
                     loadPins(mapView)
                 }
             }
-        }
-        else {
+        } else {
             let camera = GMSCameraPosition.camera(withLatitude: 42.279594, longitude: -83.732124, zoom: 10.0)
                     let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
                     mapView.delegate = self
                     self.view = mapView
-            //        filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -20).isActive = true
-            //        filterButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -20).isActive = true
                     mapView.addSubview(filterButton)
                     // addSubview(searchBar)
                     loadPins(mapView)
@@ -257,11 +252,6 @@ CLLocationManagerDelegate{
         marker.map = mapView
     }
 
-    func onFilterSubmit(filters: [String: Bool]) {
-        print(filters)
-        print("something")
-    }
-
     lazy var detailsButton: UIButton = {
         print()
         let infoButton = UIButton(frame: CGRect(x: 70, y: 75, width: 60, height: 15))
@@ -283,7 +273,7 @@ CLLocationManagerDelegate{
         let filterButton = UIButton(frame: CGRect(x: 335, y: 735, width: 48, height: 48))
         filterButton.setBackgroundImage(image, for: .normal)
         filterButton.setImage(image, for: .normal)
-        // filterButton.translatesAutoresizingMaskIntoConstraints = false
+        print("filterButton")
         filterButton.addTarget(self, action: #selector(presentFilter), for: .touchUpInside)
         return filterButton
     }()
@@ -334,13 +324,5 @@ CLLocationManagerDelegate{
                                 NSMutableAttributedString(string:"No tags to display",
                                 attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15)]) : completeText
         // swiftlint:enable all
-    }
-
-    // Initializers
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    init() {
-        super.init(nibName: nil, bundle: nil)
     }
 }

@@ -12,23 +12,16 @@ import UIKit
 class FilterController: UIViewController {
 
     var pinID: String?
-    var homeViewController: HomeController?
-    var accessibleWheelchair: Bool
-    var accessibleBraille: Bool
-    var accessibleHearing: Bool
-    // var didSelectItem: ((item: Bool) -> Void)?
-    weak var delegate: HomeController!
+    var delegate: HomeController!
     var selectedName: String = "Anonymous"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureUI()
 
         if let pinID = pinID {
             print("Pinname is \(pinID)")
         } else {
-            print("Pinname not found..")
         }
     }
 
@@ -54,7 +47,11 @@ class FilterController: UIViewController {
 
     lazy var wheelchairButton: UISwitch = {
         let switchOnOff = UISwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        switchOnOff.setOn(false, animated: false)
+        if GlobalFilterVariables.accessibleWheelchairFilter {
+            switchOnOff.setOn(true, animated: false)
+        } else {
+            switchOnOff.setOn(false, animated: false)
+        }
         switchOnOff.addTarget(self, action: #selector(wheelchairButtonSwitched), for: .valueChanged)
         switchOnOff.backgroundColor = Colors.behindGradient
         switchOnOff.layer.cornerRadius = switchOnOff.bounds.height / 2
@@ -64,8 +61,12 @@ class FilterController: UIViewController {
 
     lazy var hearingButton: UISwitch = {
         let switchOnOff = UISwitch(frame: CGRect(x: 150, y: 150, width: 0, height: 0))
+        if GlobalFilterVariables.accessibleHearingFilter {
+            switchOnOff.setOn(true, animated: false)
+        } else {
+            switchOnOff.setOn(false, animated: false)
+        }
         switchOnOff.addTarget(self, action: #selector(hearingButtonSwitched), for: .touchUpInside)
-        switchOnOff.setOn(false, animated: false)
         switchOnOff.backgroundColor = Colors.behindGradient
         switchOnOff.layer.cornerRadius = switchOnOff.bounds.height / 2
         return switchOnOff
@@ -73,8 +74,14 @@ class FilterController: UIViewController {
 
     lazy var brailleButton: UISwitch = {
         let switchOnOff = UISwitch(frame: CGRect(x: 150, y: 150, width: 0, height: 0))
+        if GlobalFilterVariables.accessibleBrailleFilter {
+            switchOnOff.setOn(true, animated: false)
+            GlobalFilterVariables.accessibleBrailleFilter = true
+        } else {
+            switchOnOff.setOn(false, animated: false)
+            GlobalFilterVariables.accessibleBrailleFilter = false
+        }
         switchOnOff.addTarget(self, action: #selector(brailleButtonSwitched), for: .touchUpInside)
-        switchOnOff.setOn(false, animated: false)
         switchOnOff.backgroundColor = Colors.behindGradient
         switchOnOff.layer.cornerRadius = switchOnOff.bounds.height / 2
         return switchOnOff
@@ -106,47 +113,39 @@ class FilterController: UIViewController {
 
     @objc
     func submitButtonTapped(sender: UIButton!) {
-        print("submit button")
-        var returnDict = Dictionary<String, Bool>()
-        returnDict["accessibleWheelchair"] = self.accessibleWheelchair
-        returnDict["accessibleHearing"] = self.accessibleHearing
-        returnDict["accessibleBraille"] = self.accessibleBraille
-        delegate = HomeController()
-        delegate.ween(newName: "cheese")
-        homeViewController?.onFilterSubmit(filters: returnDict)
+        dismiss(animated: true, completion: nil)
     }
 
     @objc
     func wheelchairButtonSwitched(_ sender: UISwitch!) {
         if sender.isOn {
-            self.accessibleWheelchair = !self.accessibleWheelchair
+            GlobalFilterVariables.accessibleWheelchairFilter = !GlobalFilterVariables.accessibleWheelchairFilter
         } else {
-            self.accessibleWheelchair = !self.accessibleWheelchair
+            GlobalFilterVariables.accessibleWheelchairFilter = !GlobalFilterVariables.accessibleWheelchairFilter
         }
     }
 
     @objc
     func hearingButtonSwitched(_ sender: UISwitch!) {
         if sender.isOn {
-            self.accessibleHearing = !self.accessibleHearing
+            GlobalFilterVariables.accessibleHearingFilter = !GlobalFilterVariables.accessibleHearingFilter
         } else {
-            self.accessibleHearing = !self.accessibleHearing
+            GlobalFilterVariables.accessibleHearingFilter = !GlobalFilterVariables.accessibleHearingFilter
         }
     }
 
     @objc
     func brailleButtonSwitched(_ sender: UISwitch!) {
         if sender.isOn {
-            self.accessibleBraille = !self.accessibleBraille
+            GlobalFilterVariables.accessibleBrailleFilter = !GlobalFilterVariables.accessibleBrailleFilter
         } else {
-            self.accessibleBraille = !self.accessibleBraille
+            GlobalFilterVariables.accessibleBrailleFilter = !GlobalFilterVariables.accessibleBrailleFilter
         }
     }
 
     func configureUI() {
-
         view.backgroundColor = .white
-        UILabel.appearance(whenContainedInInstancesOf: [UIView.self]).textColor = .gray
+        UILabel.appearance(whenContainedInInstancesOf: [UIView.self]).textColor = Colors.behindGradient
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         } else {
@@ -197,19 +196,5 @@ class FilterController: UIViewController {
         hearingButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -40).isActive = true
         hearingButton.topAnchor.constraint(equalTo: brailleLabel.bottomAnchor, constant: 40).isActive = true
 
-    }
-
-   // Initializers
-    required init?(coder aDecoder: NSCoder) {
-        self.accessibleWheelchair = true
-        self.accessibleBraille = true
-        self.accessibleHearing = true
-        super.init(coder: aDecoder)
-    }
-    init() {
-        self.accessibleWheelchair = true
-        self.accessibleBraille = true
-        self.accessibleHearing = true
-        super.init(nibName: nil, bundle: nil)
     }
 }
