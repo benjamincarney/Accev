@@ -141,7 +141,6 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
                     mapView.addSubview(filterButton)
                     // addSubview(searchBar)
                     loadPins(mapView)
-            
         }
     }
 
@@ -250,9 +249,8 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         marker.opacity = 0.2
         marker.map = mapView
     }
-    
-    func onFilterSubmit(filters: Dictionary<String, Bool>){
-        
+
+    func onFilterSubmit(filters: Dictionary<String, Bool> ){
     }
 
     lazy var detailsButton: UIButton = {
