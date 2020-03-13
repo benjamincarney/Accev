@@ -10,7 +10,8 @@ import CoreLocation
 import GoogleMaps
 import UIKit
 
-class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
+class HomeController: RoutedViewController, GMSMapViewDelegate,
+CLLocationManagerDelegate{
 
     // swiftlint:disable all
     var delegate: HomeControllerDelegate?
@@ -33,6 +34,12 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         locationManager?.delegate = self
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.startUpdatingLocation()
+        let viewControllerB = FilterController()
+        viewControllerB.delegate = self
+    }
+    
+    func ween(newName: String) {
+           print(newName)
     }
 
     func configureNavigationBar() {
@@ -250,7 +257,9 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         marker.map = mapView
     }
 
-    func onFilterSubmit(filters: Dictionary<String, Bool> ){
+    func onFilterSubmit(filters: [String: Bool]) {
+        print(filters)
+        print("something")
     }
 
     lazy var detailsButton: UIButton = {

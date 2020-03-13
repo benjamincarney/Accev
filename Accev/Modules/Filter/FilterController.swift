@@ -16,6 +16,9 @@ class FilterController: UIViewController {
     var accessibleWheelchair: Bool
     var accessibleBraille: Bool
     var accessibleHearing: Bool
+    // var didSelectItem: ((item: Bool) -> Void)?
+    weak var delegate: HomeController!
+    var selectedName: String = "Anonymous"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,9 +53,8 @@ class FilterController: UIViewController {
     }()
 
     lazy var wheelchairButton: UISwitch = {
-        let switchOnOff = UISwitch(frame: CGRect(x: 150, y: 150, width: 0, height: 0))
-        switchOnOff.isOn = true
-        switchOnOff.setOn(true, animated: false)
+        let switchOnOff = UISwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        switchOnOff.setOn(false, animated: false)
         switchOnOff.addTarget(self, action: #selector(wheelchairButtonSwitched), for: .valueChanged)
         switchOnOff.backgroundColor = Colors.behindGradient
         switchOnOff.layer.cornerRadius = switchOnOff.bounds.height / 2
@@ -104,29 +106,41 @@ class FilterController: UIViewController {
 
     @objc
     func submitButtonTapped(sender: UIButton!) {
-      print("Button tapped")
+        print("submit button")
+        var returnDict = Dictionary<String, Bool>()
+        returnDict["accessibleWheelchair"] = self.accessibleWheelchair
+        returnDict["accessibleHearing"] = self.accessibleHearing
+        returnDict["accessibleBraille"] = self.accessibleBraille
+        delegate = HomeController()
+        delegate.ween(newName: "cheese")
+        homeViewController?.onFilterSubmit(filters: returnDict)
     }
-    
+
     @objc
     func wheelchairButtonSwitched(_ sender: UISwitch!) {
-        print(sender.isOn)
         if sender.isOn {
-            print("is on")
             self.accessibleWheelchair = !self.accessibleWheelchair
         } else {
-            print("is off")
             self.accessibleWheelchair = !self.accessibleWheelchair
         }
     }
 
     @objc
     func hearingButtonSwitched(_ sender: UISwitch!) {
-
+        if sender.isOn {
+            self.accessibleHearing = !self.accessibleHearing
+        } else {
+            self.accessibleHearing = !self.accessibleHearing
+        }
     }
 
     @objc
     func brailleButtonSwitched(_ sender: UISwitch!) {
-
+        if sender.isOn {
+            self.accessibleBraille = !self.accessibleBraille
+        } else {
+            self.accessibleBraille = !self.accessibleBraille
+        }
     }
 
     func configureUI() {
@@ -174,13 +188,13 @@ class FilterController: UIViewController {
         hearingLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
         hearingLabel.topAnchor.constraint(equalTo: brailleLabel.bottomAnchor, constant: 40).isActive = true
 
-        wheelchairButton.leftAnchor.constraint(equalTo: wheelchairLabel.rightAnchor, constant: 20).isActive = true
+        wheelchairButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -40).isActive = true
         wheelchairButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 150).isActive = true
 
-        brailleButton.leftAnchor.constraint(equalTo: brailleLabel.rightAnchor, constant: 20).isActive = true
+        brailleButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -40).isActive = true
         brailleButton.topAnchor.constraint(equalTo: wheelchairLabel.bottomAnchor, constant: 40).isActive = true
 
-        hearingButton.leftAnchor.constraint(equalTo: hearingLabel.rightAnchor, constant: 20).isActive = true
+        hearingButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -40).isActive = true
         hearingButton.topAnchor.constraint(equalTo: brailleLabel.bottomAnchor, constant: 40).isActive = true
 
     }
