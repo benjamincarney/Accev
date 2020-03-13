@@ -217,7 +217,7 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         view.addSubview(lbl2)
         view.addSubview(detailsButton)
         view.isUserInteractionEnabled = true
-        UILabel.appearance(whenContainedInInstancesOf: [UIView.self]).textColor = .black
+        // UILabel.appearance(whenContainedInInstancesOf: [UIView.self]).textColor = .black
         return view
         // swiftlint:enable all
     }
@@ -249,6 +249,10 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         marker.iconView = UIImageView(image: customPin)
         marker.opacity = 0.2
         marker.map = mapView
+    }
+    
+    func onFilterSubmit(filters: Dictionary<String, Bool>){
+        
     }
 
     lazy var detailsButton: UIButton = {
