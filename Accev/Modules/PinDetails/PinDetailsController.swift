@@ -4,7 +4,7 @@
 //
 //  Created by Benjamin Carney on 3/6/20.
 //  Copyright © 2020 Accev. All rights reserved.
-//
+//  swiftlint:disable all
 
 import UIKit
 
@@ -47,12 +47,18 @@ class PinDetailsController: UIViewController {
         self.view.addSubview(wheelchairLabel)
         self.view.addSubview(brailleLabel)
         self.view.addSubview(hearingLabel)
+        self.view.addSubview(ratePinLabel)
+        self.view.addSubview(upvoteButton)
+        self.view.addSubview(downvoteButton)
 
         upvotesLabel.translatesAutoresizingMaskIntoConstraints = false
         downvotesLabel.translatesAutoresizingMaskIntoConstraints = false
         wheelchairLabel.translatesAutoresizingMaskIntoConstraints = false
         brailleLabel.translatesAutoresizingMaskIntoConstraints = false
         hearingLabel.translatesAutoresizingMaskIntoConstraints = false
+        ratePinLabel.translatesAutoresizingMaskIntoConstraints = false
+        upvoteButton.translatesAutoresizingMaskIntoConstraints = false
+        downvoteButton.translatesAutoresizingMaskIntoConstraints = false
 
         upvotesLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
         upvotesLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 115).isActive = true
@@ -84,6 +90,14 @@ class PinDetailsController: UIViewController {
         
         hearingLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
         hearingLabel.topAnchor.constraint(equalTo: brailleLabel.bottomAnchor, constant: 40).isActive = true
+        
+        ratePinLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+        ratePinLabel.topAnchor.constraint(equalTo: hearingLabel.bottomAnchor, constant: 40).isActive = true
+        
+        upvoteButton.rightAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -10).isActive = true
+        upvoteButton.topAnchor.constraint(equalTo: ratePinLabel.bottomAnchor, constant: 40).isActive = true
+        downvoteButton.leftAnchor.constraint(equalTo: upvoteButton.rightAnchor, constant: 30).isActive = true
+        downvoteButton.topAnchor.constraint(equalTo: ratePinLabel.bottomAnchor, constant: 40).isActive = true
 
         if self.accessibleWheelchair! {
             let image = UIImage(named: "cross32.png")
@@ -140,29 +154,34 @@ class PinDetailsController: UIViewController {
 
     @objc
     func downvoteButtonTapped() {
-        // send to backend
+        print("tap downvote")
+        let backend = BackendCaller()
+        backend.downvotePin(self.pinID!)
+        (self.downvotes as! Int) += 1
     }
 
     @objc
     func upvoteButtonTapped() {
-        // send to backend
+        let backend = BackendCaller()
+        backend.upvotePin(self.pinID!)
+        Int(self.upvotes) += 1
     }
 
     lazy var downvoteButton: UIButton = {
-        let image = UIImage(named: "thumbdown32.png")
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
+        let image = UIImage(named: "thumbdown64.png")
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 48, height: 48))
         button.setBackgroundImage(image, for: .normal)
         button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(upvoteButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(downvoteButtonTapped), for: .touchUpInside)
         return button
     }()
 
     lazy var upvoteButton: UIButton = {
-        let image = UIImage(named: "thumbup32.png")
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
+        let image = UIImage(named: "thumbup64.png")
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 48, height: 48))
         button.setBackgroundImage(image, for: .normal)
         button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(downvoteButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(upvoteButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -194,7 +213,7 @@ class PinDetailsController: UIViewController {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         label.text = "Rate this pin!"
         label.textColor = Colors.behindGradient
-        label.font = R.font.latoRegular(size: 25)
+        label.font = UIFont.boldSystemFont(ofSize: 35.0)
         return label
     }()
 
@@ -224,3 +243,4 @@ class PinDetailsController: UIViewController {
         return image!
     }()
 }
+// swiftlint:enable all
