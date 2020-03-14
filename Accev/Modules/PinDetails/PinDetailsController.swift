@@ -100,7 +100,7 @@ class PinDetailsController: UIViewController {
         downvoteButton.topAnchor.constraint(equalTo: ratePinLabel.bottomAnchor, constant: 40).isActive = true
 
         if self.accessibleWheelchair! {
-            let image = UIImage(named: "cross32.png")
+            let image = UIImage(named: "check32.png")
             let imageView = UIImageView(image: image)
             imageView.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
             view.addSubview(imageView)
@@ -108,7 +108,7 @@ class PinDetailsController: UIViewController {
             imageView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -40).isActive = true
             imageView.topAnchor.constraint(equalTo: upvotesLabel.bottomAnchor, constant: 40).isActive = true
         } else {
-            let image = UIImage(named: "check32.png")
+            let image = UIImage(named: "cross32.png")
             let imageView = UIImageView(image: image)
             imageView.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
             view.addSubview(imageView)
@@ -117,7 +117,7 @@ class PinDetailsController: UIViewController {
             imageView.topAnchor.constraint(equalTo: upvotesLabel.bottomAnchor, constant: 40).isActive = true
         }
         if self.accessibleBraille! {
-            let image = UIImage(named: "cross32.png")
+            let image = UIImage(named: "check32.png")
             let imageView = UIImageView(image: image)
             imageView.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
             view.addSubview(imageView)
@@ -125,7 +125,7 @@ class PinDetailsController: UIViewController {
             imageView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -40).isActive = true
             imageView.topAnchor.constraint(equalTo: wheelchairLabel.bottomAnchor, constant: 40).isActive = true
         } else {
-            let image = UIImage(named: "check32.png")
+            let image = UIImage(named: "cross32.png")
             let imageView = UIImageView(image: image)
             imageView.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
             view.addSubview(imageView)
@@ -134,7 +134,7 @@ class PinDetailsController: UIViewController {
             imageView.topAnchor.constraint(equalTo: wheelchairLabel.bottomAnchor, constant: 40).isActive = true
         }
         if self.accessibleHearing! {
-            let image = UIImage(named: "cross32.png")
+            let image = UIImage(named: "check32.png")
             let imageView = UIImageView(image: image)
             imageView.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
             view.addSubview(imageView)
@@ -142,7 +142,7 @@ class PinDetailsController: UIViewController {
             imageView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -40).isActive = true
             imageView.topAnchor.constraint(equalTo: brailleLabel.bottomAnchor, constant: 40).isActive = true
         } else {
-            let image = UIImage(named: "check32.png")
+            let image = UIImage(named: "cross32.png")
             let imageView = UIImageView(image: image)
             imageView.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
             view.addSubview(imageView)
