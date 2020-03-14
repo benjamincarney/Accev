@@ -4,7 +4,7 @@
 //
 //  Created by Benjamin Carney on 3/5/20.
 //  Copyright © 2020 Accev. All rights reserved.
-//
+//  swiftlint:disable all
 
 import CoreLocation
 import GoogleMaps
@@ -19,10 +19,8 @@ struct GlobalFilterVariables {
 class HomeController: RoutedViewController, GMSMapViewDelegate,
 CLLocationManagerDelegate {
 
-    // swiftlint:disable all
     var delegate: HomeControllerDelegate?
     var locationManager: CLLocationManager!
-    // swiftlint:enable all
     var addPinState = false
     var pins = Dictionary<String, Dictionary<String, Any>>()
     let backendCaller = BackendCaller()
@@ -99,9 +97,9 @@ CLLocationManagerDelegate {
     func addPinButtonPressed() {
         if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
             CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways {
-            guard let currentLocation = locationManager.location else {
-                return
-            }
+//            guard let currentLocation = locationManager.location else {
+//                return
+//            }
             // this is the users location
 //            let camera = GMSCameraPosition.camera(withLatitude: currentLocation.coordinate.latitude,
 //                                                  longitude: currentLocation.coordinate.longitude, zoom: 17.0)
@@ -217,7 +215,6 @@ CLLocationManagerDelegate {
     }
 
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        // swiftlint:disable all
         print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
         if addPinState {
             // TODO: Direct user to inputing more info before moving on
@@ -248,7 +245,6 @@ CLLocationManagerDelegate {
             addPinState = false
             cancelAddPin()
         }
-        // swiftlint:enable all
     }
 
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
@@ -257,7 +253,6 @@ CLLocationManagerDelegate {
 
     // TODO: Improve the appearance of this custom info window
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        // swiftlint:disable all
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
         // shadow
         view.layer.shadowColor = UIColor.black.cgColor
@@ -290,11 +285,9 @@ CLLocationManagerDelegate {
         view.isUserInteractionEnabled = true
         // UILabel.appearance(whenContainedInInstancesOf: [UIView.self]).textColor = .black
         return view
-        // swiftlint:enable all
     }
 
     func loadPins(_ mapView: GMSMapView, _ filtersApplied: Bool) {
-        // swiftlint:disable all
         backendCaller.pullPinsBackend(completion: {pins in
             self.pins = pins
             for (key, data) in pins {
@@ -309,12 +302,10 @@ CLLocationManagerDelegate {
                 marker.map = mapView
             }
         })
-        // swiftlint:enable all
     }
 
     func refreshLocalPins(_ mapView: GMSMapView, _ filtersApplied: Bool) {
         var displayPin: Bool = true
-        // swiftlint:disable all
             for (key, data) in self.pins {
                 if filtersApplied{
                     let accessibleWheelchair : Bool = data["accessibleWheelchair"] as! Bool
@@ -349,7 +340,6 @@ CLLocationManagerDelegate {
                 }
                 displayPin = true
             }
-        // swiftlint:enable all
     }
 
     func addPinUI(_ mapView: GMSMapView, _ coordinate: CLLocationCoordinate2D, _ identifier: String) {
@@ -396,7 +386,6 @@ CLLocationManagerDelegate {
     }()
 
     func addInfoViewIcons(pinData: [String: Any]) -> NSAttributedString {
-        // swiftlint:disable all
         let completeText = NSMutableAttributedString(string: "")
         
         if pinData["accessibleWheelchair"] as! Bool{
@@ -431,6 +420,6 @@ CLLocationManagerDelegate {
         return completeText == NSMutableAttributedString(string: "") ?
                                 NSMutableAttributedString(string:"No tags to display",
                                 attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15)]) : completeText
-        // swiftlint:enable all
     }
 }
+// swiftlint:enable all

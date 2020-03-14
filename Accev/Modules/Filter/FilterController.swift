@@ -12,7 +12,6 @@ import UIKit
 class FilterController: UIViewController {
 
     var pinID: String?
-    var delegate: HomeController!
     var selectedName: String = "Anonymous"
 
     override func viewDidLoad() {
