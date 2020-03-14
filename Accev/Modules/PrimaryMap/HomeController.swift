@@ -47,7 +47,6 @@ CLLocationManagerDelegate {
 
     @objc
     func updateFilters(notif: NSNotification) {
-        print("updating map")
         let camera = GMSCameraPosition.camera(withLatitude: 42.279594,
                                               longitude: -83.732124, zoom: 10.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
@@ -242,40 +241,19 @@ CLLocationManagerDelegate {
     }
 
     func loadPins(_ mapView: GMSMapView, _ filtersApplied: Bool) {
-        var displayPin: Bool = true
         // swiftlint:disable all
         backendCaller.pullPinsBackend(completion: {pins in
-            print(pins)
             self.pins = pins
             for (key, data) in pins {
-                if filtersApplied{
-                    if (GlobalFilterVariables.accessibleWheelchairFilter){
-                        if !(data["accessibleWheelchair"] as! Bool) {
-                            displayPin = false
-                        }
-                    }
-                    if (GlobalFilterVariables.accessibleHearingFilter) {
-                        if !(data["accessibleHearing"] as! Bool){
-                            displayPin = false
-                        }
-                    }
-                    if (GlobalFilterVariables.accessibleBrailleFilter) {
-                        if !(data["accessibleBraille"] as! Bool){
-                            displayPin = false
-                        }
-                    }
-                }
-                if displayPin {
-                    let marker = GMSMarker()
-                    marker.title = key
-                    marker.position = CLLocationCoordinate2D(latitude: data["latitude"] as! CLLocationDegrees,
-                                                             longitude: data["longitude"] as! CLLocationDegrees)
-                    let customPin = UIImage(named: "bluePin")
-                    marker.iconView = UIImageView(image: customPin)
-                    marker.opacity = self.mapHelperFunctions.determineOpacity(data["upvotes"] as! Int,
-                                                                         data["downvotes"] as! Int)
-                    marker.map = mapView
-                }
+                let marker = GMSMarker()
+                marker.title = key
+                marker.position = CLLocationCoordinate2D(latitude: data["latitude"] as! CLLocationDegrees,
+                                                         longitude: data["longitude"] as! CLLocationDegrees)
+                let customPin = UIImage(named: "bluePin")
+                marker.iconView = UIImageView(image: customPin)
+                marker.opacity = self.mapHelperFunctions.determineOpacity(data["upvotes"] as! Int,
+                                                                     data["downvotes"] as! Int)
+                marker.map = mapView
             }
         })
         // swiftlint:enable all
@@ -283,16 +261,12 @@ CLLocationManagerDelegate {
 
     func refreshLocalPins(_ mapView: GMSMapView, _ filtersApplied: Bool) {
         var displayPin: Bool = true
-        print("wheelchair \(GlobalFilterVariables.accessibleWheelchairFilter)")
-        print("hearing \(GlobalFilterVariables.accessibleHearingFilter)")
-        print("braille \(GlobalFilterVariables.accessibleBrailleFilter)")
-
         // swiftlint:disable all
             for (key, data) in self.pins {
                 if filtersApplied{
-                    var accessibleWheelchair : Bool = data["accessibleWheelchair"] as! Bool
-                    var accessibleHearing : Bool = data["accessibleHearing"] as! Bool
-                    var accessibleBraille : Bool = data["accessibleBraille"] as! Bool
+                    let accessibleWheelchair : Bool = data["accessibleWheelchair"] as! Bool
+                    let accessibleHearing : Bool = data["accessibleHearing"] as! Bool
+                    let accessibleBraille : Bool = data["accessibleBraille"] as! Bool
                     if GlobalFilterVariables.accessibleWheelchairFilter {
                         if !accessibleWheelchair {
                             displayPin = false
@@ -320,6 +294,7 @@ CLLocationManagerDelegate {
                                                                          data["downvotes"] as! Int)
                     marker.map = mapView
                 }
+                displayPin = true
             }
         // swiftlint:enable all
     }
@@ -355,7 +330,6 @@ CLLocationManagerDelegate {
         let filterButton = UIButton(frame: CGRect(x: 335, y: 735, width: 48, height: 48))
         filterButton.setBackgroundImage(image, for: .normal)
         filterButton.setImage(image, for: .normal)
-        print("filterButton")
         filterButton.addTarget(self, action: #selector(presentFilter), for: .touchUpInside)
         return filterButton
     }()
