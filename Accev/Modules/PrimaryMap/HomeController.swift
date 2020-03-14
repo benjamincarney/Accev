@@ -53,14 +53,14 @@ CLLocationManagerDelegate {
         mapView.delegate = self
         mapView.addSubview(filterButton)
         mapView.addSubview(searchButton)
-        
+
         filterButton.translatesAutoresizingMaskIntoConstraints = false
-        filterButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -40).isActive = true
-        filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -40).isActive = true
-        
+        filterButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -30).isActive = true
+        filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
+
         searchButton.translatesAutoresizingMaskIntoConstraints = false
-        searchButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 40).isActive = true
-        searchButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -40).isActive = true
+        searchButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 30).isActive = true
+        searchButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
         self.view = mapView
         refreshLocalPins(mapView, true)
     }
@@ -70,7 +70,7 @@ CLLocationManagerDelegate {
         let controller = FilterController()
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
-    
+
     @objc
     func presentSearch() {
         print("present search bar")
@@ -111,14 +111,14 @@ CLLocationManagerDelegate {
             mapView.delegate = self
             mapView.addSubview(filterButton)
             mapView.addSubview(searchButton)
-            
+
             filterButton.translatesAutoresizingMaskIntoConstraints = false
-            filterButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -40).isActive = true
-            filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -40).isActive = true
-            
+            filterButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -30).isActive = true
+            filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
+
             searchButton.translatesAutoresizingMaskIntoConstraints = false
-            searchButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 40).isActive = true
-            searchButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -40).isActive = true
+            searchButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 30).isActive = true
+            searchButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
             self.view = mapView
             loadPins(mapView, false)
         }
@@ -155,14 +155,14 @@ CLLocationManagerDelegate {
         mapView.delegate = self
         mapView.addSubview(filterButton)
         mapView.addSubview(searchButton)
-        
+
         filterButton.translatesAutoresizingMaskIntoConstraints = false
-        filterButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -40).isActive = true
-        filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -40).isActive = true
-        
+        filterButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -30).isActive = true
+        filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
+
         searchButton.translatesAutoresizingMaskIntoConstraints = false
-        searchButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 40).isActive = true
-        searchButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -40).isActive = true
+        searchButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 30).isActive = true
+        searchButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
         self.view = mapView
         loadPins(mapView, false)
     }
@@ -180,14 +180,14 @@ CLLocationManagerDelegate {
                     mapView.delegate = self
                     mapView.addSubview(filterButton)
                     mapView.addSubview(searchButton)
-                    
+
                     filterButton.translatesAutoresizingMaskIntoConstraints = false
-                    filterButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -40).isActive = true
-                    filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -40).isActive = true
-                    
+                    filterButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -30).isActive = true
+                    filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
+
                     searchButton.translatesAutoresizingMaskIntoConstraints = false
-                    searchButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 40).isActive = true
-                    searchButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -40).isActive = true
+                    searchButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 30).isActive = true
+                    searchButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
                     self.view = mapView
                     loadPins(mapView, false)
                 }
@@ -198,14 +198,14 @@ CLLocationManagerDelegate {
                     mapView.delegate = self
                     mapView.addSubview(filterButton)
                     mapView.addSubview(searchButton)
-                    
+
                     filterButton.translatesAutoresizingMaskIntoConstraints = false
-                    filterButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -40).isActive = true
-                    filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -40).isActive = true
-                    
+                    filterButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -30).isActive = true
+                    filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
+
                     searchButton.translatesAutoresizingMaskIntoConstraints = false
-                    searchButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 40).isActive = true
-                    searchButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -40).isActive = true
+                    searchButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 30).isActive = true
+                    searchButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
                     self.view = mapView
                     loadPins(mapView, false)
         }
@@ -380,7 +380,7 @@ CLLocationManagerDelegate {
         filterButton.addTarget(self, action: #selector(presentFilter), for: .touchUpInside)
         return filterButton
     }()
-    
+
     lazy var searchButton: UIButton = {
         let image = UIImage(named: "search4848.png")
         let filterButton = UIButton(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
