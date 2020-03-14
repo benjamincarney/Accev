@@ -28,7 +28,6 @@ class FilterController: UIViewController {
     @objc
     func handleDismiss() {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DoUpdateLabel"), object: nil)
-        print("balls")
         dismiss(animated: true, completion: nil)
     }
 

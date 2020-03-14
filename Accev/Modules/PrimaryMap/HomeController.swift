@@ -35,14 +35,16 @@ CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateFilters), name: NSNotification.Name(rawValue: "DoUpdateLabel"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateFilters),
+                                               name: NSNotification.Name(rawValue: "DoUpdateLabel"),
+                                               object: nil)
         configureNavigationBar()
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.startUpdatingLocation()
     }
-    
+
     @objc
     func updateFilters(notif: NSNotification) {
         print("updating map")
@@ -52,7 +54,7 @@ CLLocationManagerDelegate {
         mapView.delegate = self
         self.view = mapView
         mapView.addSubview(filterButton)
-        loadPins(mapView, true)
+        refreshLocalPins(mapView, true)
     }
 
     @objc
@@ -87,8 +89,11 @@ CLLocationManagerDelegate {
             guard let currentLocation = locationManager.location else {
                 return
             }
-            let camera = GMSCameraPosition.camera(withLatitude: currentLocation.coordinate.latitude,
-                                                  longitude: currentLocation.coordinate.longitude, zoom: 17.0)
+            // this is the users location
+//            let camera = GMSCameraPosition.camera(withLatitude: currentLocation.coordinate.latitude,
+//                                                  longitude: currentLocation.coordinate.longitude, zoom: 17.0)
+            // this is Ann Arbor
+            let camera = GMSCameraPosition.camera(withLatitude: 42.279594, longitude: -83.732124, zoom: 10.0)
             let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
             mapView.delegate = self
             self.view = mapView
@@ -240,27 +245,22 @@ CLLocationManagerDelegate {
         var displayPin: Bool = true
         // swiftlint:disable all
         backendCaller.pullPinsBackend(completion: {pins in
+            print(pins)
             self.pins = pins
             for (key, data) in pins {
                 if filtersApplied{
                     if (GlobalFilterVariables.accessibleWheelchairFilter){
                         if !(data["accessibleWheelchair"] as! Bool) {
-                            print(key)
-                            print("not wheel")
                             displayPin = false
                         }
                     }
                     if (GlobalFilterVariables.accessibleHearingFilter) {
                         if !(data["accessibleHearing"] as! Bool){
-                            print(key)
-                            print("not hear")
                             displayPin = false
                         }
                     }
                     if (GlobalFilterVariables.accessibleBrailleFilter) {
                         if !(data["accessibleBraille"] as! Bool){
-                            print(key)
-                            print("not braille")
                             displayPin = false
                         }
                     }
@@ -278,6 +278,49 @@ CLLocationManagerDelegate {
                 }
             }
         })
+        // swiftlint:enable all
+    }
+
+    func refreshLocalPins(_ mapView: GMSMapView, _ filtersApplied: Bool) {
+        var displayPin: Bool = true
+        print("wheelchair \(GlobalFilterVariables.accessibleWheelchairFilter)")
+        print("hearing \(GlobalFilterVariables.accessibleHearingFilter)")
+        print("braille \(GlobalFilterVariables.accessibleBrailleFilter)")
+
+        // swiftlint:disable all
+            for (key, data) in self.pins {
+                if filtersApplied{
+                    var accessibleWheelchair : Bool = data["accessibleWheelchair"] as! Bool
+                    var accessibleHearing : Bool = data["accessibleHearing"] as! Bool
+                    var accessibleBraille : Bool = data["accessibleBraille"] as! Bool
+                    if GlobalFilterVariables.accessibleWheelchairFilter {
+                        if !accessibleWheelchair {
+                            displayPin = false
+                        }
+                    }
+                    if (GlobalFilterVariables.accessibleHearingFilter) {
+                        if !accessibleHearing {
+                            displayPin = false
+                        }
+                    }
+                    if (GlobalFilterVariables.accessibleBrailleFilter) {
+                        if !accessibleBraille {
+                            displayPin = false
+                        }
+                    }
+                }
+                if displayPin {
+                    let marker = GMSMarker()
+                    marker.title = key
+                    marker.position = CLLocationCoordinate2D(latitude: data["latitude"] as! CLLocationDegrees,
+                                                             longitude: data["longitude"] as! CLLocationDegrees)
+                    let customPin = UIImage(named: "bluePin")
+                    marker.iconView = UIImageView(image: customPin)
+                    marker.opacity = self.mapHelperFunctions.determineOpacity(data["upvotes"] as! Int,
+                                                                         data["downvotes"] as! Int)
+                    marker.map = mapView
+                }
+            }
         // swiftlint:enable all
     }
 
