@@ -13,10 +13,19 @@ class PinDetailsEntryController: UIViewController {
 
     var pinID: String?
 
+    lazy var pinNameLabel: UILabel = {
+        let nameLabel = UILabel()
+        nameLabel.text = "Name"
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        return nameLabel
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureUI()
+
+        constrainViews()
 
         if let pinID = pinID {
             print("Pinname is \(pinID)")
@@ -43,5 +52,19 @@ class PinDetailsEntryController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "x24blue").withRenderingMode(.alwaysOriginal),
                                                            style: .plain, target: self,
                                                            action: #selector(handleDismiss))
+        // Pin name
+        view.addSubview(pinNameLabel)
+    }
+
+    func constrainViews() {
+        // Pin name
+        if #available(iOS 11.0, *) {
+            pinNameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        } else {
+            // Fallback on earlier versions
+            pinNameLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        }
+        pinNameLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+
     }
 }
