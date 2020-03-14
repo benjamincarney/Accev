@@ -10,7 +10,14 @@ import CoreLocation
 import GoogleMaps
 import UIKit
 
-class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
+struct GlobalFilterVariables {
+    static var accessibleWheelchairFilter = false
+    static var accessibleHearingFilter = false
+    static var accessibleBrailleFilter = false
+}
+
+class HomeController: RoutedViewController, GMSMapViewDelegate,
+CLLocationManagerDelegate {
 
     // swiftlint:disable all
     var delegate: HomeControllerDelegate?
@@ -28,11 +35,45 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateFilters),
+                                               name: NSNotification.Name(rawValue: "DoUpdateLabel"),
+                                               object: nil)
         configureNavigationBar()
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.startUpdatingLocation()
+    }
+
+    @objc
+    func updateFilters(notif: NSNotification) {
+        let camera = GMSCameraPosition.camera(withLatitude: 42.279594,
+                                              longitude: -83.732124, zoom: 10.0)
+        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        mapView.delegate = self
+        mapView.addSubview(filterButton)
+        mapView.addSubview(searchButton)
+
+        filterButton.translatesAutoresizingMaskIntoConstraints = false
+        filterButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -30).isActive = true
+        filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
+
+        searchButton.translatesAutoresizingMaskIntoConstraints = false
+        searchButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 30).isActive = true
+        searchButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
+        self.view = mapView
+        refreshLocalPins(mapView, true)
+    }
+
+    @objc
+    func presentFilter() {
+        let controller = FilterController()
+        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+    }
+
+    @objc
+    func presentSearch() {
+        print("present search bar")
     }
 
     func configureNavigationBar() {
@@ -61,13 +102,25 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
             guard let currentLocation = locationManager.location else {
                 return
             }
-            let camera = GMSCameraPosition.camera(withLatitude: currentLocation.coordinate.latitude,
-                                                  longitude: currentLocation.coordinate.longitude, zoom: 17.0)
+            // this is the users location
+//            let camera = GMSCameraPosition.camera(withLatitude: currentLocation.coordinate.latitude,
+//                                                  longitude: currentLocation.coordinate.longitude, zoom: 17.0)
+            // this is Ann Arbor
+            let camera = GMSCameraPosition.camera(withLatitude: 42.279594, longitude: -83.732124, zoom: 10.0)
             let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
             mapView.delegate = self
-            self.view = mapView
             mapView.addSubview(filterButton)
-            loadPins(mapView)
+            mapView.addSubview(searchButton)
+
+            filterButton.translatesAutoresizingMaskIntoConstraints = false
+            filterButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -30).isActive = true
+            filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
+
+            searchButton.translatesAutoresizingMaskIntoConstraints = false
+            searchButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 30).isActive = true
+            searchButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
+            self.view = mapView
+            loadPins(mapView, false)
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "x24white").withRenderingMode(.alwaysOriginal),
         style: .plain, target: self,
@@ -96,22 +149,22 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
 
-    @objc
-    func presentFilter() {
-        let controller = FilterController()
-        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-    }
-
     override func loadView() {
         let camera = GMSCameraPosition.camera(withLatitude: 42.279594, longitude: -83.732124, zoom: 10.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.delegate = self
-        self.view = mapView
-//        filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -20).isActive = true
-//        filterButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -20).isActive = true
         mapView.addSubview(filterButton)
-        // addSubview(searchBar)
-        loadPins(mapView)
+        mapView.addSubview(searchButton)
+
+        filterButton.translatesAutoresizingMaskIntoConstraints = false
+        filterButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -30).isActive = true
+        filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
+
+        searchButton.translatesAutoresizingMaskIntoConstraints = false
+        searchButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 30).isActive = true
+        searchButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
+        self.view = mapView
+        loadPins(mapView, false)
     }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -125,23 +178,36 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
                                                           longitude: currentLocation.coordinate.longitude, zoom: 15.0)
                     let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
                     mapView.delegate = self
-                    self.view = mapView
                     mapView.addSubview(filterButton)
-                    loadPins(mapView)
+                    mapView.addSubview(searchButton)
+
+                    filterButton.translatesAutoresizingMaskIntoConstraints = false
+                    filterButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -30).isActive = true
+                    filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
+
+                    searchButton.translatesAutoresizingMaskIntoConstraints = false
+                    searchButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 30).isActive = true
+                    searchButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
+                    self.view = mapView
+                    loadPins(mapView, false)
                 }
             }
-        }
-        else {
+        } else {
             let camera = GMSCameraPosition.camera(withLatitude: 42.279594, longitude: -83.732124, zoom: 10.0)
                     let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
                     mapView.delegate = self
-                    self.view = mapView
-            //        filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -20).isActive = true
-            //        filterButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -20).isActive = true
                     mapView.addSubview(filterButton)
-                    // addSubview(searchBar)
-                    loadPins(mapView)
-            
+                    mapView.addSubview(searchButton)
+
+                    filterButton.translatesAutoresizingMaskIntoConstraints = false
+                    filterButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -30).isActive = true
+                    filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
+
+                    searchButton.translatesAutoresizingMaskIntoConstraints = false
+                    searchButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 30).isActive = true
+                    searchButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
+                    self.view = mapView
+                    loadPins(mapView, false)
         }
     }
 
@@ -217,12 +283,12 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         view.addSubview(lbl2)
         view.addSubview(detailsButton)
         view.isUserInteractionEnabled = true
-        UILabel.appearance(whenContainedInInstancesOf: [UIView.self]).textColor = .black
+        // UILabel.appearance(whenContainedInInstancesOf: [UIView.self]).textColor = .black
         return view
         // swiftlint:enable all
     }
 
-    func loadPins(_ mapView: GMSMapView) {
+    func loadPins(_ mapView: GMSMapView, _ filtersApplied: Bool) {
         // swiftlint:disable all
         backendCaller.pullPinsBackend(completion: {pins in
             self.pins = pins
@@ -238,6 +304,46 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
                 marker.map = mapView
             }
         })
+        // swiftlint:enable all
+    }
+
+    func refreshLocalPins(_ mapView: GMSMapView, _ filtersApplied: Bool) {
+        var displayPin: Bool = true
+        // swiftlint:disable all
+            for (key, data) in self.pins {
+                if filtersApplied{
+                    let accessibleWheelchair : Bool = data["accessibleWheelchair"] as! Bool
+                    let accessibleHearing : Bool = data["accessibleHearing"] as! Bool
+                    let accessibleBraille : Bool = data["accessibleBraille"] as! Bool
+                    if GlobalFilterVariables.accessibleWheelchairFilter {
+                        if !accessibleWheelchair {
+                            displayPin = false
+                        }
+                    }
+                    if (GlobalFilterVariables.accessibleHearingFilter) {
+                        if !accessibleHearing {
+                            displayPin = false
+                        }
+                    }
+                    if (GlobalFilterVariables.accessibleBrailleFilter) {
+                        if !accessibleBraille {
+                            displayPin = false
+                        }
+                    }
+                }
+                if displayPin {
+                    let marker = GMSMarker()
+                    marker.title = key
+                    marker.position = CLLocationCoordinate2D(latitude: data["latitude"] as! CLLocationDegrees,
+                                                             longitude: data["longitude"] as! CLLocationDegrees)
+                    let customPin = UIImage(named: "bluePin")
+                    marker.iconView = UIImageView(image: customPin)
+                    marker.opacity = self.mapHelperFunctions.determineOpacity(data["upvotes"] as! Int,
+                                                                         data["downvotes"] as! Int)
+                    marker.map = mapView
+                }
+                displayPin = true
+            }
         // swiftlint:enable all
     }
 
@@ -267,23 +373,21 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
     }()
 
     lazy var filterButton: UIButton = {
-        let image = UIImage(named: "filter.png")
-        // FIX: This is horrible, fix constraints so that it binds to buttom right off screen no matter what
-        let filterButton = UIButton(frame: CGRect(x: 335, y: 735, width: 48, height: 48))
+        let image = UIImage(named: "filter48.png")
+        let filterButton = UIButton(frame: CGRect(x: 0, y: 0, width: 48, height: 48))
         filterButton.setBackgroundImage(image, for: .normal)
         filterButton.setImage(image, for: .normal)
-        // filterButton.translatesAutoresizingMaskIntoConstraints = false
         filterButton.addTarget(self, action: #selector(presentFilter), for: .touchUpInside)
         return filterButton
     }()
 
-    lazy var searchBar: UISearchBar = {
-        let searchBar = UISearchBar(frame: CGRect(x: 10, y: 730, width: UIScreen.main.bounds.width - 100, height: 60))
-        // searchBar.searchTextField.backgroundColor = Colors.behindGradient
-        searchBar.layer.cornerRadius = 10
-        // textField.layer.masksToBounds = true
-        // searchBar.tintColor = Colors.behindGradient
-        return searchBar
+    lazy var searchButton: UIButton = {
+        let image = UIImage(named: "search4848.png")
+        let filterButton = UIButton(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
+        filterButton.setBackgroundImage(image, for: .normal)
+        filterButton.setImage(image, for: .normal)
+        filterButton.addTarget(self, action: #selector(presentSearch), for: .touchUpInside)
+        return filterButton
     }()
 
     func addInfoViewIcons(pinData: [String: Any]) -> NSAttributedString {
@@ -323,13 +427,5 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
                                 NSMutableAttributedString(string:"No tags to display",
                                 attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15)]) : completeText
         // swiftlint:enable all
-    }
-
-    // Initializers
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    init() {
-        super.init(nibName: nil, bundle: nil)
     }
 }
