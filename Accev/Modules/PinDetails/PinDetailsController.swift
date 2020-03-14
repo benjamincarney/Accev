@@ -158,6 +158,15 @@ class PinDetailsController: UIViewController {
         backend.downvotePin(self.pinID!)
         self.downvotes! += 1
         downvotesLabel.text = "\(Int(self.downvotes!))"
+        let alert = UIAlertController(title: "Feedback received", message: "Thanks for rating!", preferredStyle: UIAlertController.Style.alert)
+
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertAction.Style.default, handler: { action in
+            self.handleDismiss()
+        }))
+
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
 
     @objc
@@ -166,6 +175,15 @@ class PinDetailsController: UIViewController {
         backend.upvotePin(self.pinID!)
         self.upvotes! += 1
         upvotesLabel.text = "\(Int(self.upvotes!))"
+        let alert = UIAlertController(title: "Feedback received", message: "Thanks for rating!", preferredStyle: UIAlertController.Style.alert)
+
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertAction.Style.default, handler: { action in
+            self.handleDismiss()
+        }))
+
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
 
     lazy var downvoteButton: UIButton = {
