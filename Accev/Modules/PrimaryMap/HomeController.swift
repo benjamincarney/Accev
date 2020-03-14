@@ -146,6 +146,11 @@ CLLocationManagerDelegate {
     func presentDetails(_ identifier: String) {
         let controller = PinDetailsController()
         controller.pinID = identifier
+        controller.upvotes = self.pins[identifier]?["upvotes"] as? Int
+        controller.downvotes = self.pins[identifier]?["downvotes"] as? Int
+        controller.accessibleBraille = self.pins[identifier]?["accessibleBraille"] as? Bool
+        controller.accessibleHearing = self.pins[identifier]?["accessibleHearing"] as? Bool
+        controller.accessibleWheelchair = self.pins[identifier]?["accessibleWheelchair"] as? Bool
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
 
