@@ -154,17 +154,18 @@ class PinDetailsController: UIViewController {
 
     @objc
     func downvoteButtonTapped() {
-        print("tap downvote")
         let backend = BackendCaller()
         backend.downvotePin(self.pinID!)
-        (self.downvotes as! Int) += 1
+        self.downvotes! += 1
+        downvotesLabel.text = "\(Int(self.downvotes!))"
     }
 
     @objc
     func upvoteButtonTapped() {
         let backend = BackendCaller()
         backend.upvotePin(self.pinID!)
-        Int(self.upvotes) += 1
+        self.upvotes! += 1
+        upvotesLabel.text = "\(Int(self.upvotes!))"
     }
 
     lazy var downvoteButton: UIButton = {
