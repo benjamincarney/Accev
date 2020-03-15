@@ -11,6 +11,7 @@ import UIKit
 enum MenuOption: Int, CustomStringConvertible {
 
     case profile
+    case leaderboard
     case inbox
     case notifications
     case settings
@@ -22,6 +23,8 @@ enum MenuOption: Int, CustomStringConvertible {
         switch self {
         case .profile:
             return "Profile"
+        case .leaderboard:
+            return "Leaderboard"
         case .inbox:
             return "Inbox"
         case .notifications:
@@ -41,6 +44,8 @@ enum MenuOption: Int, CustomStringConvertible {
         switch self {
         case .profile:
             return UIImage(named: "ic_person_outline_white_2x") ?? UIImage()
+        case .leaderboard:
+            return UIImage(named: "ranking48.png") ?? UIImage()
         case .inbox:
             return UIImage(named: "ic_mail_outline_white_2x") ?? UIImage()
         case .notifications:

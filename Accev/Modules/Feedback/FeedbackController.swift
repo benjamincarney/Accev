@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FeedbackController: UIViewController {
+class FeedbackController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +35,39 @@ class FeedbackController: UIViewController {
         submitButton.translatesAutoresizingMaskIntoConstraints = false
         return submitButton
     }()
+    
+    lazy var entryField: UITextField = {
+        let field = UITextField(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        field.placeholder = "Enter text here"
+        field.font = UIFont.systemFont(ofSize: 15)
+        field.layer.borderColor = UIColor(red: 16 / 255, green: 96 / 255, blue: 181 / 255, alpha: 1.0).cgColor
+        field.layer.borderWidth = 2.0
+        field.borderStyle = UITextField.BorderStyle.roundedRect
+        field.autocorrectionType = UITextAutocorrectionType.no
+        field.keyboardType = UIKeyboardType.default
+        field.returnKeyType = UIReturnKeyType.done
+        field.contentVerticalAlignment = UIControl.ContentVerticalAlignment.top
+        field.clearButtonMode = UITextField.ViewMode.whileEditing
+        field.delegate = self
+        return field
+    }()
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 
     @objc
     func submitButtonTapped(sender: UIButton!) {
+        
+        let backend = BackendCaller()
+        backend.addFeedbackBackend(entryField.text!)
+        
         let alert = UIAlertController(title: "Feedback received", message: "Thanks for your feedback!",
                                       preferredStyle: UIAlertController.Style.alert)
 
         // add the actions (buttons)
-        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertAction.Style.default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertAction.Style.default, handler: { _ in
             self.handleDismiss()
         }))
 
@@ -65,15 +90,22 @@ class FeedbackController: UIViewController {
                                                            action: #selector(handleDismiss))
 
         self.view.addSubview(submitButton)
-
+        self.view.addSubview(entryField)
 
         submitButton.translatesAutoresizingMaskIntoConstraints = false
+        entryField.translatesAutoresizingMaskIntoConstraints = false
+        
+        let screenSize = UIScreen.main.bounds
 
         submitButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         submitButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
         submitButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         submitButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -75).isActive = true
-
+        
+        entryField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        entryField.widthAnchor.constraint(equalToConstant: screenSize.width - 20).isActive = true
+        entryField.heightAnchor.constraint(equalToConstant: screenSize.height - 400).isActive = true
+        entryField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 125).isActive = true
 
     }
 }
