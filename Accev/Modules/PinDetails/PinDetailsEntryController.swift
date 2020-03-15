@@ -30,7 +30,6 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
         return nameField
     }()
 
-    // FIXME: desc
     lazy var pinDescriptionField: UITextView = {
         let desc = UITextView()
         desc.textContainerInset = UIEdgeInsets(top: 15, left: 8, bottom: 0, right: 0)
@@ -47,6 +46,20 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
         desc.returnKeyType = .done
         return desc
     }()
+
+    // FIXME: probably not the best way to do this
+    let wcCheckbox = CheckBox()
+    let hCheckbox = CheckBox()
+    let bCheckbox = CheckBox()
+
+    lazy var wcLabel = createAccessibilityLabel(inputText: "Wheelchair Accessible")
+    lazy var wcStack = createAccessibilityStack(label: wcLabel, checkbox: wcCheckbox)
+
+    lazy var hLabel = createAccessibilityLabel(inputText: "Hearing Accessible")
+    lazy var hStack = createAccessibilityStack(label: hLabel, checkbox: hCheckbox)
+
+    lazy var bLabel = createAccessibilityLabel(inputText: "Braille Accessible")
+    lazy var bStack = createAccessibilityStack(label: bLabel, checkbox: bCheckbox)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,12 +123,31 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
         // been made
         return false
     }
-    
+
     // swiftlint:enable line_length
 
     @objc
     func handleDismiss() {
         dismiss(animated: true, completion: nil)
+    }
+
+    /// Create a label to be displayed for accessibility information
+    func createAccessibilityLabel(inputText: String) -> UILabel {
+        let accessLabel = UILabel()
+        accessLabel.text = inputText
+        accessLabel.font = R.font.latoRegular(size: 20)
+        accessLabel.textColor = Colors.behindGradient
+        return accessLabel
+    }
+
+    /// Create a stackview to be displayed to combine accessibility label and checkbox
+    func createAccessibilityStack(label: UILabel, checkbox: CheckBox) -> UIStackView {
+        let accessStack = UIStackView()
+        accessStack.axis = .horizontal
+        accessStack.translatesAutoresizingMaskIntoConstraints = false
+        accessStack.addArrangedSubview(label)
+        accessStack.addArrangedSubview(checkbox)
+        return accessStack
     }
 
     func configureUI() {
@@ -136,6 +168,24 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
 
         // Pin description
         view.addSubview(pinDescriptionField)
+
+        // Configure targets & initial state for checkboxes
+        wcCheckbox.addTarget(wcCheckbox, action: #selector(wcCheckbox.buttonClicked(sender:)), for: .touchUpInside)
+        hCheckbox.addTarget(hCheckbox, action: #selector(hCheckbox.buttonClicked(sender:)), for: .touchUpInside)
+        bCheckbox.addTarget(bCheckbox, action: #selector(bCheckbox.buttonClicked(sender:)), for: .touchUpInside)
+
+        wcCheckbox.isChecked = false
+        hCheckbox.isChecked = false
+        bCheckbox.isChecked = false
+
+        // Wheelchair label & checkbox
+        view.addSubview(wcStack)
+
+        // Hearing label & checkbox
+        view.addSubview(hStack)
+
+        // Braille label & checkbox
+        view.addSubview(bStack)
     }
 
     func constrainViews() {
@@ -152,10 +202,40 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
         pinNameField.heightAnchor.constraint(equalToConstant: 75).isActive = true
 
         // Pin description
-        pinDescriptionField.topAnchor.constraint(equalTo: pinNameField.bottomAnchor, constant: 50).isActive = true
+        pinDescriptionField.topAnchor.constraint(equalTo: pinNameField.bottomAnchor, constant: 20).isActive = true
         pinDescriptionField.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
         pinDescriptionField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         pinDescriptionField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         pinDescriptionField.heightAnchor.constraint(equalToConstant: 175).isActive = true
+
+        // Wheelchair stuff
+        wcStack.topAnchor.constraint(equalTo: pinDescriptionField.bottomAnchor, constant: 50).isActive = true
+        wcStack.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
+        wcStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        wcStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+
+        wcCheckbox.translatesAutoresizingMaskIntoConstraints = false
+        wcCheckbox.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        wcCheckbox.rightAnchor.constraint(equalTo: wcStack.rightAnchor, constant: -10).isActive = true
+
+        // Hearing stuff
+        hStack.topAnchor.constraint(equalTo: wcStack.bottomAnchor, constant: 10).isActive = true
+        hStack.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
+        hStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        hStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+
+        hCheckbox.translatesAutoresizingMaskIntoConstraints = false
+        hCheckbox.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        hCheckbox.rightAnchor.constraint(equalTo: hStack.rightAnchor, constant: -10).isActive = true
+
+        // Braille stuff
+        bStack.topAnchor.constraint(equalTo: hStack.bottomAnchor, constant: 10).isActive = true
+        bStack.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
+        bStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        bStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+
+        bCheckbox.translatesAutoresizingMaskIntoConstraints = false
+        bCheckbox.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        bCheckbox.rightAnchor.constraint(equalTo: bStack.rightAnchor, constant: -10).isActive = true
     }
 }
