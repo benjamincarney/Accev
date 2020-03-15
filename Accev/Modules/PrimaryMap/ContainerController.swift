@@ -89,7 +89,8 @@ class ContainerController: RoutedViewController {
             let controller = FeedbackController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         case .about:
-            print("about")
+            let controller = AboutController()
+            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         case .logout:
             print("logout")
         }
