@@ -86,9 +86,13 @@ class ContainerController: RoutedViewController {
             // either use present or route to, slightly different behaviors
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
             // routeTo(screen: .login)
-        case .about:
-            let controller = AboutController()
+        case .feedback:
+            let controller = FeedbackController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+        case .about:
+            print("about")
+        case .logout:
+            print("logout")
         }
     }
     func animateStatusBar() {
