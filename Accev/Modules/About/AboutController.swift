@@ -17,11 +17,6 @@ class AboutController: UIViewController {
 
         configureUI()
 
-        if let username = username {
-            print("Username is \(username)")
-        } else {
-            print("Username not found..")
-        }
     }
 
     @objc
