@@ -48,8 +48,9 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_menu_white_3x").withRenderingMode(.alwaysOriginal),
                                                            style: .plain, target: self,
                                                            action: #selector(handleMenuToggle))
+        // TODO: change pin image? small rn and slightly left
         navigationItem.rightBarButtonItem = UIBarButtonItem(image:
-            UIImage(named: "addPin72")?.withRenderingMode(.alwaysOriginal),
+            UIImage(named: "addPinSmall")?.withRenderingMode(.alwaysOriginal),
                                                             style: .plain, target: self,
                                                             action: #selector(addPinButtonPressed))
     }
@@ -71,7 +72,7 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         // Present alert controller
         let pinMessage = "Pin successfully submitted."
         let pinSubmissionAlert = UIAlertController(title: "Success!", message: pinMessage, preferredStyle: .alert)
-        pinSubmissionAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+        pinSubmissionAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
         }))
         pinEntryVC.present(pinSubmissionAlert, animated: true, completion: nil)
