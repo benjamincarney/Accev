@@ -61,6 +61,20 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
     lazy var bLabel = createAccessibilityLabel(inputText: "Braille Accessible")
     lazy var bStack = createAccessibilityStack(label: bLabel, checkbox: bCheckbox)
 
+    let pinSubmitButton: UIButton = {
+        let submit = UIButton()
+        submit.translatesAutoresizingMaskIntoConstraints = false
+        submit.addTarget(self, action: #selector(submitPin), for: .touchUpInside)
+        submit.setTitle("Submit", for: .normal)
+        submit.setTitleColor(UIColor.white, for: .normal)
+        submit.setTitleColor(UIColor.darkGray, for: .highlighted)
+        submit.backgroundColor = Colors.behindGradient
+        submit.layer.cornerRadius = 15.0
+        submit.layer.borderWidth = 2.0
+        submit.layer.borderColor = Colors.behindGradient.cgColor
+        return submit
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -73,6 +87,11 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
         } else {
             print("Pinname not found..")
         }
+    }
+
+    @objc
+    func submitPin() {
+        print("PIN SUBMITTED")
     }
 
     // Text view (description) delegate
@@ -186,10 +205,32 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
 
         // Braille label & checkbox
         view.addSubview(bStack)
+
+        // Submit button
+        view.addSubview(pinSubmitButton)
     }
 
     func constrainViews() {
         // Pin name
+        constrainNameField()
+
+        // Pin description
+        constrainDescriptionField()
+
+        // Wheelchair stuff
+        constrainWheelchair()
+
+        // Hearing stuff
+        constrainHearing()
+
+        // Braille stuff
+        constrainBraille()
+
+        // Submit button
+        constrainSubmit()
+    }
+
+    func constrainNameField() {
         if #available(iOS 11.0, *) {
             pinNameField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         } else {
@@ -200,16 +241,19 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
         pinNameField.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
         pinNameField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         pinNameField.heightAnchor.constraint(equalToConstant: 75).isActive = true
+    }
 
-        // Pin description
+    func constrainDescriptionField() {
         pinDescriptionField.topAnchor.constraint(equalTo: pinNameField.bottomAnchor, constant: 20).isActive = true
         pinDescriptionField.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
         pinDescriptionField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         pinDescriptionField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        pinDescriptionField.heightAnchor.constraint(equalToConstant: 175).isActive = true
+        pinDescriptionField.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    }
 
-        // Wheelchair stuff
-        wcStack.topAnchor.constraint(equalTo: pinDescriptionField.bottomAnchor, constant: 50).isActive = true
+    func constrainWheelchair() {
+        wcStack.translatesAutoresizingMaskIntoConstraints = false
+        wcStack.topAnchor.constraint(equalTo: pinDescriptionField.bottomAnchor, constant: 20).isActive = true
         wcStack.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
         wcStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         wcStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
@@ -217,8 +261,10 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
         wcCheckbox.translatesAutoresizingMaskIntoConstraints = false
         wcCheckbox.widthAnchor.constraint(equalToConstant: 50).isActive = true
         wcCheckbox.rightAnchor.constraint(equalTo: wcStack.rightAnchor, constant: -10).isActive = true
+    }
 
-        // Hearing stuff
+    func constrainHearing() {
+        hStack.translatesAutoresizingMaskIntoConstraints = false
         hStack.topAnchor.constraint(equalTo: wcStack.bottomAnchor, constant: 10).isActive = true
         hStack.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
         hStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
@@ -227,8 +273,10 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
         hCheckbox.translatesAutoresizingMaskIntoConstraints = false
         hCheckbox.widthAnchor.constraint(equalToConstant: 50).isActive = true
         hCheckbox.rightAnchor.constraint(equalTo: hStack.rightAnchor, constant: -10).isActive = true
+    }
 
-        // Braille stuff
+    func constrainBraille() {
+        bStack.translatesAutoresizingMaskIntoConstraints = false
         bStack.topAnchor.constraint(equalTo: hStack.bottomAnchor, constant: 10).isActive = true
         bStack.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
         bStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
@@ -237,5 +285,13 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
         bCheckbox.translatesAutoresizingMaskIntoConstraints = false
         bCheckbox.widthAnchor.constraint(equalToConstant: 50).isActive = true
         bCheckbox.rightAnchor.constraint(equalTo: bStack.rightAnchor, constant: -10).isActive = true
+    }
+
+    func constrainSubmit() {
+        pinSubmitButton.topAnchor.constraint(equalTo: bStack.bottomAnchor, constant: 40).isActive = true
+        pinSubmitButton.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -50).isActive = true
+        pinSubmitButton.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        pinSubmitButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
+        pinSubmitButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25).isActive = true
     }
 }
