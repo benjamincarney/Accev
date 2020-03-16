@@ -15,7 +15,6 @@ import GoogleMaps
 
 class BackendCaller {
     let database = Firestore.firestore()
-    // TODO: Add new pin to database with associated information
     func addPinBackend(_ mapView: GMSMapView, _ coordinate: CLLocationCoordinate2D,
                        _ pinData: Dictionary<String, Any>) -> String {
         var ref: DocumentReference? = nil

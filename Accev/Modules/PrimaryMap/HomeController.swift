@@ -67,8 +67,15 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         self.pins.updateValue(self.resultsFromPinEntry, forKey: pinID)
 
         addPinUI(mapView, pinEntryVC.coordinate!, pinID)
+
+        // Present alert controller
+        let pinMessage = "Pin successfully submitted."
+        let pinSubmissionAlert = UIAlertController(title: "Success!", message: pinMessage, preferredStyle: .alert)
+        pinSubmissionAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        pinEntryVC.present(pinSubmissionAlert, animated: true, completion: nil)
         // swiftlint:enable all
-        dismiss(animated: true, completion: nil)
     }
 
     @objc
