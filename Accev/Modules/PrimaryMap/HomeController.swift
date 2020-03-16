@@ -10,16 +10,17 @@ import CoreLocation
 import GoogleMaps
 import UIKit
 
-class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
+class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManagerDelegate, PinEntryControllerDelegate {
 
     // swiftlint:disable all
     var delegate: HomeControllerDelegate?
     var locationManager: CLLocationManager!
     // swiftlint:enable all
     var addPinState = false
-    var pins = Dictionary<String, Dictionary<String, Any>>()
+    var pins = [String: [String: Any]]()
     let backendCaller = BackendCaller()
     let mapHelperFunctions = MapHelper()
+    var resultsFromPinEntry = [String: Any]()
 
     // Overrides
     override func viewWillLayoutSubviews() {
@@ -51,6 +52,23 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
             UIImage(named: "addPin72")?.withRenderingMode(.alwaysOriginal),
                                                             style: .plain, target: self,
                                                             action: #selector(addPinButtonPressed))
+    }
+
+    // PinEntryControllerDelegate
+    func pinEntryControllerWillDismiss(pinEntryVC: PinDetailsEntryController, mapView: GMSMapView) {
+        // Store info from user in HomeController
+        resultsFromPinEntry = pinEntryVC.pinInfo
+        // swiftlint:disable all
+
+        // first grab the documentID from the pin that you created, this will be important
+        let pinID = backendCaller.addPinBackend(mapView, pinEntryVC.coordinate!, self.resultsFromPinEntry)
+
+        // add pin to our member dictionary, also important
+        self.pins.updateValue(self.resultsFromPinEntry, forKey: pinID)
+
+        addPinUI(mapView, pinEntryVC.coordinate!, pinID)
+        // swiftlint:enable all
+        dismiss(animated: true, completion: nil)
     }
 
     @objc
@@ -151,33 +169,19 @@ class HomeController: RoutedViewController, GMSMapViewDelegate, CLLocationManage
         // swiftlint:disable all
         print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
         if addPinState {
-            // TODO: Direct user to inputing more info before moving on
-            // For now let's assume we have some mock user input dictionary
-            // And we'll add to our pins member dictionary
-            var mockInputInfo = [String : Any]()
-            mockInputInfo["latitude"] = coordinate.latitude
-            mockInputInfo["longitude"] = coordinate.longitude
-            mockInputInfo["upvotes"] = Int.random(in: 0..<1000)
-            mockInputInfo["downvotes"] = Int.random(in: 0..<1000)
-            mockInputInfo["accessibleWheelchair"] = true
-            mockInputInfo["accessibleBraille"] = true
-            mockInputInfo["accessibleHearing"] = true
-            // TODO: have PinDetailsEntryController return relevant info through
-            // a completion handler or something to be sent into addPinBackend.
-            // Have some sort of submit button at the buttom to trigger
-            // Could even through addPinBackend call inside PinDetailsEntryController
-            // and return it with the other info, might make more sense
-            // none of the events below should occur if the user exits out of details entry
-            let controller = PinDetailsEntryController()
-            controller.pinID = ""
-            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-            // first grab the documentID from the pin that you created, this will be important
-            let identifier = backendCaller.addPinBackend(mapView, coordinate, mockInputInfo)
-            // add pin to our member dictionary, also important
-            self.pins.updateValue(mockInputInfo, forKey: identifier)
-            addPinUI(mapView, coordinate, identifier)
+            // Create pin entry controller and assign members to be used later
+            let entryController = PinDetailsEntryController()
+            entryController.coordinate = coordinate
+            entryController.delegate = self
+            entryController.mapView = mapView
+
+            // Present the controller
+            present(UINavigationController(rootViewController: entryController), animated: true, completion: nil)
+
+            // Cancel adding the pin
             addPinState = false
             cancelAddPin()
+            // The rest is done inside pinEntryControllerWillDismiss
         }
         // swiftlint:enable all
     }

@@ -6,12 +6,22 @@
 //  Copyright © 2020 Accev. All rights reserved.
 //
 
+import CoreLocation
 import Foundation
+import GoogleMaps
 import UIKit
 
 class PinDetailsEntryController: UIViewController, UITextViewDelegate {
 
-    var pinID: String?
+//    var pinID: String = ""
+
+    var coordinate: CLLocationCoordinate2D?
+
+    var pinInfo = [String: Any]()
+
+    weak var delegate: PinEntryControllerDelegate?
+
+    var mapView = GMSMapView()
 
     lazy var pinNameField: UITextField = {
         let nameField = UITextField()
@@ -82,16 +92,26 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
 
         constrainViews()
 
-        if let pinID = pinID {
-            print("Pinname is \(pinID)")
-        } else {
-            print("Pinname not found..")
-        }
+//        print("Pinname is \(pinID)")
     }
 
     @objc
     func submitPin() {
-        print("PIN SUBMITTED")
+        // Build the dictionary to store in backend
+        pinInfo["longitude"] = self.coordinate?.longitude
+        pinInfo["latitude"] = self.coordinate?.latitude
+        pinInfo["name"] = pinNameField.text ?? "N/A"
+        pinInfo["description"] = pinDescriptionField.text ?? "N/A"
+        pinInfo["accessibleWheelchair"] = wcCheckbox.isChecked
+        pinInfo["accessibleHearing"] = hCheckbox.isChecked
+        pinInfo["accessibleBraille"] = bCheckbox.isChecked
+        pinInfo["upvotes"] = 0
+        pinInfo["downvotes"] = 0
+
+        // Send created dictionary back to HomeController
+        if let delegate = self.delegate {
+            delegate.pinEntryControllerWillDismiss(pinEntryVC: self, mapView: self.mapView)
+        }
     }
 
     // Text view (description) delegate
