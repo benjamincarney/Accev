@@ -22,11 +22,13 @@ class BackendCaller {
         ref = database.collection("pins").addDocument(data: [
             "longitude": coordinate.longitude,
             "latitude": coordinate.latitude,
-            "upvotes": pinData["upvotes"]!,
-            "downvotes": pinData["downvotes"]!,
-            "accessibleWheelchair": pinData["accessibleWheelchair"]!,
-            "accessibleBraille": pinData["accessibleBraille"]!,
-            "accessibleHearing": pinData["accessibleHearing"]!
+            "upvotes": pinData["upvotes"] ?? 0,
+            "downvotes": pinData["downvotes"] ?? 0,
+            "accessibleWheelchair": pinData["accessibleWheelchair"] ?? false,
+            "accessibleBraille": pinData["accessibleBraille"] ?? false,
+            "accessibleHearing": pinData["accessibleHearing"] ?? false,
+            "name": pinData["name"] ?? "",
+            "description": pinData["description"] ?? ""
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")

@@ -13,8 +13,6 @@ import UIKit
 
 class PinDetailsEntryController: UIViewController, UITextViewDelegate {
 
-//    var pinID: String = ""
-
     var coordinate: CLLocationCoordinate2D?
 
     var pinInfo = [String: Any]()
@@ -91,12 +89,20 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
         configureUI()
 
         constrainViews()
-
-//        print("Pinname is \(pinID)")
     }
 
     @objc
     func submitPin() {
+        // If user did not check any access. boxes, error
+        if !wcCheckbox.isChecked && !hCheckbox.isChecked && !bCheckbox.isChecked {
+            let submitMessage = "Pins must be accessible by at least one of the three methods."
+            let pinSubmissionAlert = UIAlertController(title: "Error", message: submitMessage, preferredStyle: .alert)
+            pinSubmissionAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                return
+            }))
+            self.present(pinSubmissionAlert, animated: true, completion: nil)
+        }
+
         // Build the dictionary to store in backend
         pinInfo["longitude"] = self.coordinate?.longitude
         pinInfo["latitude"] = self.coordinate?.latitude
@@ -280,7 +286,6 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
 
         wcCheckbox.translatesAutoresizingMaskIntoConstraints = false
         wcCheckbox.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        wcCheckbox.rightAnchor.constraint(equalTo: wcStack.rightAnchor, constant: -10).isActive = true
     }
 
     func constrainHearing() {
@@ -292,7 +297,6 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
 
         hCheckbox.translatesAutoresizingMaskIntoConstraints = false
         hCheckbox.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        hCheckbox.rightAnchor.constraint(equalTo: hStack.rightAnchor, constant: -10).isActive = true
     }
 
     func constrainBraille() {
@@ -304,7 +308,6 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
 
         bCheckbox.translatesAutoresizingMaskIntoConstraints = false
         bCheckbox.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        bCheckbox.rightAnchor.constraint(equalTo: bStack.rightAnchor, constant: -10).isActive = true
     }
 
     func constrainSubmit() {
