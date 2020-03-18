@@ -5,7 +5,6 @@
 //  Created by Benjamin Carney on 3/5/20.
 //  Copyright © 2020 Accev. All rights reserved.
 //  swiftlint:disable all
-
 import CoreLocation
 import GoogleMaps
 import UIKit
@@ -73,7 +72,8 @@ CLLocationManagerDelegate, PinEntryControllerDelegate {
 
     @objc
     func presentSearch() {
-        print("present search bar")
+        let controller = SearchController()
+        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
 
     func configureNavigationBar() {
@@ -99,7 +99,6 @@ CLLocationManagerDelegate, PinEntryControllerDelegate {
     func pinEntryControllerWillDismiss(pinEntryVC: PinDetailsEntryController, mapView: GMSMapView) {
         // Store info from user in HomeController
         resultsFromPinEntry = pinEntryVC.pinInfo
-        // swiftlint:disable all
 
         // first grab the documentID from the pin that you created, this will be important
         let pinID = backendCaller.addPinBackend(mapView, pinEntryVC.coordinate!, self.resultsFromPinEntry)
@@ -116,7 +115,6 @@ CLLocationManagerDelegate, PinEntryControllerDelegate {
             self.dismiss(animated: true, completion: nil)
         }))
         pinEntryVC.present(pinSubmissionAlert, animated: true, completion: nil)
-        // swiftlint:enable all
     }
 
     @objc
@@ -128,14 +126,14 @@ CLLocationManagerDelegate, PinEntryControllerDelegate {
     func addPinButtonPressed() {
         if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
             CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways {
-//            guard let currentLocation = locationManager.location else {
-//                return
-//            }
+            guard let currentLocation = locationManager.location else {
+                return
+            }
             // this is the users location
-//            let camera = GMSCameraPosition.camera(withLatitude: currentLocation.coordinate.latitude,
-//                                                  longitude: currentLocation.coordinate.longitude, zoom: 17.0)
+            let camera = GMSCameraPosition.camera(withLatitude: currentLocation.coordinate.latitude,
+                                                  longitude: currentLocation.coordinate.longitude, zoom: 15.0)
             // this is Ann Arbor
-            let camera = GMSCameraPosition.camera(withLatitude: 42.279594, longitude: -83.732124, zoom: 10.0)
+            // let camera = GMSCameraPosition.camera(withLatitude: 42.279594, longitude: -83.732124, zoom: 10.0)
             let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
             mapView.delegate = self
             mapView.addSubview(filterButton)
@@ -292,7 +290,6 @@ CLLocationManagerDelegate, PinEntryControllerDelegate {
         let lbl2 = UILabel(frame: CGRect(x: lbl1.frame.origin.x, y: lbl1.frame.origin.y
                                         + lbl1.frame.size.height + 3, width: view.frame.size.width - 16,
                                                                       height: 18))
-        //  swiftlint:disable all
         let trustRating = mapHelperFunctions.calculateTrustRating(pinDict?["upvotes"] as! Int,
                                                                   pinDict?["downvotes"] as! Int)
         lbl2.text = "\(trustRating)% of users agree"
@@ -438,6 +435,5 @@ CLLocationManagerDelegate, PinEntryControllerDelegate {
                                 NSMutableAttributedString(string:"No tags to display",
                                 attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15)]) : completeText
     }
-    //  swiftlint:enable all
 }
-// swiftlint:enable all
+//  swiftlint:enable all
