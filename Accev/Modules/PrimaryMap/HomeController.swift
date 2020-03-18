@@ -465,11 +465,6 @@ CLLocationManagerDelegate, PinEntryControllerDelegate {
 
 extension HomeController: GMSAutocompleteViewControllerDelegate {
   func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        // Get the place name from 'GMSAutocompleteViewController'
-        // Then display the name in textField
-        // textField.text = place.name
-        // Dismiss the GMSAutocompleteViewController when something is selected
-        print(place.coordinate)
         self.recenterMap(longitude: place.coordinate.longitude, latitude: place.coordinate.latitude)
         dismiss(animated: true, completion: nil)
   }
