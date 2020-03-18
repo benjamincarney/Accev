@@ -7,6 +7,7 @@
 //  swiftlint:disable all
 import CoreLocation
 import GoogleMaps
+import GooglePlaces
 import UIKit
 
 
@@ -21,6 +22,7 @@ CLLocationManagerDelegate, PinEntryControllerDelegate {
 
     var delegate: HomeControllerDelegate?
     var locationManager: CLLocationManager!
+    var placesClient: GMSPlacesClient!
     var addPinState = false
     var pins = [String: [String: Any]]()
     let backendCaller = BackendCaller()
@@ -34,6 +36,7 @@ CLLocationManagerDelegate, PinEntryControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        placesClient = GMSPlacesClient.shared()
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateFilters),
                                                name: NSNotification.Name(rawValue: "DoUpdateLabel"),
                                                object: nil)
@@ -72,8 +75,13 @@ CLLocationManagerDelegate, PinEntryControllerDelegate {
 
     @objc
     func presentSearch() {
-        let controller = SearchController()
-        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+//        let controller = SearchController()
+//        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+        // textField.resignFirstResponder()
+        let acController = GMSAutocompleteViewController()
+        acController.delegate = self
+        present(acController, animated: true, completion: nil)
+        
     }
 
     func configureNavigationBar() {
@@ -435,5 +443,43 @@ CLLocationManagerDelegate, PinEntryControllerDelegate {
                                 NSMutableAttributedString(string:"No tags to display",
                                 attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15)]) : completeText
     }
+    
+    func recenterMap(longitude: Double, latitude: Double) {
+        let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 15.0)
+        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        mapView.delegate = self
+        mapView.addSubview(filterButton)
+        mapView.addSubview(searchButton)
+
+        filterButton.translatesAutoresizingMaskIntoConstraints = false
+        filterButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -30).isActive = true
+        filterButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
+
+        searchButton.translatesAutoresizingMaskIntoConstraints = false
+        searchButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 30).isActive = true
+        searchButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30).isActive = true
+        self.view = mapView
+        loadPins(mapView, false)
+    }
+}
+
+extension HomeController: GMSAutocompleteViewControllerDelegate {
+  func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        // Get the place name from 'GMSAutocompleteViewController'
+        // Then display the name in textField
+        // textField.text = place.name
+        // Dismiss the GMSAutocompleteViewController when something is selected
+        print(place.coordinate)
+        self.recenterMap(longitude: place.coordinate.longitude, latitude: place.coordinate.latitude)
+        dismiss(animated: true, completion: nil)
+  }
+func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+    // Handle the error
+    print("Error: ", error.localizedDescription)
+  }
+func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+    // Dismiss when the user canceled the action
+    dismiss(animated: true, completion: nil)
+  }
 }
 //  swiftlint:enable all
