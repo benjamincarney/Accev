@@ -97,9 +97,11 @@ class PinDetailsEntryController: UIViewController, UITextViewDelegate {
         if !wcCheckbox.isChecked && !hCheckbox.isChecked && !bCheckbox.isChecked {
             let submitMessage = "Pins must be accessible by at least one of the three methods."
             let pinSubmissionAlert = UIAlertController(title: "Error", message: submitMessage, preferredStyle: .alert)
+            //  swiftlint:disable all
             pinSubmissionAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                 return
             }))
+            //  swiftlint:enable all
             self.present(pinSubmissionAlert, animated: true, completion: nil)
         }
 

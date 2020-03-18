@@ -30,6 +30,7 @@
 		F3521F5C240FFB9C00275FC4 /* UserEnterTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F5B240FFB9C00275FC4 /* UserEnterTextField.swift */; };
 		F3521F5E2410006D00275FC4 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F5D2410006D00275FC4 /* ForgotPasswordViewController.swift */; };
 		F3521F602410010B00275FC4 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521F5F2410010B00275FC4 /* ContainerController.swift */; };
+		F356CF2624226D730012BD32 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F356CF2524226D730012BD32 /* SearchController.swift */; };
 		F35B317824143A72000022A2 /* PinDetailsEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B317724143A72000022A2 /* PinDetailsEntryController.swift */; };
 		F35B317A24143B21000022A2 /* MapHelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B317924143B21000022A2 /* MapHelperFunctions.swift */; };
 		F365354D2412E1170059D818 /* LocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F365354C2412E1170059D818 /* LocationPin.swift */; };
@@ -120,6 +121,7 @@
 		F3521F5B240FFB9C00275FC4 /* UserEnterTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEnterTextField.swift; sourceTree = "<group>"; };
 		F3521F5D2410006D00275FC4 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		F3521F5F2410010B00275FC4 /* ContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
+		F356CF2524226D730012BD32 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		F35B317724143A72000022A2 /* PinDetailsEntryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinDetailsEntryController.swift; sourceTree = "<group>"; };
 		F35B317924143B21000022A2 /* MapHelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHelperFunctions.swift; sourceTree = "<group>"; };
 		F365354C2412E1170059D818 /* LocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPin.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 		2AB31D9F1F38741400B7D1F3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F356CF2424226D610012BD32 /* Search */,
 				F3BE224C241E8F1400759ED8 /* Feedback */,
 				F3D50A162414860E00ACC314 /* Filter */,
 				F3C3954E24133FB0001DD680 /* PinDetails */,
@@ -408,6 +411,14 @@
 				F33D0561240DEB1F00F9D8E8 /* Colors.swift */,
 			);
 			path = Colors;
+			sourceTree = "<group>";
+		};
+		F356CF2424226D610012BD32 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				F356CF2524226D730012BD32 /* SearchController.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		F3BE224C241E8F1400759ED8 /* Feedback */ = {
@@ -787,6 +798,7 @@
 				F3DFEF14240F165D0080DDC6 /* FontResource+orDefault.swift in Sources */,
 				F3EBCB4E241D4B6D00B0516D /* ModalController.swift in Sources */,
 				F3521F54240FF9CA00275FC4 /* RoutedNavigationController.swift in Sources */,
+				F356CF2624226D730012BD32 /* SearchController.swift in Sources */,
 				F3521F602410010B00275FC4 /* ContainerController.swift in Sources */,
 				F3D50A182414861B00ACC314 /* FilterController.swift in Sources */,
 				F3B06DE02411F14500239817 /* SettingsController.swift in Sources */,

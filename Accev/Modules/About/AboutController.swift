@@ -57,7 +57,7 @@ class AboutController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "x24blue").withRenderingMode(.alwaysOriginal),
                                                            style: .plain, target: self,
                                                            action: #selector(handleDismiss))
-        
+
         self.view.addSubview(descriptionLabel)
 
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
