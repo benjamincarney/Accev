@@ -10,6 +10,7 @@ import Firebase
 import FirebaseAuth
 import GoogleSignIn
 import UIKit
+import FBSDKLoginKit
 
 class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
     // Text and Number Class Constants
@@ -59,7 +60,7 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
             button.setTitle("continue with facebook", for: .normal)
         }
         button.translatesAutoresizingMaskIntoConstraints = false
-        // button.addTarget(self, action: #selector(facebookLoginTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(facebookLoginTapped), for: .touchUpInside)
         return button
     }()
 
@@ -156,6 +157,7 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
 
     @objc
     func facebookLoginTapped() {
+        print("Attempted Facebook login")
     }
 
     @objc
