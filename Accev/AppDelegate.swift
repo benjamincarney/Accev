@@ -77,7 +77,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     // Depreciated method for <= iOS 8
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         let googleDidHandle = GIDSignIn.sharedInstance().handle(url)
-        let facebookDidHandle = ApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+        let facebookDidHandle =
+            ApplicationDelegate.shared.application(application, open: url,
+                                                   sourceApplication: sourceApplication, annotation: annotation)
         return googleDidHandle || facebookDidHandle
     }
 
