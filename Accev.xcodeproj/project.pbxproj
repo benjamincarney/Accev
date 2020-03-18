@@ -41,6 +41,7 @@
 		F3B06DDC2411EB8F00239817 /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DDB2411EB8F00239817 /* MenuOptionCell.swift */; };
 		F3B06DDE2411EFB100239817 /* MenuOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DDD2411EFB100239817 /* MenuOption.swift */; };
 		F3B06DE02411F14500239817 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DDF2411F14500239817 /* SettingsController.swift */; };
+		F3BE224E241E8F3100759ED8 /* FeedbackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BE224D241E8F3100759ED8 /* FeedbackController.swift */; };
 		F3C3954B24132437001DD680 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3954A24132437001DD680 /* AboutController.swift */; };
 		F3C3955024133FC4001DD680 /* PinDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3954F24133FC4001DD680 /* PinDetailsController.swift */; };
 		F3D50A182414861B00ACC314 /* FilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D50A172414861B00ACC314 /* FilterController.swift */; };
@@ -68,6 +69,7 @@
 		F3DFEF22240F220B0080DDC6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DFEF21240F220B0080DDC6 /* LoginViewController.swift */; };
 		F3DFEF24240F2C410080DDC6 /* UIView+constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DFEF23240F2C410080DDC6 /* UIView+constraints.swift */; };
 		F3DFEF26240F2C5E0080DDC6 /* UILabel+attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DFEF25240F2C5E0080DDC6 /* UILabel+attributes.swift */; };
+		F3EBCB4E241D4B6D00B0516D /* ModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EBCB4D241D4B6D00B0516D /* ModalController.swift */; };
 		FCB2C7CB1F57127800481080 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCB2C7CA1F57127800481080 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -127,6 +129,7 @@
 		F3B06DDB2411EB8F00239817 /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
 		F3B06DDD2411EFB100239817 /* MenuOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOption.swift; sourceTree = "<group>"; };
 		F3B06DDF2411F14500239817 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		F3BE224D241E8F3100759ED8 /* FeedbackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackController.swift; sourceTree = "<group>"; };
 		F3C3954A24132437001DD680 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		F3C3954F24133FC4001DD680 /* PinDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinDetailsController.swift; sourceTree = "<group>"; };
 		F3D50A172414861B00ACC314 /* FilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterController.swift; sourceTree = "<group>"; };
@@ -154,6 +157,7 @@
 		F3DFEF21240F220B0080DDC6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F3DFEF23240F2C410080DDC6 /* UIView+constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+constraints.swift"; sourceTree = "<group>"; };
 		F3DFEF25240F2C5E0080DDC6 /* UILabel+attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+attributes.swift"; sourceTree = "<group>"; };
+		F3EBCB4D241D4B6D00B0516D /* ModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalController.swift; sourceTree = "<group>"; };
 		FCB2C7CA1F57127800481080 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -236,6 +240,7 @@
 		2AB31D9F1F38741400B7D1F3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F3BE224C241E8F1400759ED8 /* Feedback */,
 				F3D50A162414860E00ACC314 /* Filter */,
 				F3C3954E24133FB0001DD680 /* PinDetails */,
 				F3C39549241323F2001DD680 /* About */,
@@ -400,6 +405,14 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
+		F3BE224C241E8F1400759ED8 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				F3BE224D241E8F3100759ED8 /* FeedbackController.swift */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
 		F3C39549241323F2001DD680 /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,6 +426,7 @@
 			children = (
 				F3C3954F24133FC4001DD680 /* PinDetailsController.swift */,
 				F35B317724143A72000022A2 /* PinDetailsEntryController.swift */,
+				F3EBCB4D241D4B6D00B0516D /* ModalController.swift */,
 			);
 			path = PinDetails;
 			sourceTree = "<group>";
@@ -757,7 +771,9 @@
 				F3C3955024133FC4001DD680 /* PinDetailsController.swift in Sources */,
 				F3DFEF12240F15940080DDC6 /* BackgroundGradient.swift in Sources */,
 				F3DFEF20240F1E380080DDC6 /* LoginRegisterViewController.swift in Sources */,
+				F3BE224E241E8F3100759ED8 /* FeedbackController.swift in Sources */,
 				F3DFEF14240F165D0080DDC6 /* FontResource+orDefault.swift in Sources */,
+				F3EBCB4E241D4B6D00B0516D /* ModalController.swift in Sources */,
 				F3521F54240FF9CA00275FC4 /* RoutedNavigationController.swift in Sources */,
 				F3521F602410010B00275FC4 /* ContainerController.swift in Sources */,
 				F3D50A182414861B00ACC314 /* FilterController.swift in Sources */,

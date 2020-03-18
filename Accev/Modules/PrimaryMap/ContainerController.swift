@@ -76,19 +76,23 @@ class ContainerController: RoutedViewController {
         switch menuOption {
         case .profile:
             print("Show profile")
+        case .leaderboard:
+            print("Show Leaderboard")
         case .inbox:
             print("Show Inbox")
         case .notifications:
             print("Show Notifications")
         case .settings:
             let controller = SettingsController()
-            controller.username = "Ben"
-            // either use present or route to, slightly different behaviors
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-            // routeTo(screen: .login)
+        case .feedback:
+            let controller = FeedbackController()
+            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         case .about:
             let controller = AboutController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+        case .logout:
+            print("logout")
         }
     }
     func animateStatusBar() {
