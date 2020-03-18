@@ -6,6 +6,7 @@
 //  Copyright © 2020 Accev. All rights reserved.
 //
 
+import FirebaseAuth
 import GoogleMaps
 import UIKit
 
@@ -92,7 +93,18 @@ class ContainerController: RoutedViewController {
             let controller = AboutController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         case .logout:
-            print("logout")
+            do {
+                try Auth.auth().signOut()
+            } catch let err {
+                // Present alert controller for error
+                let errDesc = err.localizedDescription
+                let errorAlert = UIAlertController(title: "Error", message: errDesc, preferredStyle: .alert)
+                errorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(errorAlert, animated: true, completion: nil)
+                print(err)
+                return
+            }
+            self.routeTo(screen: .login, animatedWithOptions: .transitionCrossDissolve)
         }
     }
     func animateStatusBar() {
