@@ -18,7 +18,7 @@ struct GlobalFilterVariables {
 }
 
 class HomeController: RoutedViewController, GMSMapViewDelegate,
-CLLocationManagerDelegate {
+CLLocationManagerDelegate, PinEntryControllerDelegate {
 
     var delegate: HomeControllerDelegate?
     var locationManager: CLLocationManager!
@@ -227,13 +227,6 @@ CLLocationManagerDelegate {
             }
         } else {
             let camera = GMSCameraPosition.camera(withLatitude: 42.279594, longitude: -83.732124, zoom: 10.0)
-                    let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-                    mapView.delegate = self
-                    mapView.addSubview(filterButton)
-            // this is the users location
-            let camera = GMSCameraPosition.camera(withLatitude: currentLocation.coordinate.latitude,
-                                                  longitude: currentLocation.coordinate.longitude, zoom: 17.0)
-           
             let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
             mapView.delegate = self
             mapView.addSubview(filterButton)
@@ -299,6 +292,7 @@ CLLocationManagerDelegate {
         let lbl2 = UILabel(frame: CGRect(x: lbl1.frame.origin.x, y: lbl1.frame.origin.y
                                         + lbl1.frame.size.height + 3, width: view.frame.size.width - 16,
                                                                       height: 18))
+        //  swiftlint:disable all
         let trustRating = mapHelperFunctions.calculateTrustRating(pinDict?["upvotes"] as! Int,
                                                                   pinDict?["downvotes"] as! Int)
         lbl2.text = "\(trustRating)% of users agree"
@@ -444,5 +438,6 @@ CLLocationManagerDelegate {
                                 NSMutableAttributedString(string:"No tags to display",
                                 attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15)]) : completeText
     }
+    //  swiftlint:enable all
 }
 // swiftlint:enable all

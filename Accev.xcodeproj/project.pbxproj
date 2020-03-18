@@ -33,6 +33,8 @@
 		F35B317824143A72000022A2 /* PinDetailsEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B317724143A72000022A2 /* PinDetailsEntryController.swift */; };
 		F35B317A24143B21000022A2 /* MapHelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B317924143B21000022A2 /* MapHelperFunctions.swift */; };
 		F365354D2412E1170059D818 /* LocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F365354C2412E1170059D818 /* LocationPin.swift */; };
+		F3895B722421A5A800AB615D /* PinEntryControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3895B712421A5A800AB615D /* PinEntryControllerDelegate.swift */; };
+		F3895B742421A5E300AB615D /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3895B732421A5E300AB615D /* CheckBox.swift */; };
 		F3B06DBA2411DA7900239817 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DB92411DA7900239817 /* MenuController.swift */; };
 		F3B06DBC2411DA9100239817 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B06DBB2411DA9100239817 /* HomeController.swift */; };
 		F3B06DC12411DEEC00239817 /* facebookLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = F3B06DBD2411DEEB00239817 /* facebookLogo.png */; };
@@ -121,6 +123,8 @@
 		F35B317724143A72000022A2 /* PinDetailsEntryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinDetailsEntryController.swift; sourceTree = "<group>"; };
 		F35B317924143B21000022A2 /* MapHelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHelperFunctions.swift; sourceTree = "<group>"; };
 		F365354C2412E1170059D818 /* LocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPin.swift; sourceTree = "<group>"; };
+		F3895B712421A5A800AB615D /* PinEntryControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinEntryControllerDelegate.swift; sourceTree = "<group>"; };
+		F3895B732421A5E300AB615D /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		F3B06DB92411DA7900239817 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		F3B06DBB2411DA9100239817 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		F3B06DBD2411DEEB00239817 /* facebookLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = facebookLogo.png; path = Assets.xcassets/facebookLogo.png; sourceTree = "<group>"; };
@@ -281,6 +285,7 @@
 		2AB31DA21F38744600B7D1F3 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				F3895B712421A5A800AB615D /* PinEntryControllerDelegate.swift */,
 				F3B06DD92411E6B800239817 /* HomeControllerDelegate.swift */,
 			);
 			path = Protocols;
@@ -458,6 +463,7 @@
 		F3DFEF10240F157B0080DDC6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				F3895B732421A5E300AB615D /* CheckBox.swift */,
 				F3DFEF11240F15940080DDC6 /* BackgroundGradient.swift */,
 				F3DFEF19240F1C2E0080DDC6 /* RoutedViewController.swift */,
 				F3521F53240FF9CA00275FC4 /* RoutedNavigationController.swift */,
@@ -744,6 +750,7 @@
 				F3521F56240FFA1A00275FC4 /* RegisterViewController.swift in Sources */,
 				F3B06DDE2411EFB100239817 /* MenuOption.swift in Sources */,
 				2A9222821F38797600A648E6 /* ConfigurationManager.swift in Sources */,
+				F3895B722421A5A800AB615D /* PinEntryControllerDelegate.swift in Sources */,
 				F3C3954B24132437001DD680 /* AboutController.swift in Sources */,
 				F3DFEF1C240F1D280080DDC6 /* LoginTextField.swift in Sources */,
 				F3521F5A240FFB3E00275FC4 /* ScrollingViewController.swift in Sources */,
@@ -766,6 +773,7 @@
 				F3521F5C240FFB9C00275FC4 /* UserEnterTextField.swift in Sources */,
 				F3521F58240FFB1300275FC4 /* SetupProfileViewController.swift in Sources */,
 				F3DFEF16240F19F70080DDC6 /* TransitionLinkButton.swift in Sources */,
+				F3895B742421A5E300AB615D /* CheckBox.swift in Sources */,
 				2A1DD4E11F389E2100712195 /* NotificationsHandler.swift in Sources */,
 				2A1DD4DF1F389C2200712195 /* DeeplinkHandler.swift in Sources */,
 				F3C3955024133FC4001DD680 /* PinDetailsController.swift in Sources */,
