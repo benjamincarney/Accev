@@ -93,7 +93,6 @@ class ContainerController: RoutedViewController {
             let controller = AboutController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         case .logout:
-            print(Auth.auth())
             do {
                 try Auth.auth().signOut()
             } catch let err {
