@@ -76,13 +76,17 @@ class ContainerController: RoutedViewController {
     func didSelectMenuOption(menuOption: MenuOption) {
         switch menuOption {
         case .profile:
-            print("Show profile")
+            let controller = ProfileController()
+            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         case .leaderboard:
-            print("Show Leaderboard")
+            let controller = LeaderboardController()
+            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         case .inbox:
-            print("Show Inbox")
+            let controller = InboxController()
+            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         case .notifications:
-            print("Show Notifications")
+            let controller = NotificationsController()
+            present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         case .settings:
             let controller = SettingsController()
             present(UINavigationController(rootViewController: controller), animated: true, completion: nil)

@@ -51,6 +51,10 @@
 		F3D50A1A24149E6100ACC314 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D50A1924149E6100ACC314 /* CoreLocation.framework */; };
 		F3D9956524106DC2000DC74B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D9956424106DC2000DC74B /* GoogleService-Info.plist */; };
 		F3D9956B241077C9000DC74B /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = F3D9956A241077C9000DC74B /* AppIcon.appiconset */; };
+		F3DAC2412422EF6400805AE4 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DAC2402422EF6400805AE4 /* ProfileController.swift */; };
+		F3DAC2442422EF9800805AE4 /* LeaderboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DAC2432422EF9800805AE4 /* LeaderboardController.swift */; };
+		F3DAC2472422F04A00805AE4 /* InboxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DAC2462422F04A00805AE4 /* InboxController.swift */; };
+		F3DAC24A2422F08D00805AE4 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DAC2492422F08D00805AE4 /* NotificationsController.swift */; };
 		F3DD5EDD2411549400A8F8D1 /* BackendCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD5EDC2411549400A8F8D1 /* BackendCaller.swift */; };
 		F3DFEF05240F15110080DDC6 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFB240F15100080DDC6 /* Lato-Light.ttf */; };
 		F3DFEF06240F15110080DDC6 /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3DFEEFC240F15110080DDC6 /* Lato-BoldItalic.ttf */; };
@@ -142,6 +146,10 @@
 		F3D50A1924149E6100ACC314 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F3D9956424106DC2000DC74B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F3D9956A241077C9000DC74B /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
+		F3DAC2402422EF6400805AE4 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		F3DAC2432422EF9800805AE4 /* LeaderboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardController.swift; sourceTree = "<group>"; };
+		F3DAC2462422F04A00805AE4 /* InboxController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxController.swift; sourceTree = "<group>"; };
+		F3DAC2492422F08D00805AE4 /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
 		F3DD5EDC2411549400A8F8D1 /* BackendCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendCaller.swift; sourceTree = "<group>"; };
 		F3DFEEFB240F15100080DDC6 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		F3DFEEFC240F15110080DDC6 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -246,6 +254,9 @@
 		2AB31D9F1F38741400B7D1F3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F3DAC2482422F06A00805AE4 /* Notifications */,
+				F3DAC2452422F03900805AE4 /* Inbox */,
+				F3DAC2422422EF8B00805AE4 /* Leaderboard */,
 				F356CF2424226D610012BD32 /* Search */,
 				F3BE224C241E8F1400759ED8 /* Feedback */,
 				F3D50A162414860E00ACC314 /* Filter */,
@@ -393,6 +404,7 @@
 		F327B7992412A2660090911E /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				F3DAC2402422EF6400805AE4 /* ProfileController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -453,6 +465,30 @@
 				F3D50A172414861B00ACC314 /* FilterController.swift */,
 			);
 			path = Filter;
+			sourceTree = "<group>";
+		};
+		F3DAC2422422EF8B00805AE4 /* Leaderboard */ = {
+			isa = PBXGroup;
+			children = (
+				F3DAC2432422EF9800805AE4 /* LeaderboardController.swift */,
+			);
+			path = Leaderboard;
+			sourceTree = "<group>";
+		};
+		F3DAC2452422F03900805AE4 /* Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				F3DAC2462422F04A00805AE4 /* InboxController.swift */,
+			);
+			path = Inbox;
+			sourceTree = "<group>";
+		};
+		F3DAC2482422F06A00805AE4 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				F3DAC2492422F08D00805AE4 /* NotificationsController.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		F3DFEF0F240F15710080DDC6 /* Login */ = {
@@ -757,12 +793,14 @@
 			files = (
 				F365354D2412E1170059D818 /* LocationPin.swift in Sources */,
 				F3DFEF22240F220B0080DDC6 /* LoginViewController.swift in Sources */,
+				F3DAC24A2422F08D00805AE4 /* NotificationsController.swift in Sources */,
 				F3B06DDC2411EB8F00239817 /* MenuOptionCell.swift in Sources */,
 				F3521F56240FFA1A00275FC4 /* RegisterViewController.swift in Sources */,
 				F3B06DDE2411EFB100239817 /* MenuOption.swift in Sources */,
 				2A9222821F38797600A648E6 /* ConfigurationManager.swift in Sources */,
 				F3895B722421A5A800AB615D /* PinEntryControllerDelegate.swift in Sources */,
 				F3C3954B24132437001DD680 /* AboutController.swift in Sources */,
+				F3DAC2472422F04A00805AE4 /* InboxController.swift in Sources */,
 				F3DFEF1C240F1D280080DDC6 /* LoginTextField.swift in Sources */,
 				F3521F5A240FFB3E00275FC4 /* ScrollingViewController.swift in Sources */,
 				F33D0562240DEB1F00F9D8E8 /* Colors.swift in Sources */,
@@ -770,11 +808,13 @@
 				F3B06DBA2411DA7900239817 /* MenuController.swift in Sources */,
 				2ABEE6D61F3886D700531205 /* RootRouter.swift in Sources */,
 				F35B317824143A72000022A2 /* PinDetailsEntryController.swift in Sources */,
+				F3DAC2442422EF9800805AE4 /* LeaderboardController.swift in Sources */,
 				F3B06DBC2411DA9100239817 /* HomeController.swift in Sources */,
 				C90395241FC622D2006F1DC0 /* main.swift in Sources */,
 				2A1E77371F384BFC006C84D4 /* AppDelegate.swift in Sources */,
 				F3DD5EDD2411549400A8F8D1 /* BackendCaller.swift in Sources */,
 				F3521F5E2410006D00275FC4 /* ForgotPasswordViewController.swift in Sources */,
+				F3DAC2412422EF6400805AE4 /* ProfileController.swift in Sources */,
 				553FC23C214047CB001D9362 /* R.generated.swift in Sources */,
 				C90395271FC62425006F1DC0 /* TestsAppDelegate.swift in Sources */,
 				F35B317A24143B21000022A2 /* MapHelperFunctions.swift in Sources */,
