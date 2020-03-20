@@ -155,7 +155,7 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
                 print("\(error.localizedDescription)")
                 return
             }
-            print(user, " successfully logged in into Facebook")
+            print(user ?? "User", " successfully logged in into Facebook")
             self.routeTo(screen: .primaryMap)
         }
     }

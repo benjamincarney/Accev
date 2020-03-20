@@ -19,9 +19,9 @@ class RegisterViewController: LoginRegisterViewController, GIDSignInDelegate {
     let socialMediaButtonHeight: CGFloat = 50.0
     let socialMediaSpace: CGFloat = 20.0
     let sizeOfText: CGFloat = 27.0
-    
+
     // let backend = BackendCaller()
-    
+
     // UI Elements
     lazy var confirmPasswordField: UITextField = {
         let field = LoginTextField("confirm password", isSecure: true, isEmail: false)
@@ -31,14 +31,14 @@ class RegisterViewController: LoginRegisterViewController, GIDSignInDelegate {
         field.addTarget(self, action: #selector(fieldEdited), for: .editingChanged)
         return field
     }()
-    
+
     lazy var haveAnAccountLink: UIButton = {
         let button = TransitionLinkButton("Have an account?")
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(haveAnAccountTapped), for: .touchUpInside)
         return button
     }()
-    
+
     lazy var googleRegisterButton: UIButton = {
         var button: UIButton
         if let image = R.image.googleLogo() {
@@ -52,7 +52,7 @@ class RegisterViewController: LoginRegisterViewController, GIDSignInDelegate {
         button.addTarget(self, action: #selector(googleRegisterTapped), for: .touchUpInside)
         return button
     }()
-    
+
     lazy var facebookRegisterButton: UIButton = {
         var button: UIButton
         if let image = R.image.facebookLogo() {
@@ -66,7 +66,7 @@ class RegisterViewController: LoginRegisterViewController, GIDSignInDelegate {
         button.addTarget(self, action: #selector(facebookRegisterTapped), for: .touchUpInside)
         return button
     }()
-    
+
     // Event Listeners
     @objc
     func facebookRegisterTapped() {
@@ -87,7 +87,7 @@ class RegisterViewController: LoginRegisterViewController, GIDSignInDelegate {
             }
         }
     }
-    
+
     func facebookSignIn() {
         guard let accessToken = AccessToken.current?.tokenString else {
             print("Access Token Missing")
@@ -99,16 +99,16 @@ class RegisterViewController: LoginRegisterViewController, GIDSignInDelegate {
                 print("\(error.localizedDescription)")
                 return
             }
-            print(user, " successfully logged in into Facebook")
+            print(user ?? "User", " successfully logged in into Facebook")
             self.routeTo(screen: .primaryMap)
         }
     }
-    
+
     @objc
     func haveAnAccountTapped() {
         routeTo(screen: .login)
     }
-    
+
     // Custom Functions
     // Handle errors
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -116,7 +116,7 @@ class RegisterViewController: LoginRegisterViewController, GIDSignInDelegate {
             print("Error signing in \(error)")
         }
     }
-    
+
     func failedRegistration() {
         let alertTitle = "Error"
         let alertText = "Registration failed"
@@ -124,7 +124,7 @@ class RegisterViewController: LoginRegisterViewController, GIDSignInDelegate {
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
     }
-    
+
     // Overrides
     override func addSubviews() {
         super.addSubviews()
@@ -133,26 +133,26 @@ class RegisterViewController: LoginRegisterViewController, GIDSignInDelegate {
         contentView.addSubview(googleRegisterButton)
         contentView.addSubview(facebookRegisterButton)
     }
-    
+
     override func setUpConstraints() {
         super.setUpConstraints()
-        
+
         let margins = contentView.layoutMarginsGuide
-        
+
         confirmPasswordField.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
         confirmPasswordField.topAnchor.constraint(equalTo: passwordField.bottomAnchor,
                                                   constant: getTextFieldSeparation()).isActive = true
         confirmPasswordField.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
-        
+
         loginRegisterButton.topAnchor.constraint(equalTo: confirmPasswordField.bottomAnchor,
                                                  constant: loginButtonOffset).isActive = true
         loginRegisterButton.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
         loginRegisterButton.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
-        
+
         haveAnAccountLink.topAnchor.constraint(equalTo: loginRegisterButton.bottomAnchor,
                                                constant: linkSpacing).isActive = true
         haveAnAccountLink.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
-        
+
         googleRegisterButton.topAnchor.constraint(equalTo: haveAnAccountLink.bottomAnchor,
                                                   constant: socialMediaSpace).isActive = true
         googleRegisterButton.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
@@ -162,16 +162,16 @@ class RegisterViewController: LoginRegisterViewController, GIDSignInDelegate {
         facebookRegisterButton.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
         facebookRegisterButton.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
     }
-    
+
     override func shouldEnableSignIn() -> Bool {
         return super.shouldEnableSignIn() && confirmPasswordField.text != "" &&
             confirmPasswordField.text == passwordField.text
     }
-    
+
     override func getBottomSubview() -> UIView {
         return facebookRegisterButton
     }
-    
+
     // Checks if input String is a valid email
     func isValid(_ email: String) -> Bool {
         let emailRegEx = "(?:[a-zA-Z0-9!#$%\\&‘*+/=?\\^_`{|}~-]+(?:\\.[a-zA-Z0-9!#$%\\&'*+/=?\\^_`{|}" +
@@ -181,11 +181,11 @@ class RegisterViewController: LoginRegisterViewController, GIDSignInDelegate {
             "]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-" +
             "9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21" +
         "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
-        
+
         let emailTest = NSPredicate(format: "SELF MATCHES[c] %@", emailRegEx)
         return emailTest.evaluate(with: email)
     }
-    
+
     @objc
     func googleRegisterTapped() {
         print("Attempted Google registration")
@@ -196,19 +196,19 @@ class RegisterViewController: LoginRegisterViewController, GIDSignInDelegate {
         routeTo(screen: .primaryMap)
         //GIDSignIn.sharedInstance().signInSilently()
     }
-    
+
     // Initializers
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     init() {
         super.init(buttonText: "sign up",
                    screenTitle: "Registration", titleSize: 64) { (_ email: String, _ password: String) -> Void in
                     print("Attempted registration with email \(email) and password \(password)")
         }
     }
-    
+
     @objc
     func user_Registration() {
         if let email = emailField.text, let password = passwordField.text {
@@ -224,7 +224,7 @@ class RegisterViewController: LoginRegisterViewController, GIDSignInDelegate {
             }
         }
     }
-    
+
     override func loginRegisterButtonTapped() {
         let password = passwordField.text ?? ""
         let confirmPassword = confirmPasswordField.text ?? ""
