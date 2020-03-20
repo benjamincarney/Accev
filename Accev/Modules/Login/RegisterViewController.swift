@@ -6,6 +6,10 @@
 //  Copyright © 2020 Accev. All rights reserved.
 //
 
+import FacebookCore
+import FacebookLogin
+import FBSDKCoreKit
+import FBSDKLoginKit
 import Firebase
 import FirebaseAuth
 import GoogleSignIn
@@ -61,7 +65,7 @@ import UIKit
              button.setTitle("register with facebook", for: .normal)
          }
          button.translatesAutoresizingMaskIntoConstraints = false
-         // button.addTarget(self, action: #selector(facebookRegisterTapped), for: .touchUpInside)
+         button.addTarget(self, action: #selector(facebookRegisterTapped), for: .touchUpInside)
          return button
      }()
 
@@ -69,39 +73,39 @@ import UIKit
      @objc
      func facebookRegisterTapped() {
          print("Attempted Facebook registration")
-         // let loginManager = LoginManager()
+          let loginManager = LoginManager()
 
          // Log out
-//         if let currentAccessToken = AccessToken.current, currentAccessToken.appID != Settings.appID {
-//             loginManager.logOut()
-//         }
+         if let currentAccessToken = AccessToken.current, currentAccessToken.appID != Settings.appID {
+             loginManager.logOut()
+         }
 
          // Log in
-//         loginManager.logIn(permissions: [.publicProfile], viewController: self) { loginResult in
-//             switch loginResult {
-//             case .failed(let error):
-//                 print(error)
-//             case .cancelled:
-//                 print("User cancelled login.")
-//             case .success(_, _, _ /* let grantedPermissions, let declinedPermissions, let accessToken */):
-//                 guard let accessToken = AccessToken.current else {
-//                     print("Failed to get access token")
-//                     return
-//                 }
-//
-//                 // Register with Facebook!!
-//                 let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
-//                 Auth.auth().signIn(with: credential) { _ /* authResult */, error in
-//                     if let error = error {
-//                         print("Login error: \(error.localizedDescription)")
-//                         return
-//                     }
-//                     // User is signed in
-//                     print("Logged in!")
-//                     self.routeTo(screen: .camera)
-//                 }
-//             }
-//         }
+         loginManager.logIn(permissions: [.publicProfile], viewController: self) { loginResult in
+             switch loginResult {
+             case .failed(let error):
+                 print(error)
+             case .cancelled:
+                 print("User cancelled login.")
+             case .success(_, _, _ /* let grantedPermissions, let declinedPermissions, let accessToken */):
+                 guard let accessToken = AccessToken.current else {
+                     print("Failed to get access token")
+                     return
+                 }
+
+                 // Register with Facebook!!
+                 let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+                 Auth.auth().signIn(with: credential) { _ /* authResult */, error in
+                     if let error = error {
+                         print("Login error: \(error.localizedDescription)")
+                         return
+                     }
+                     // User is signed in
+                     print("Logged in!")
+                     self.routeTo(screen: .primaryMap)
+                 }
+             }
+         }
      }
 
      @objc

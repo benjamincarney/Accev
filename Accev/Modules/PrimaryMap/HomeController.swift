@@ -8,6 +8,8 @@
 import CoreLocation
 import GoogleMaps
 import GooglePlaces
+import Firebase
+import FirebaseAuth
 import UIKit
 
 
@@ -36,6 +38,15 @@ CLLocationManagerDelegate, PinEntryControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let user = Auth.auth().currentUser
+        if let user = user {
+          let uid = user.uid
+          let email = user.email
+          let photoURL = user.photoURL
+            print(email)
+          // ...
+        }
         placesClient = GMSPlacesClient.shared()
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateFilters),
                                                name: NSNotification.Name(rawValue: "DoUpdateLabel"),
@@ -75,9 +86,6 @@ CLLocationManagerDelegate, PinEntryControllerDelegate {
 
     @objc
     func presentSearch() {
-//        let controller = SearchController()
-//        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-        // textField.resignFirstResponder()
         let acController = GMSAutocompleteViewController()
         acController.delegate = self
         present(acController, animated: true, completion: nil)

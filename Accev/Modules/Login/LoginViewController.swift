@@ -6,6 +6,10 @@
 //  Copyright © 2020 Accev. All rights reserved.
 //
 
+import FacebookCore
+import FacebookLogin
+import FBSDKCoreKit
+import FBSDKLoginKit
 import Firebase
 import FirebaseAuth
 import GoogleSignIn
@@ -59,7 +63,7 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
             button.setTitle("continue with facebook", for: .normal)
         }
         button.translatesAutoresizingMaskIntoConstraints = false
-        // button.addTarget(self, action: #selector(facebookLoginTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(facebookLoginTapped), for: .touchUpInside)
         return button
     }()
 
@@ -156,6 +160,41 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
 
     @objc
     func facebookLoginTapped() {
+        print("Attempted Facebook regibt4qw42n5145nhistration")
+        let loginManager = LoginManager()
+
+        // Log out
+        if let currentAccessToken = AccessToken.current, currentAccessToken.appID != Settings.appID {
+            loginManager.logOut()
+        }
+
+        // Log in
+        loginManager.logIn(permissions: [ .publicProfile ], viewController: self) { loginResult in
+            switch loginResult {
+            case .failed(let error):
+                print(error)
+                self.loginFailed()
+            case .cancelled:
+                print("User cancelled login.")
+            case .success(_ /* grantedPermissions */, _ /* declinedPermissions */, _ /* accessToken */):
+                print("Logged in!")
+                guard let accessToken = AccessToken.current else {
+                    print("Failed to get access token")
+                    return
+                }
+                let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+                Auth.auth().signIn(with: credential) { _ /* authResult */, error in
+                    if let error = error {
+                        print("Login error: \(error.localizedDescription)")
+                        self.loginFailed()
+                        return
+                    }
+                    // User is signed in
+                    print("Logged in!")
+                    self.routeTo(screen: .primaryMap)
+                }
+            }
+        }
     }
 
     @objc
