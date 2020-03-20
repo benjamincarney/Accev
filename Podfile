@@ -17,7 +17,10 @@ target 'Accev' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
-  pod 'FBSDKLoginKit'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FBSDKCoreKit/Swift'
+  pod 'FBSDKLoginKit/Swift'
 
   target 'AccevTests' do
     inherit! :search_paths

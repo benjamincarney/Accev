@@ -70,9 +70,9 @@ void sum(float *val0, float *val1);
                     };
 }
 
-+ (void)loadRulesForKey:(NSString *)useCaseKey
++ (void)loadRules
 {
-  _rules = [FBSDKModelManager getRulesForKey:useCaseKey];
+  _rules = [FBSDKModelManager getRules];
 }
 
 + (NSString *)getTextFeature:(NSString *)text

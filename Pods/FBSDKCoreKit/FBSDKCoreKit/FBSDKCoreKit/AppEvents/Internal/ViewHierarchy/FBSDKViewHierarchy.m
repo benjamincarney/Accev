@@ -32,8 +32,6 @@
 
 #define MAX_VIEW_HIERARCHY_LEVEL 35
 
-NS_ASSUME_NONNULL_BEGIN
-
 void fb_dispatch_on_main_thread(dispatch_block_t block) {
   if (block != nil) {
     if ([NSThread isMainThread]) {
@@ -52,7 +50,7 @@ void fb_dispatch_on_default_thread(dispatch_block_t block) {
 
 @implementation FBSDKViewHierarchy
 
-+ (nullable NSArray*)getChildren:(NSObject*)obj
++ (NSArray*)getChildren:(NSObject*)obj
 {
   if ([obj isKindOfClass:[UIControl class]]) {
     return nil;
@@ -150,7 +148,7 @@ void fb_dispatch_on_default_thread(dispatch_block_t block) {
   return children;
 }
 
-+ (nullable NSObject *)getParent:(NSObject *)obj
++ (NSObject *)getParent:(NSObject *)obj
 {
   if ([obj isKindOfClass:[UIView class]]) {
     UIView *superview = ((UIView *)obj).superview;
@@ -195,12 +193,12 @@ void fb_dispatch_on_default_thread(dispatch_block_t block) {
   return nil;
 }
 
-+ (nullable NSArray *)getPath:(NSObject *)obj
++ (NSArray *)getPath:(NSObject *)obj
 {
   return [FBSDKViewHierarchy getPath:obj limit:MAX_VIEW_HIERARCHY_LEVEL];
 }
 
-+ (nullable NSArray *)getPath:(NSObject *)obj limit:(int)limit
++ (NSArray *)getPath:(NSObject *)obj limit:(int)limit
 {
   if (!obj || limit <= 0) {
     return nil;
@@ -266,12 +264,12 @@ void fb_dispatch_on_default_thread(dispatch_block_t block) {
   return [componentInfo copy];
 }
 
-+ (nullable NSMutableDictionary<NSString *, id> *)getDetailAttributesOf:(NSObject *)obj
++ (NSMutableDictionary<NSString *, id> *)getDetailAttributesOf:(NSObject *)obj
 {
   return [self getDetailAttributesOf:obj withHash:YES];
 }
 
-+ (nullable NSMutableDictionary<NSString *, id> *)getDetailAttributesOf:(NSObject *)obj withHash:(BOOL)hash
++ (NSMutableDictionary<NSString *, id> *)getDetailAttributesOf:(NSObject *)obj withHash:(BOOL)hash
 {
   if (!obj) {
     return nil;
@@ -321,7 +319,7 @@ void fb_dispatch_on_default_thread(dispatch_block_t block) {
   return result;
 }
 
-+ (nullable NSIndexPath *)getIndexPath:(NSObject *)obj
++ (NSIndexPath *)getIndexPath:(NSObject *)obj
 {
   NSIndexPath *indexPath = nil;
 
@@ -336,7 +334,7 @@ void fb_dispatch_on_default_thread(dispatch_block_t block) {
   return indexPath;
 }
 
-+ (nullable NSString *)getText:(NSObject *)obj
++ (NSString *)getText:(NSObject *)obj
 {
   NSString *text = nil;
 
@@ -352,10 +350,6 @@ void fb_dispatch_on_default_thread(dispatch_block_t block) {
     NSMutableArray *titles = [NSMutableArray array];
 
     for (NSInteger i = 0; i < sections; i++) {
-      NSInteger numberOfRow = [picker numberOfRowsInComponent:i];
-      if (numberOfRow <= 0) {
-        continue;
-      }
       NSInteger row = [picker selectedRowInComponent:i];
       NSString *title;
       if ([picker.delegate
@@ -395,7 +389,7 @@ void fb_dispatch_on_default_thread(dispatch_block_t block) {
   return text.length > 0 ? text : nil;
 }
 
-+ (nullable NSDictionary<NSString *, id> *)getTextStyle:(NSObject *)obj
++ (NSDictionary<NSString *, id> *)getTextStyle:(NSObject *)obj
 {
   UIFont *font = nil;
   if ([obj isKindOfClass:[UIButton class]]) {
@@ -424,7 +418,7 @@ void fb_dispatch_on_default_thread(dispatch_block_t block) {
   return nil;
 }
 
-+ (nullable NSString *)getHint:(NSObject *)obj
++ (NSString *)getHint:(NSObject *)obj
 {
   NSString *hint = nil;
 
@@ -502,41 +496,25 @@ void fb_dispatch_on_default_thread(dispatch_block_t block) {
   return text && [FBSDKAppEventsUtility isSensitiveUserData:text];
 }
 
-+ (nullable NSDictionary<NSString *, id> *)recursiveCaptureTreeWithCurrentNode:(NSObject *)currentNode
-                                                                    targetNode:(nullable NSObject *)targetNode
-                                                                 objAddressSet:(nullable NSMutableSet *)objAddressSet
-                                                                          hash:(BOOL)hash
++ (NSDictionary<NSString *, id> *)recursiveCaptureTree:(NSObject *)obj withObject:(NSObject *)interact
 {
-  if (!currentNode) {
+  if (!obj) {
     return nil;
   }
 
-  if (objAddressSet) {
-    if ([objAddressSet containsObject: currentNode]) {
-      return nil;
-    }
-    [objAddressSet addObject:currentNode];
-  }
+  NSMutableDictionary<NSString *, id> *result = [FBSDKViewHierarchy getDetailAttributesOf:obj withHash:NO];
 
-  NSMutableDictionary<NSString *, id> *result = [FBSDKViewHierarchy getDetailAttributesOf:currentNode
-                                                                                 withHash:hash];
-
-  NSArray<NSObject *> *children = [FBSDKViewHierarchy getChildren:currentNode];
+  NSArray<NSObject *> *children = [FBSDKViewHierarchy getChildren:obj];
   NSMutableArray<NSDictionary<NSString *, id> *> *childrenTrees = [NSMutableArray array];
   for (NSObject *child in children) {
-    NSDictionary<NSString *, id> *objTree = [self recursiveCaptureTreeWithCurrentNode:child
-                                                                           targetNode:targetNode
-                                                                        objAddressSet:objAddressSet
-                                                                                 hash:hash];
-    if (objTree != nil) {
-      [childrenTrees addObject:objTree];
-    }
+    NSDictionary<NSString *, id> *objTree = [self recursiveCaptureTree:child withObject:interact];
+    [childrenTrees addObject:objTree];
   }
 
   if (childrenTrees.count > 0) {
     [result setObject:[childrenTrees copy] forKey:VIEW_HIERARCHY_CHILD_VIEWS_KEY];
   }
-  if (targetNode && currentNode == targetNode) {
+  if (obj == interact) {
     [result setObject:[NSNumber numberWithBool:YES] forKey:VIEW_HIERARCHY_IS_INTERACTED_KEY];
   }
   return [result copy];
@@ -571,7 +549,7 @@ void fb_dispatch_on_default_thread(dispatch_block_t block) {
   return NO;
 }
 
-+ (nullable NSNumber *)getViewReactTag:(UIView *)view
++ (NSNumber *)getViewReactTag:(UIView *)view
 {
   if (view != nil && [view respondsToSelector:@selector(reactTag)]) {
     NSNumber *reactTag = [view performSelector:@selector(reactTag)];
@@ -603,7 +581,7 @@ void fb_dispatch_on_default_thread(dispatch_block_t block) {
   return NO;
 }
 
-+ (nullable UIViewController *)getParentViewController:(UIView *)view
++ (UIViewController *)getParentViewController:(UIView *)view
 {
   UIResponder *parentResponder = view;
 
@@ -617,7 +595,7 @@ void fb_dispatch_on_default_thread(dispatch_block_t block) {
   return nil;
 }
 
-+ (nullable UITableView *)getParentTableView:(UIView *)cell
++ (UITableView *)getParentTableView:(UIView *)cell
 {
   UIView *superview = cell.superview;
   while (superview) {
@@ -629,7 +607,7 @@ void fb_dispatch_on_default_thread(dispatch_block_t block) {
   return nil;
 }
 
-+ (nullable UICollectionView *)getParentCollectionView:(UIView *)cell
++ (UICollectionView *)getParentCollectionView:(UIView *)cell
 {
   UIView *superview = cell.superview;
   while (superview) {
@@ -646,10 +624,7 @@ void fb_dispatch_on_default_thread(dispatch_block_t block) {
   if ([obj isKindOfClass:[UIView class]]) {
     return ((UIView *)obj).tag;
   } else if ([obj isKindOfClass:[UIViewController class]]) {
-    UIViewController *vc = (UIViewController *)obj;
-    if (vc.isViewLoaded) {
-      return ((UIViewController *)obj).view.tag;
-    }
+    return ((UIViewController *)obj).view.tag;
   }
 
   return 0;
@@ -683,7 +658,5 @@ void fb_dispatch_on_default_thread(dispatch_block_t block) {
 }
 
 @end
-
-NS_ASSUME_NONNULL_END
 
 #endif

@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FBSDKFeatureExtractor : NSObject
 
-+ (void)loadRulesForKey:(NSString *)useCaseKey;
++ (void)loadRules;
 + (NSString *)getTextFeature:(NSString *)text
               withScreenName:(NSString *)screenName;
 + (float *)getDenseFeatures:(NSDictionary *)viewHierarchy;

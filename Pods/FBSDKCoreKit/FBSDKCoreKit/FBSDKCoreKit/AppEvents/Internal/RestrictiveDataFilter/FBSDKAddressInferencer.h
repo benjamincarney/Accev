@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FBSDKAddressInferencer : NSObject
 
 + (void)initializeDenseFeature;
-+ (void)loadWeightsForKey:(NSString *)useCase;
++ (void)loadWeights;
 + (BOOL)shouldFilterParam:(nullable NSString *)param;
 
 @end
