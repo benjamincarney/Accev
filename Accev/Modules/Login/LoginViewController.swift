@@ -143,19 +143,19 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
     }
-    
+
     func facebookSignIn() {
         guard let accessToken = AccessToken.current?.tokenString else {
             print("Access Token Missing")
             return
         }
         let credential = FacebookAuthProvider.credential(withAccessToken: accessToken)
-        Auth.auth().signIn(with: credential) { (user, error) in
+        Auth.auth().signIn(with: credential) { user, error in
             if let error = error {
                 print("\(error.localizedDescription)")
                 return
             }
-            print("Successfully logged in into Facebook")
+            print(user, " successfully logged in into Facebook")
             self.routeTo(screen: .primaryMap)
         }
     }
@@ -180,7 +180,7 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
             loginManager.logOut()
         }
         // Depreciated logIn method (should create an issue on github)
-        loginManager.logIn(permissions: [.publicProfile, .email], viewController: self) { (loginResult) in
+        loginManager.logIn(permissions: [.publicProfile, .email], viewController: self) { loginResult in
             switch loginResult {
             case .success(granted: _, declined: _, token: _):
                 self.facebookSignIn()
