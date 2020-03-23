@@ -49,11 +49,7 @@ static FBSDKAccessToken *g_currentAccessToken;
 #define FBSDK_ACCESSTOKEN_REFRESHDATE_KEY @"refreshDate"
 #define FBSDK_ACCESSTOKEN_EXPIRATIONDATE_KEY @"expirationDate"
 #define FBSDK_ACCESSTOKEN_DATA_EXPIRATIONDATE_KEY @"dataAccessExpirationDate"
-<<<<<<< HEAD
-
-=======
 #define FBSDK_ACCESSTOKEN_GRAPH_DOMAIN_KEY @"graphDomain"
->>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
 
 @implementation FBSDKAccessToken
 
@@ -81,8 +77,6 @@ static FBSDKAccessToken *g_currentAccessToken;
     return self;
 }
 
-<<<<<<< HEAD
-=======
 - (instancetype)initWithTokenString:(NSString *)tokenString
                         permissions:(NSArray<NSString *> *)permissions
                 declinedPermissions:(NSArray<NSString *> *)declinedPermissions
@@ -113,7 +107,6 @@ static FBSDKAccessToken *g_currentAccessToken;
   return accessToken;
 }
 
->>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
 - (BOOL)hasGranted:(NSString *)permission
 {
   return [self.permissions containsObject:permission];
@@ -193,12 +186,8 @@ static FBSDKAccessToken *g_currentAccessToken;
     self.userID.hash,
     self.refreshDate.hash,
     self.expirationDate.hash,
-<<<<<<< HEAD
-    self.dataAccessExpirationDate.hash
-=======
     self.dataAccessExpirationDate.hash,
     self.graphDomain.hash
->>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
   };
   return [FBSDKMath hashWithIntegerArray:subhashes count:sizeof(subhashes) / sizeof(subhashes[0])];
 }
@@ -225,12 +214,8 @@ static FBSDKAccessToken *g_currentAccessToken;
           [FBSDKInternalUtility object:self.userID isEqualToObject:token.userID] &&
           [FBSDKInternalUtility object:self.refreshDate isEqualToObject:token.refreshDate] &&
           [FBSDKInternalUtility object:self.expirationDate isEqualToObject:token.expirationDate] &&
-<<<<<<< HEAD
-          [FBSDKInternalUtility object:self.dataAccessExpirationDate isEqualToObject:token.dataAccessExpirationDate] );
-=======
           [FBSDKInternalUtility object:self.dataAccessExpirationDate isEqualToObject:token.dataAccessExpirationDate] &&
           [FBSDKInternalUtility object:self.graphDomain isEqualToObject:token.graphDomain]);
->>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
 }
 
 #pragma mark - NSCopying
@@ -259,18 +244,6 @@ static FBSDKAccessToken *g_currentAccessToken;
   NSDate *refreshDate = [decoder decodeObjectOfClass:[NSDate class] forKey:FBSDK_ACCESSTOKEN_REFRESHDATE_KEY];
   NSDate *expirationDate = [decoder decodeObjectOfClass:[NSDate class] forKey:FBSDK_ACCESSTOKEN_EXPIRATIONDATE_KEY];
   NSDate *dataAccessExpirationDate = [decoder decodeObjectOfClass:[NSDate class] forKey:FBSDK_ACCESSTOKEN_DATA_EXPIRATIONDATE_KEY];
-<<<<<<< HEAD
-
-  return [self initWithTokenString:tokenString
-                       permissions:permissions.allObjects
-               declinedPermissions:declinedPermissions.allObjects
-                expiredPermissions:expiredPermissions.allObjects
-                             appID:appID
-                            userID:userID
-                    expirationDate:expirationDate
-                       refreshDate:refreshDate
-          dataAccessExpirationDate:dataAccessExpirationDate];
-=======
   NSString *graphDomain = [decoder decodeObjectOfClass:[NSString class] forKey:FBSDK_ACCESSTOKEN_GRAPH_DOMAIN_KEY];
 
   return
@@ -285,7 +258,6 @@ static FBSDKAccessToken *g_currentAccessToken;
    refreshDate:refreshDate
    dataAccessExpirationDate:dataAccessExpirationDate
    graphDomain:graphDomain];
->>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder
@@ -299,10 +271,7 @@ static FBSDKAccessToken *g_currentAccessToken;
   [encoder encodeObject:self.expirationDate forKey:FBSDK_ACCESSTOKEN_EXPIRATIONDATE_KEY];
   [encoder encodeObject:self.refreshDate forKey:FBSDK_ACCESSTOKEN_REFRESHDATE_KEY];
   [encoder encodeObject:self.dataAccessExpirationDate forKey:FBSDK_ACCESSTOKEN_DATA_EXPIRATIONDATE_KEY];
-<<<<<<< HEAD
-=======
   [encoder encodeObject:self.graphDomain forKey:FBSDK_ACCESSTOKEN_GRAPH_DOMAIN_KEY];
->>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
 }
 
 @end

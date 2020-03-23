@@ -163,14 +163,11 @@ NS_REFINED_FOR_SWIFT;
 @property (nonatomic, copy, readonly) NSString *userID;
 
 /**
-<<<<<<< HEAD
-=======
   The graph domain where this access token is valid.
  */
 @property (nonatomic, copy, readonly) NSString *graphDomain;
 
 /**
->>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
  Returns whether the access token is expired by checking its expirationDate property
  */
 @property (readonly, assign, nonatomic, getter=isExpired) BOOL expired;
@@ -215,8 +212,6 @@ NS_REFINED_FOR_SWIFT;
 NS_DESIGNATED_INITIALIZER;
 
 /**
-<<<<<<< HEAD
-=======
  Convenience initializer.
  @param tokenString the opaque token string.
  @param permissions the granted permissions. Note this is converted to NSSet and is only
@@ -249,7 +244,6 @@ NS_DESIGNATED_INITIALIZER;
                         graphDomain:(nullable NSString *)graphDomain;
 
 /**
->>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
   Convenience getter to determine if a permission has been granted
  @param permission  The permission to check.
  */

@@ -143,15 +143,11 @@ typedef NS_ENUM(NSUInteger, FBSDKInternalUtilityVersionShift)
     hostPrefix = [hostPrefix stringByAppendingString:@"."];
   }
 
-<<<<<<< HEAD
-  NSString *host = @"facebook.com";
-=======
   NSString *host =
   [[FBSDKAccessToken currentAccessToken].graphDomain isEqualToString:@"gaming"]
   ? @"fb.gg"
   : @"facebook.com";
 
->>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
   NSString *domainPart = [FBSDKSettings facebookDomainPart];
   if (domainPart.length) {
     host = [[NSString alloc] initWithFormat:@"%@.%@", domainPart, host];

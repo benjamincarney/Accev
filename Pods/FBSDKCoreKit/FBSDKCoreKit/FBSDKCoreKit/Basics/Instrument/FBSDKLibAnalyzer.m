@@ -40,13 +40,9 @@ static NSMutableDictionary<NSString *, NSString *> *_methodMapping;
       [self addClass:object_getClass(class) isClassMethod:YES];
     }
   }
-<<<<<<< HEAD
-  return [_methodMapping copy];
-=======
   @synchronized (_methodMapping) {
     return [_methodMapping copy];
   }
->>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
 }
 
 #pragma mark - private methods
@@ -122,13 +118,9 @@ static NSMutableDictionary<NSString *, NSString *> *_methodMapping;
                               NSStringFromSelector(selector)];
 
       if (methodAddress && methodName) {
-<<<<<<< HEAD
-        [_methodMapping setObject:methodName forKey:methodAddress];
-=======
         @synchronized (_methodMapping) {
           [_methodMapping setObject:methodName forKey:methodAddress];
         }
->>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
       }
     }
   }

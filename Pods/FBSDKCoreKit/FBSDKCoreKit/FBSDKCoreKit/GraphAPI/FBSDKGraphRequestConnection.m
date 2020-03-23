@@ -78,12 +78,8 @@ static FBSDKAccessToken *_CreateExpiredAccessToken(FBSDKAccessToken *accessToken
                                                 userID:accessToken.userID
                                         expirationDate:expirationDate
                                            refreshDate:expirationDate
-<<<<<<< HEAD
-                                           dataAccessExpirationDate:expirationDate];
-=======
                                            dataAccessExpirationDate:expirationDate
                                            graphDomain:accessToken.graphDomain];
->>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
 }
 #endif
 

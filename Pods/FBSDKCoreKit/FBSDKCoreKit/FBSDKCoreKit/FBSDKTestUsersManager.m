@@ -216,12 +216,8 @@ static NSMutableDictionary<NSString *, FBSDKTestUsersManager *> *gInstancesDicti
                                                 userID:userId
                                         expirationDate:nil
                                            refreshDate:nil
-<<<<<<< HEAD
-                                           dataAccessExpirationDate:nil];
-=======
                                            dataAccessExpirationDate:nil
                                            graphDomain:nil];
->>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
 }
 
 - (NSArray *)userIdAndTokenOfExistingAccountWithPermissions:(NSSet *)permissions skip:(NSSet *)setToSkip {

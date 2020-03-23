@@ -41,11 +41,8 @@
 
 @property (nonatomic, copy) NSString *challenge;
 
-<<<<<<< HEAD
-=======
 @property (nonatomic, copy) NSString *graphDomain;
 
->>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
 @end
 
 #endif
