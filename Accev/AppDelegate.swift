@@ -5,9 +5,7 @@
 //  Copyright © Accev. All rights reserved.
 //
 
-import FacebookCore
 import FBSDKCoreKit
-import FBSDKLoginKit
 import Firebase
 import GoogleMaps
 import GooglePlaces
@@ -40,10 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         notificationsHandler.configure()
 
         // Google SignIn Configuration
-        //Google Login configuration
         GIDSignIn.sharedInstance().clientID =
             "801371533628-iodo8voj6svel41966dto7isib0oq3uv.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
+        // Facebook SignIn Configuration
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         // App structure
         router.loadMainAppStructure()
 
@@ -73,11 +72,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     @available(iOS 9.0, *)
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
-      return GIDSignIn.sharedInstance().handle(url)
+        let googleDidHandle = GIDSignIn.sharedInstance().handle(url)
+        let facebookDidHandle = ApplicationDelegate.shared.application(app, open: url, options: options)
+        return googleDidHandle || facebookDidHandle
     }
 
+    // Depreciated method for <= iOS 8
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url)
+        let googleDidHandle = GIDSignIn.sharedInstance().handle(url)
+        let facebookDidHandle =
+            ApplicationDelegate.shared.application(application, open: url,
+                                                   sourceApplication: sourceApplication, annotation: annotation)
+        return googleDidHandle || facebookDidHandle
     }
 
     func application(_ application: UIApplication,

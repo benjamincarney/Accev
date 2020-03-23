@@ -103,6 +103,13 @@ typedef void (^FBSDKAuthenticationCompletionHandler)(NSURL *_Nullable callbackUR
          annotation:(id)annotation
 {
   id<FBSDKURLOpening> pendingURLOpen = _pendingURLOpen;
+<<<<<<< HEAD
+=======
+  BOOL canOpenURL =   [pendingURLOpen canOpenURL:url
+                                  forApplication:application
+                               sourceApplication:sourceApplication
+                                      annotation:annotation];
+>>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
 
   void (^completePendingOpenURLBlock)(void) = ^{
     self->_pendingURLOpen = nil;
@@ -123,15 +130,38 @@ typedef void (^FBSDKAuthenticationCompletionHandler)(NSURL *_Nullable callbackUR
       if (_authenticationSession != nil) {
         [_authenticationSession cancel];
         _authenticationSession = nil;
+<<<<<<< HEAD
+=======
+
+        // This check is needed in case another sdk / message / ad etc... tries to open the app
+        // during the login flow.
+        // This dismisses the authentication browser without triggering any login callbacks.
+        // Hence we need to explicitly call the authentication session's completion handler.
+        if (!canOpenURL) {
+          NSString *errorMessage = [[NSString alloc]
+                                    initWithFormat:@"Login attempt cancelled by alternate call to openURL from: %@",
+                                    url];
+          NSError *loginError = [[NSError alloc]
+                                 initWithDomain:FBSDKErrorDomain
+                                 code:FBSDKErrorBridgeAPIInterruption
+                                 userInfo:@{FBSDKErrorLocalizedDescriptionKey: errorMessage}];
+          _authenticationSessionCompletionHandler(url, loginError);
+          _authenticationSessionCompletionHandler = nil;
+        }
+>>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
       }
     }
     completePendingOpenURLBlock();
   }
 
+<<<<<<< HEAD
   if ([pendingURLOpen canOpenURL:url
                   forApplication:application
                sourceApplication:sourceApplication
                       annotation:annotation]) {
+=======
+  if (canOpenURL) {
+>>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
     return YES;
   }
 

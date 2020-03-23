@@ -6,8 +6,6 @@
 //  Copyright © 2020 Accev. All rights reserved.
 //
 
-import FacebookCore
-import FacebookLogin
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
@@ -146,6 +144,22 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
         self.present(alertVC, animated: true, completion: nil)
     }
 
+    func facebookSignIn() {
+        guard let accessToken = AccessToken.current?.tokenString else {
+            print("Access Token Missing")
+            return
+        }
+        let credential = FacebookAuthProvider.credential(withAccessToken: accessToken)
+        Auth.auth().signIn(with: credential) { user, error in
+            if let error = error {
+                print("\(error.localizedDescription)")
+                return
+            }
+            print(user ?? "User", " successfully logged in into Facebook")
+            self.routeTo(screen: .primaryMap)
+        }
+    }
+
     // Event Listeners
     @objc
     func registerLinkTapped() {
@@ -160,39 +174,21 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
 
     @objc
     func facebookLoginTapped() {
-        print("Attempted Facebook regibt4qw42n5145nhistration")
+        print("Attempted Facebook login")
         let loginManager = LoginManager()
-
-        // Log out
         if let currentAccessToken = AccessToken.current, currentAccessToken.appID != Settings.appID {
             loginManager.logOut()
         }
-
-        // Log in
-        loginManager.logIn(permissions: [ .publicProfile ], viewController: self) { loginResult in
+        // Depreciated logIn method (should create an issue on github)
+        loginManager.logIn(permissions: [.publicProfile, .email], viewController: self) { loginResult in
             switch loginResult {
+            case .success(granted: _, declined: _, token: _):
+                self.facebookSignIn()
             case .failed(let error):
                 print(error)
                 self.loginFailed()
             case .cancelled:
-                print("User cancelled login.")
-            case .success(_ /* grantedPermissions */, _ /* declinedPermissions */, _ /* accessToken */):
-                print("Logged in!")
-                guard let accessToken = AccessToken.current else {
-                    print("Failed to get access token")
-                    return
-                }
-                let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
-                Auth.auth().signIn(with: credential) { _ /* authResult */, error in
-                    if let error = error {
-                        print("Login error: \(error.localizedDescription)")
-                        self.loginFailed()
-                        return
-                    }
-                    // User is signed in
-                    print("Logged in!")
-                    self.routeTo(screen: .primaryMap)
-                }
+                print("User Cancelled Login")
             }
         }
     }
@@ -200,10 +196,8 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
     @objc
     func googleLoginTapped() {
         print("Attempted Google login")
-        //GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance()?.signIn()
-        // GIDSignIn.sharedInstance()?.restorePreviousSignIn()
     }
 
     // Initializers

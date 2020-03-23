@@ -16,6 +16,11 @@
 #import "FBSDKConstants.h"
 #import "FBSDKCopying.h"
 #import "FBSDKCoreKit.h"
+<<<<<<< HEAD
+=======
+#import "FBSDKDeviceButton.h"
+#import "FBSDKDeviceViewControllerBase.h"
+>>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
 #import "FBSDKMeasurementEvent.h"
 #import "FBSDKMutableCopying.h"
 #import "FBSDKProfile.h"

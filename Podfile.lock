@@ -175,6 +175,7 @@ PODS:
     - FacebookCore (~> 0.9.0)
     - FBSDKCoreKit (~> 5.0)
     - FBSDKLoginKit (~> 5.0)
+<<<<<<< HEAD
   - FacebookShare (0.9.0):
     - FacebookCore (~> 0.9.0)
     - FBSDKCoreKit (~> 5.0)
@@ -193,6 +194,23 @@ PODS:
     - FBSDKShareKit/Share (= 5.15.0)
   - FBSDKShareKit/Share (5.15.0):
     - FBSDKCoreKit (~> 5.0)
+=======
+  - FBSDKCoreKit (5.15.1):
+    - FBSDKCoreKit/Basics (= 5.15.1)
+    - FBSDKCoreKit/Core (= 5.15.1)
+  - FBSDKCoreKit/Basics (5.15.1)
+  - FBSDKCoreKit/Core (5.15.1):
+    - FBSDKCoreKit/Basics
+  - FBSDKCoreKit/Swift (5.15.1):
+    - FBSDKCoreKit/Core
+  - FBSDKLoginKit (5.15.1):
+    - FBSDKLoginKit/Login (= 5.15.1)
+  - FBSDKLoginKit/Login (5.15.1):
+    - FBSDKCoreKit (~> 5.0)
+  - FBSDKLoginKit/Swift (5.15.1):
+    - FBSDKCoreKit/Swift (~> 5.15.1)
+    - FBSDKLoginKit/Login
+>>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
   - Firebase/Auth (6.15.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.4.2)
@@ -302,7 +320,12 @@ PODS:
 DEPENDENCIES:
   - FacebookCore
   - FacebookLogin
+<<<<<<< HEAD
   - FacebookShare
+=======
+  - FBSDKCoreKit/Swift
+  - FBSDKLoginKit/Swift
+>>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
   - Firebase/Auth
   - Firebase/Firestore
   - FirebaseFirestoreSwift
@@ -319,10 +342,15 @@ SPEC REPOS:
     - BoringSSL-GRPC
     - FacebookCore
     - FacebookLogin
+<<<<<<< HEAD
     - FacebookShare
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FBSDKShareKit
+=======
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+>>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
     - Firebase
     - FirebaseAuth
     - FirebaseAuthInterop
@@ -353,10 +381,15 @@ SPEC CHECKSUMS:
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
   FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
   FacebookLogin: 6cee9fd6e1fe976fe8f7eec199e27b28b14f5d63
+<<<<<<< HEAD
   FacebookShare: 85968ad1b1606c4944fb154924e425fd29184ea5
   FBSDKCoreKit: 083ba8c8e37939c0b4c84250654c9be0aef0c2f8
   FBSDKLoginKit: bd40354a96e4718765713ef225bc368f10dc395d
   FBSDKShareKit: 23bad745329f966836f9a2493f86fc7c092b02e6
+=======
+  FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
+  FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
+>>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
   Firebase: 5d77105d9740a07ca6b16927ca971db7e860faaf
   FirebaseAuth: ce45d7c5d46bed90159f3a73b6efbe8976ed3573
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
@@ -381,6 +414,10 @@ SPEC CHECKSUMS:
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
 
+<<<<<<< HEAD
 PODFILE CHECKSUM: ab88491cf5535efbac58a89cb659b5c53e49864b
+=======
+PODFILE CHECKSUM: c8448a2510ffc2919537450f55aec2e1ee1ff82d
+>>>>>>> cf4a1b289b25450a6fe25e7c95be27cc2a5a4f3b
 
-COCOAPODS: 1.9.0
+COCOAPODS: 1.9.1
