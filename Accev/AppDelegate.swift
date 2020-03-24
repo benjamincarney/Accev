@@ -30,6 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
         // Firebase config
         FirebaseApp.configure()
+        
+        //Facebook Login configuration
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
         // Notifications
         notificationsHandler.configure()
