@@ -20,8 +20,6 @@ class RegisterViewController: LoginRegisterViewController, GIDSignInDelegate {
     let socialMediaSpace: CGFloat = 20.0
     let sizeOfText: CGFloat = 27.0
 
-    // let backend = BackendCaller()
-
     // UI Elements
     lazy var confirmPasswordField: UITextField = {
         let field = LoginTextField("confirm password", isSecure: true, isEmail: false)
@@ -220,6 +218,11 @@ class RegisterViewController: LoginRegisterViewController, GIDSignInDelegate {
                 }
                 // TODO: Update user with profile picture
                 print("Account Created!")
+
+                // Add profile stats to Firebase
+                let backend = BackendCaller()
+                backend.addProfileInfo(email: email)
+
                 self.routeTo(screen: .primaryMap)
             }
         }

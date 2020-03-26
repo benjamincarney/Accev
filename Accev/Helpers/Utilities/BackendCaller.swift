@@ -153,5 +153,23 @@ class BackendCaller {
             }
         }
     }
+    
+    /// Store initial profile information (i.e. # pins made, # upvotes/downvotes they've done
+    /// - Parameter email: The user's email
+    func addProfileInfo(email: String) {
+        var ref: DocumentReference? = nil
+        ref = database.collection("users").addDocument(data: [
+            "email": email,
+            "numPinsAdded": 0,
+            "numUpvotesGiven": 0,
+            "numDownvotesGiven": 0
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+    }
 }
 // swiftlint:enable all
