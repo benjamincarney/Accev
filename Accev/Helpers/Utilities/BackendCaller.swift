@@ -118,10 +118,6 @@ class BackendCaller {
         }
     }
 
-    // TODO: When user upvotes/downvotes a pin, increment either property on backend
-    func ratePinBackend() {
-    }
-
     // This is what our dictionary for pins looks like
     // {
     //  id432343: {locationName: Krusty Krab, upvotes: 423, downvotes: 21, wheelchairRamp: true}
