@@ -161,7 +161,7 @@ class BackendCaller {
             if let err = err {
                 print("Error adding document: \(err)")
             } else {
-                print("Document added with ID: \(email)")
+                print("Document added with key: \(email)")
             }
         })
     }
@@ -169,8 +169,29 @@ class BackendCaller {
     /// Add an upvote to the current user's upvote count
     /// - Parameter email: The user's email
     func addUpvoteForUser(email: String) {
-//        var ref: DocumentReference? = nil
-//        reg = database.collection("users").document(<#T##documentPath: String##String#>)
+        database.collection("users").document(email).updateData([
+            "numUpvotesGiven": Firebase.FieldValue.increment(Int64(1))
+        ]) { err in
+            if let err = err {
+                print("Error adding upvote: \(err)")
+            } else {
+                print("Upvote added with key: \(email)")
+            }
+        }
+    }
+
+    /// Add a downvote to the current user's downvote count
+    /// - Parameter email: The user's email
+    func addDownvoteForUser(email: String) {
+        database.collection("users").document(email).updateData([
+            "numDownvotesGiven": Firebase.FieldValue.increment(Int64(1))
+        ]) { err in
+            if let err = err {
+                print("Error adding downvote: \(err)")
+            } else {
+                print("Downvote added with key: \(email)")
+            }
+        }
     }
 }
 // swiftlint:enable all
