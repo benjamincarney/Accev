@@ -166,30 +166,44 @@ class BackendCaller {
         })
     }
     
-    /// Add an upvote to the current user's upvote count
+    /// Increment the current user's upvote count
     /// - Parameter email: The user's email
     func addUpvoteForUser(email: String) {
         database.collection("users").document(email).updateData([
             "numUpvotesGiven": Firebase.FieldValue.increment(Int64(1))
         ]) { err in
             if let err = err {
-                print("Error adding upvote: \(err)")
+                print("Error incrementing upvote: \(err)")
             } else {
-                print("Upvote added with key: \(email)")
+                print("Upvote incremented with key: \(email)")
             }
         }
     }
 
-    /// Add a downvote to the current user's downvote count
+    /// Increment the current user's downvote count
     /// - Parameter email: The user's email
     func addDownvoteForUser(email: String) {
         database.collection("users").document(email).updateData([
             "numDownvotesGiven": Firebase.FieldValue.increment(Int64(1))
         ]) { err in
             if let err = err {
-                print("Error adding downvote: \(err)")
+                print("Error incrementing downvote: \(err)")
             } else {
-                print("Downvote added with key: \(email)")
+                print("Downvote incremented with key: \(email)")
+            }
+        }
+    }
+    
+    /// Increment's the current user's pin added count
+    /// - Parameter email: The user's email
+    func addPinForUser(email: String) {
+        database.collection("users").document(email).updateData([
+            "numPinsAdded": Firebase.FieldValue.increment(Int64(1))
+        ]) { err in
+            if let err = err {
+                print("Error incrementing # pins added: \(err)")
+            } else {
+                print("# pins incremented with key: \(email)")
             }
         }
     }
