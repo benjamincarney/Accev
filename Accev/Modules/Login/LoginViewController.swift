@@ -169,6 +169,13 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
     @objc
     func forgotPasswordLinkTapped() {
         // routeTo(screen: .forgotPassword)
+        if Auth.auth().currentUser != nil {
+            do {
+                try Auth.auth().signOut()
+            } catch {
+                print("Error signing out")
+            }
+        }
         routeTo(screen: .primaryMap)
     }
 
