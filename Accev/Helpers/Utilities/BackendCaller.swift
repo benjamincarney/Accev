@@ -207,5 +207,20 @@ class BackendCaller {
             }
         }
     }
+    
+    /// Fetch the user's profile information (# pins made, # times they've upvoted/downvoted) from Firestore
+    /// - Parameter email: The user's email
+    func fetchProfileInfo(email: String, completion: @escaping ([String: Any]?) -> Void) {
+        database.collection("users").document(email).getDocument { (document, err) in
+            if let document = document, document.exists {
+                let userData = document.data()
+                print("Document data: \(String(describing: userData))")
+                completion(userData)
+            } else {
+                print("Document does not exist")
+                completion(nil)
+            }
+        }
+    }
 }
 // swiftlint:enable all
