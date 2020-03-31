@@ -18,15 +18,12 @@ class ProfileController: RoutedViewController {
 
     let backendCaller = BackendCaller()
 
-    lazy var loginButton: UIButton = {
-        let login = UIButton()
-        login.setTitle("Log In", for: .normal)
-        login.setTitleColor(UIColor.gray, for: .highlighted)
-        login.titleLabel?.font = R.font.latoRegular(size: 24)
-        login.backgroundColor = Colors.behindGradient
+    lazy var loginLabel: UILabel = {
+        let login = UILabel()
+        login.text = "Please login to view your profile."
+        login.textColor = .gray
+        login.font = R.font.latoRegular(size: 24)
         login.translatesAutoresizingMaskIntoConstraints = false
-        login.layer.cornerRadius = 10.0
-        login.addTarget(self, action: #selector(loginPressed), for: .touchUpInside)
         return login
     }()
 
@@ -116,42 +113,23 @@ class ProfileController: RoutedViewController {
     }
 
     func displayLoginButton() {
-        view.addSubview(loginButton)
+        view.addSubview(loginLabel)
 
         if #available(iOS 11.0, *) {
-            loginButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+            loginLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         } else {
             // Fallback on earlier versions
-            loginButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
+            loginLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
         }
 
-        loginButton.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -50).isActive = true
-        loginButton.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        loginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
-        loginButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25).isActive = true
-    }
-
-    @objc
-    func loginPressed() {
-        self.routeTo(screen: .login, animatedWithOptions: .transitionCrossDissolve)
-        print("PRESSED")
+        loginLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        loginLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
     }
 
     @objc
     func handleDismiss() {
         dismiss(animated: true, completion: nil)
     }
-
-    lazy var descriptionLabel: UITextView = {
-        let wheelchairLabel = UITextView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        wheelchairLabel.text = """
-                        Under Construction!
-                        """
-        wheelchairLabel.textColor = .gray
-        wheelchairLabel.font = R.font.latoRegular(size: 16)
-        wheelchairLabel.contentOffset = .zero
-        return wheelchairLabel
-    }()
 
     func configureUI() {
         view.backgroundColor = .white
@@ -166,15 +144,5 @@ class ProfileController: RoutedViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "x24blue").withRenderingMode(.alwaysOriginal),
                                                            style: .plain, target: self,
                                                            action: #selector(handleDismiss))
-
-//        self.view.addSubview(descriptionLabel)
-//
-//        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-//        let screenSize = UIScreen.main.bounds
-//
-//        descriptionLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-//        descriptionLabel.widthAnchor.constraint(equalToConstant: screenSize.width - 20).isActive = true
-//        descriptionLabel.heightAnchor.constraint(equalToConstant: screenSize.height - 150).isActive = true
-//        descriptionLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
     }
 }
