@@ -118,10 +118,6 @@ class BackendCaller {
         }
     }
 
-    // TODO: When user upvotes/downvotes a pin, increment either property on backend
-    func ratePinBackend() {
-    }
-
     // This is what our dictionary for pins looks like
     // {
     //  id432343: {locationName: Krusty Krab, upvotes: 423, downvotes: 21, wheelchairRamp: true}
@@ -150,6 +146,79 @@ class BackendCaller {
                 print("Error adding document: \(err)")
             } else {
                 print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+    }
+    
+    /// Store initial profile information (i.e. # pins made, # upvotes/downvotes they've done
+    /// - Parameter email: The user's email
+    func addProfileInfo(email: String) {
+        database.collection("users").document(email).setData([
+            "numPinsAdded": 0,
+            "numUpvotesGiven": 0,
+            "numDownvotesGiven": 0
+            ], completion: { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with key: \(email)")
+            }
+        })
+    }
+    
+    /// Increment the current user's upvote count
+    /// - Parameter email: The user's email
+    func addUpvoteForUser(email: String) {
+        database.collection("users").document(email).updateData([
+            "numUpvotesGiven": Firebase.FieldValue.increment(Int64(1))
+        ]) { err in
+            if let err = err {
+                print("Error incrementing upvote: \(err)")
+            } else {
+                print("Upvote incremented with key: \(email)")
+            }
+        }
+    }
+
+    /// Increment the current user's downvote count
+    /// - Parameter email: The user's email
+    func addDownvoteForUser(email: String) {
+        database.collection("users").document(email).updateData([
+            "numDownvotesGiven": Firebase.FieldValue.increment(Int64(1))
+        ]) { err in
+            if let err = err {
+                print("Error incrementing downvote: \(err)")
+            } else {
+                print("Downvote incremented with key: \(email)")
+            }
+        }
+    }
+    
+    /// Increment's the current user's pin added count
+    /// - Parameter email: The user's email
+    func addPinForUser(email: String) {
+        database.collection("users").document(email).updateData([
+            "numPinsAdded": Firebase.FieldValue.increment(Int64(1))
+        ]) { err in
+            if let err = err {
+                print("Error incrementing # pins added: \(err)")
+            } else {
+                print("# pins incremented with key: \(email)")
+            }
+        }
+    }
+    
+    /// Fetch the user's profile information (# pins made, # times they've upvoted/downvoted) from Firestore
+    /// - Parameter email: The user's email
+    func fetchProfileInfo(email: String, completion: @escaping ([String: Any]?) -> Void) {
+        database.collection("users").document(email).getDocument { (document, err) in
+            if let document = document, document.exists {
+                let userData = document.data()
+                print("Document data: \(String(describing: userData))")
+                completion(userData)
+            } else {
+                print("Document does not exist")
+                completion(nil)
             }
         }
     }

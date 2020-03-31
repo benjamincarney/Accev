@@ -6,6 +6,7 @@
 //  Copyright © 2020 Accev. All rights reserved.
 //  swiftlint:disable all
 
+import FirebaseAuth
 import UIKit
 
 class PinDetailsController: UIViewController {
@@ -158,6 +159,12 @@ class PinDetailsController: UIViewController {
         backend.downvotePin(self.pinID!)
         self.downvotes! += 1
         downvotesLabel.text = "\(Int(self.downvotes!))"
+
+        // Add the downvote to the current user's profile, if there is a user logged in
+        if let curEmail = Auth.auth().currentUser?.email {
+            backend.addDownvoteForUser(email: curEmail)
+        }
+
         let alert = UIAlertController(title: "Feedback received", message: "Thanks for rating!", preferredStyle: UIAlertController.Style.alert)
 
         // add the actions (buttons)
@@ -175,6 +182,12 @@ class PinDetailsController: UIViewController {
         backend.upvotePin(self.pinID!)
         self.upvotes! += 1
         upvotesLabel.text = "\(Int(self.upvotes!))"
+
+        // Add the upvote to the current user's profile, if there is a user logged in
+        if let curEmail = Auth.auth().currentUser?.email {
+            backend.addUpvoteForUser(email: curEmail)
+        }
+
         let alert = UIAlertController(title: "Feedback received", message: "Thanks for rating!", preferredStyle: UIAlertController.Style.alert)
 
         // add the actions (buttons)

@@ -123,6 +123,11 @@ CLLocationManagerDelegate, PinEntryControllerDelegate {
         self.pins.updateValue(self.resultsFromPinEntry, forKey: pinID)
 
         addPinUI(mapView, pinEntryVC.coordinate!, pinID)
+        
+        // Increment the current user's numPinsAdded
+        if let curEmail = Auth.auth().currentUser?.email {
+            backendCaller.addPinForUser(email: curEmail)
+        }
 
         // Present alert controller
         let pinMessage = "Pin successfully submitted."
