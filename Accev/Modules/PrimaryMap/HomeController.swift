@@ -145,6 +145,14 @@ CLLocationManagerDelegate, PinEntryControllerDelegate {
 
     @objc
     func addPinButtonPressed() {
+        if Auth.auth().currentUser == nil {
+            let mustLoginMessage = "Please login to add pins"
+            let mustLoginAlert = UIAlertController(title: "Error", message: mustLoginMessage, preferredStyle: .alert)
+            mustLoginAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(mustLoginAlert, animated: true, completion: nil)
+            return
+        }
+        
         if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
             CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways {
             guard let currentLocation = locationManager.location else {
