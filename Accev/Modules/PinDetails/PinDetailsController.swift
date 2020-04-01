@@ -160,12 +160,20 @@ class PinDetailsController: UIViewController {
         self.downvotes! += 1
         downvotesLabel.text = "\(Int(self.downvotes!))"
 
+        var alertTitle = ""
+        var alertMessage = ""
+
         // Add the downvote to the current user's profile, if there is a user logged in
         if let curEmail = Auth.auth().currentUser?.email {
             backend.addDownvoteForUser(email: curEmail)
+            alertTitle = "Feedback received"
+            alertMessage = "Thanks for rating!"
+        } else {
+            alertTitle = "Error"
+            alertMessage = "Please login to rate pins"
         }
 
-        let alert = UIAlertController(title: "Feedback received", message: "Thanks for rating!", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
 
         // add the actions (buttons)
         alert.addAction(UIAlertAction(title: "Continue", style: UIAlertAction.Style.default, handler: { action in
@@ -183,12 +191,20 @@ class PinDetailsController: UIViewController {
         self.upvotes! += 1
         upvotesLabel.text = "\(Int(self.upvotes!))"
 
+        var alertTitle = ""
+        var alertMessage = ""
+
         // Add the upvote to the current user's profile, if there is a user logged in
         if let curEmail = Auth.auth().currentUser?.email {
             backend.addUpvoteForUser(email: curEmail)
+            alertTitle = "Feedback received"
+            alertMessage = "Thanks for rating!"
+        } else {
+            alertTitle = "Error"
+            alertMessage = "Please login to rate pins"
         }
 
-        let alert = UIAlertController(title: "Feedback received", message: "Thanks for rating!", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
 
         // add the actions (buttons)
         alert.addAction(UIAlertAction(title: "Continue", style: UIAlertAction.Style.default, handler: { action in
