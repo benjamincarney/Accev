@@ -37,6 +37,13 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
         return link
     }()
 
+    lazy var guestLink: UIButton = {
+        let link = TransitionLinkButton("Continue as Guest")
+        link.translatesAutoresizingMaskIntoConstraints = false
+        link.addTarget(self, action: #selector(guestLinkTapped), for: .touchUpInside)
+        return link
+    }()
+
     lazy var googleRegisterButton: UIButton = {
         var button: UIButton
         if let image = R.image.googleLogo() {
@@ -72,6 +79,7 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
         contentView.addSubview(facebookRegisterButton)
         contentView.addSubview(forgotPasswordLink)
         contentView.addSubview(registerLink)
+        contentView.addSubview(guestLink)
     }
 
     override func setUpConstraints() {
@@ -109,10 +117,14 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
             constant: linkSpacing).isActive = true
         registerLink.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
         //registerLink.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -50.0).isActive = true
+
+        guestLink.topAnchor.constraint(equalTo: registerLink.bottomAnchor, constant: linkSpacing).isActive = true
+        guestLink.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
+        guestLink.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
     }
 
     override func getBottomSubview() -> UIView {
-        return forgotPasswordLink
+        return guestLink
     }
 
     override func getSpaceAboveTitle() -> CGFloat {
@@ -168,7 +180,11 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
 
     @objc
     func forgotPasswordLinkTapped() {
-        // routeTo(screen: .forgotPassword)
+        routeTo(screen: .forgotPassword)
+    }
+
+    @objc
+    func guestLinkTapped() {
         if Auth.auth().currentUser != nil {
             do {
                 try Auth.auth().signOut()
