@@ -18,6 +18,7 @@ target 'Accev' do
   pod 'FacebookLogin'
   pod 'FacebookShare'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
   pod 'FacebookCore'
