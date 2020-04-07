@@ -82,6 +82,11 @@ class LoginViewController: LoginRegisterViewController, GIDSignInDelegate {
         contentView.addSubview(guestLink)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UILabel.appearance(whenContainedInInstancesOf: [UIView.self]).textColor = Colors.text
+    }
+
     override func setUpConstraints() {
         super.setUpConstraints()
 
