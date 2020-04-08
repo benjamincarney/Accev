@@ -694,7 +694,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Accev/Pods-Accev-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Accev/Pods-Accev-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
@@ -707,7 +707,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Accev/Pods-Accev-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Accev/Pods-Accev-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		98EFD11B068F4C3358293D51 /* [CP] Check Pods Manifest.lock */ = {
@@ -738,7 +738,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Accev/Pods-Accev-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Accev/Pods-Accev-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
@@ -779,7 +779,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Accev/Pods-Accev-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Accev/Pods-Accev-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FC9CA61F1F83C1B700B8EB94 /* SwiftLint */ = {

@@ -12,55 +12,62 @@ import UIKit
 class LeaderboardController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var username: String?
-    var dbRef = Firestore.firestore()
     var tableView = UITableView()
+    var leaderBoard = [String]()
+    let users = Firestore.firestore().collection("users")
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        dbRef.collection("users").getDocuments { querySnapshot, err in
+        configureUI()
+
+        users.whereField("numPinsAdded", isGreaterThan: 0).order(by: "numPinsAdded", descending: true).getDocuments { querySnapshot, err in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
                     print("\(document.documentID) => \(document.data())")
+                    print("Please be the email \(document.documentID)")
+                    let currentUser: String = document.documentID
+                    self.leaderBoard.append(currentUser)
                 }
             }
+            print(self.leaderBoard)
+            self.configureTableView()
+            self.tableView.reloadData()
         }
-        configureUI()
-        configureTableView()
     }
 
     func configureTableView() {
         view.addSubview(tableView)
-        setTableViewDelegate()
-        //tableView.rowHeight = 50
+        setTableView()
         setConstraints()
     }
 
-    func setTableViewDelegate() {
+    func setTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DankCell")
+        tableView.backgroundColor = Colors.behindGradient
+        tableView.layer.cornerRadius = 5.0
     }
 
     func setConstraints() {
-
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 11.0, *) {
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        } else {
+            // Fallback on earlier versions
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
+        }
+        tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        tableView.heightAnchor.constraint(equalToConstant: 160).isActive = true
     }
 
     @objc
     func handleDismiss() {
         dismiss(animated: true, completion: nil)
     }
-
-    lazy var descriptionLabel: UITextView = {
-        let wheelchairLabel = UITextView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        wheelchairLabel.text = """
-                        Current Standings
-                        """
-        wheelchairLabel.textColor = .gray
-        wheelchairLabel.font = R.font.latoRegular(size: 20)
-        wheelchairLabel.contentOffset = .zero
-        return wheelchairLabel
-    }()
 
     func configureUI() {
         view.backgroundColor = .white
@@ -75,23 +82,24 @@ class LeaderboardController: UIViewController, UITableViewDataSource, UITableVie
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "x24blue").withRenderingMode(.alwaysOriginal),
                                                            style: .plain, target: self,
                                                            action: #selector(handleDismiss))
-
-        self.view.addSubview(descriptionLabel)
-
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        let screenSize = UIScreen.main.bounds
-
-        descriptionLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        descriptionLabel.widthAnchor.constraint(equalToConstant: screenSize.width - 20).isActive = true
-        descriptionLabel.heightAnchor.constraint(equalToConstant: screenSize.height - 150).isActive = true
-        descriptionLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 3
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if (indexPath.row < 3) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DankCell", for: indexPath)
+            cell.backgroundColor = Colors.behindGradient
+            cell.textLabel?.textColor = UIColor.white
+            cell.textLabel?.text = "\(indexPath.row + 1). " + leaderBoard[indexPath.row]
+            return cell
+        }
         return UITableViewCell()
     }
 }
