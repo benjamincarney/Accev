@@ -2,6 +2,8 @@
 
 A crowd-sourced iOS application for mapping out accessibility features among local businesses, buildings, and landmarks.
 
+![](Accev.png)
+
 For EECS 497: Human-Centered Software Design
 
 Contributers: Connor Svrcek, Janet Vu, Casper Hsu, and Benjamin Carney
