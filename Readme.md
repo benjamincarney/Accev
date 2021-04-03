@@ -2,7 +2,7 @@
 
 A crowd-sourced iOS application for mapping out accessibility features among local businesses, buildings, and landmarks.
 
-![](AccevCollage.jpg)
+![](Accev.png) ![](Accev2.png)
 
 For EECS 497: Human-Centered Software Design
 
